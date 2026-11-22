@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /marina
+Disallow: /marina/
+Disallow: /login
+Disallow: /register
+Disallow: /*?*orderby=
+Disallow: /*?*page=
+Disallow: /api/
+
+# Allow core render assets
+Allow: /webassets/css/style.css
+Allow: /webassets/js/main.js
+
+# Block aggressive AI scrapers
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+Crawl-delay: 1
+
+# Master XML Sitemap (Update with your live domain, e.g. https://yourdomain.com/sitemap.xml)
+Sitemap: /sitemap.xml
