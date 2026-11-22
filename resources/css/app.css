@@ -1,0 +1,8 @@
+@import 'bootstrap.min.css';
+@import 'fontawesome.min.css';
+@import 'magnific-popup.min.css';
+@import 'swiper-bundle.min.css';
+
+/* Custom Theme Styles */
+@import 'ttapp.min.css';
+@import 'style.css';
