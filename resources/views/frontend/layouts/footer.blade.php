@@ -30,132 +30,12 @@
         </div>
     </div>
 
-    {{-- 2. Trust & Authority Ribbon --}}
-    <div class="kz-ftr-trust-strip">
-        <div class="container">
-            <div class="kz-ftr-trust-grid">
-                <div class="kz-trust-item">
-                    <div class="kz-trust-icon-box">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div class="kz-trust-text">
-                        <strong>Govt. Registered Agency</strong>
-                        <span>Dept. of Tourism, J&amp;K Licensed</span>
-                    </div>
-                </div>
-                <div class="kz-trust-item">
-                    <div class="kz-trust-icon-box">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <div class="kz-trust-text">
-                        <strong>50,000+ Happy Guests</strong>
-                        <span>4.9 / 5 Guest Satisfaction</span>
-                    </div>
-                </div>
-                <div class="kz-trust-item">
-                    <div class="kz-trust-icon-box">
-                        <i class="fas fa-car-alt"></i>
-                    </div>
-                    <div class="kz-trust-text">
-                        <strong>100% In-House Fleet</strong>
-                        <span>Dedicated Premium 4x4s &amp; Sedans</span>
-                    </div>
-                </div>
-                <div class="kz-trust-item">
-                    <div class="kz-trust-icon-box">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <div class="kz-trust-text">
-                        <strong>24/7 Local Concierge</strong>
-                        <span>Round-the-clock ground assistance</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {{-- 3. Main Footer: 4-Column Luxury Grid --}}
+    {{-- 2. Main Footer: 4-Column Luxury Grid (24/7 Concierge > Quick Links > Destinations > About) --}}
     <div class="footer-main kz-ftr-main">
         <div class="container">
             <div class="kz-ftr-grid">
 
-                {{-- Column 1: Brand & Heritage --}}
-                <div class="kz-ftr-col kz-col-brand">
-                    <div class="kz-ftr-logo-box">
-                        <a href="{{ route('home') }}" class="kz-brand-logo-link">
-                            <img src="{{ asset('storage/' . $setting->footer_logo) }}" alt="{{ $setting->name }}" width="170" height="52" loading="lazy" decoding="async">
-                        </a>
-                    </div>
-                    <p class="kz-brand-bio">
-                        {!! strip_tags($setting->footer_about) ?: 'Love Link Tour and Travels crafts seamless, personalized travel experiences that turn every Himalayan journey into a lifelong memory. Travel smart with verified local destination experts.' !!}
-                    </p>
-                    <div class="kz-accreditation-pill">
-                        <i class="fas fa-certificate text-gold"></i>
-                        <span>Official Tourism Partner &bull; Srinagar &amp; Leh</span>
-                    </div>
-                    <div class="kz-social-links">
-                        @php
-                            $social_link = json_encode($setting->social_link, true) ?? [];
-                            $social_link = json_decode($social_link) ?? [];
-                        @endphp
-                        @if(!empty($social_link))
-                            @foreach($social_link as $index => $item)
-                                <a href="{{ $item->social_link }}" title="{{ $item->social_name }}" class="kz-social-btn" target="_blank" rel="noopener noreferrer">
-                                    <i class="{{ $item->social_icon }}"></i>
-                                </a>
-                            @endforeach
-                        @else
-                            <a href="#" class="kz-social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="kz-social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="kz-social-btn" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="kz-social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        @endif
-                    </div>
-                </div>
-
-                {{-- Column 2: Destinations (Curated) --}}
-                <div class="kz-ftr-col footer-accordion-col kz-col-destinations">
-                    <div class="footer-col-header" data-accordion-toggle>
-                        <h4 class="kz-col-heading">Destinations</h4>
-                        <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
-                    </div>
-                    <div class="footer-col-body">
-                        <ul class="kz-ftr-nav">
-                            <li><a href="{{ route('destinations.index') }}"><i class="fas fa-chevron-right"></i> Kashmir Valley All Tours</a></li>
-                            <li><a href="{{ route('home.tour') }}?search=Gulmarg"><i class="fas fa-chevron-right"></i> Gulmarg Snow &amp; Gondola</a></li>
-                            <li><a href="{{ route('home.tour') }}?search=Pahalgam"><i class="fas fa-chevron-right"></i> Pahalgam &amp; Betaab Valley</a></li>
-                            <li><a href="{{ route('home.tour') }}?search=Sonamarg"><i class="fas fa-chevron-right"></i> Sonamarg &amp; Thajiwas Glacier</a></li>
-                            <li><a href="{{ route('home.tour') }}?search=Ladakh"><i class="fas fa-chevron-right"></i> Leh–Ladakh High Passes</a></li>
-                            <li><a href="{{ route('home.tour') }}?search=Gurez"><i class="fas fa-chevron-right"></i> Gurez Valley Offbeat</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                {{-- Column 3: Quick Links & Experiences --}}
-                <div class="kz-ftr-col footer-accordion-col kz-col-links">
-                    <div class="footer-col-header" data-accordion-toggle>
-                        <h4 class="kz-col-heading">Quick Links</h4>
-                        <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
-                    </div>
-                    <div class="footer-col-body">
-                        <ul class="kz-ftr-nav">
-                            <li><a href="{{ route('aboutus.index') }}"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                            <li><a href="{{ route('home.hotels') }}"><i class="fas fa-chevron-right"></i> Luxury Stays &amp; Houseboats</a></li>
-                            <li><a href="{{ route('home.cabs') }}"><i class="fas fa-chevron-right"></i> In-House Fleet &amp; Cabs</a></li>
-                            <li><a href="{{ route('home.destinationwedding') }}"><i class="fas fa-chevron-right"></i> Destination Weddings</a></li>
-                            @foreach ($footerMenus as $menu)
-                                @if(!in_array(strtolower(trim($menu->title)), ['about us', 'destinations']))
-                                <li>
-                                    <a href="{{ isset($menu->link) ? url($menu->link) : '#' }}"><i class="fas fa-chevron-right"></i> {{ $menu->title }}</a>
-                                </li>
-                                @endif
-                            @endforeach
-                            <li><a href="{{ route('home.contact') }}"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                {{-- Column 4: 24/7 Concierge, Regional Offices & Instagram Moments --}}
+                {{-- Column 1: 24/7 Concierge & Regional Offices --}}
                 <div class="kz-ftr-col footer-accordion-col kz-col-concierge">
                     <div class="footer-col-header" data-accordion-toggle>
                         <h4 class="kz-col-heading">24/7 Concierge</h4>
@@ -225,24 +105,82 @@
                         </div>
                         @endif
 
-                        {{-- Instagram Guest Feed --}}
-                        <div class="kz-ftr-insta-box">
-                            <div class="kz-insta-title">
-                                <i class="fab fa-instagram text-gold"></i>
-                                <span>Guest Moments</span>
-                            </div>
-                            <div class="footer-gallery kz-insta-grid">
-                                @foreach($footerGallery as $gg)
-                                    <div class="gallery-item kz-insta-item">
-                                        <img src="{{ asset('storage/' . $gg->file) }}" alt="Guest Moment" width="70" height="70" loading="lazy" decoding="async">
-                                        <a target="_blank" href="https://instagram.com" rel="noopener noreferrer" class="gallery-overlay kz-insta-overlay" aria-label="Instagram">
-                                            <i class="fab fa-instagram"></i>
-                                        </a>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
+                    </div>
+                </div>
 
+                {{-- Column 2: Quick Links & Experiences --}}
+                <div class="kz-ftr-col footer-accordion-col kz-col-links">
+                    <div class="footer-col-header" data-accordion-toggle>
+                        <h4 class="kz-col-heading">Quick Links</h4>
+                        <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="footer-col-body">
+                        <ul class="kz-ftr-nav">
+                            <li><a href="{{ route('aboutus.index') }}"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                            <li><a href="{{ route('home.hotels') }}"><i class="fas fa-chevron-right"></i> Luxury Stays &amp; Houseboats</a></li>
+                            <li><a href="{{ route('home.cabs') }}"><i class="fas fa-chevron-right"></i> In-House Fleet &amp; Cabs</a></li>
+                            <li><a href="{{ route('home.destinationwedding') }}"><i class="fas fa-chevron-right"></i> Destination Weddings</a></li>
+                            @foreach ($footerMenus as $menu)
+                                @if(!in_array(strtolower(trim($menu->title)), ['about us', 'destinations']))
+                                <li>
+                                    <a href="{{ isset($menu->link) ? url($menu->link) : '#' }}"><i class="fas fa-chevron-right"></i> {{ $menu->title }}</a>
+                                </li>
+                                @endif
+                            @endforeach
+                            <li><a href="{{ route('home.contact') }}"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                {{-- Column 3: Destinations (Curated) --}}
+                <div class="kz-ftr-col footer-accordion-col kz-col-destinations">
+                    <div class="footer-col-header" data-accordion-toggle>
+                        <h4 class="kz-col-heading">Destinations</h4>
+                        <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="footer-col-body">
+                        <ul class="kz-ftr-nav">
+                            <li><a href="{{ route('destinations.index') }}"><i class="fas fa-chevron-right"></i> Kashmir Valley All Tours</a></li>
+                            <li><a href="{{ route('home.tour') }}?search=Gulmarg"><i class="fas fa-chevron-right"></i> Gulmarg Snow &amp; Gondola</a></li>
+                            <li><a href="{{ route('home.tour') }}?search=Pahalgam"><i class="fas fa-chevron-right"></i> Pahalgam &amp; Betaab Valley</a></li>
+                            <li><a href="{{ route('home.tour') }}?search=Sonamarg"><i class="fas fa-chevron-right"></i> Sonamarg &amp; Thajiwas Glacier</a></li>
+                            <li><a href="{{ route('home.tour') }}?search=Ladakh"><i class="fas fa-chevron-right"></i> Leh–Ladakh High Passes</a></li>
+                            <li><a href="{{ route('home.tour') }}?search=Gurez"><i class="fas fa-chevron-right"></i> Gurez Valley Offbeat</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                {{-- Column 4: About (Brand & Heritage) --}}
+                <div class="kz-ftr-col kz-col-brand">
+                    <div class="kz-ftr-logo-box">
+                        <a href="{{ route('home') }}" class="kz-brand-logo-link">
+                            <img src="{{ asset('storage/' . $setting->footer_logo) }}" alt="{{ $setting->name }}" width="170" height="52" loading="lazy" decoding="async">
+                        </a>
+                    </div>
+                    <p class="kz-brand-bio">
+                        {!! strip_tags($setting->footer_about) ?: 'Love Link Tour and Travels crafts seamless, personalized travel experiences that turn every Himalayan journey into a lifelong memory. Travel smart with verified local destination experts.' !!}
+                    </p>
+                    <div class="kz-accreditation-pill">
+                        <i class="fas fa-certificate text-gold"></i>
+                        <span>Official Tourism Partner &bull; Srinagar &amp; Leh</span>
+                    </div>
+                    <div class="kz-social-links">
+                        @php
+                            $social_link = json_encode($setting->social_link, true) ?? [];
+                            $social_link = json_decode($social_link) ?? [];
+                        @endphp
+                        @if(!empty($social_link))
+                            @foreach($social_link as $index => $item)
+                                <a href="{{ $item->social_link }}" title="{{ $item->social_name }}" class="kz-social-btn" target="_blank" rel="noopener noreferrer">
+                                    <i class="{{ $item->social_icon }}"></i>
+                                </a>
+                            @endforeach
+                        @else
+                            <a href="#" class="kz-social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="kz-social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="kz-social-btn" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="kz-social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        @endif
                     </div>
                 </div>
 

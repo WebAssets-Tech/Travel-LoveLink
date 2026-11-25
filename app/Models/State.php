@@ -11,6 +11,7 @@ class State extends Model
         'country_id',
         'name',
         'code',
+        'short_destinations',
         'status',
         'image',
         'page_bg_image',
@@ -20,6 +21,15 @@ class State extends Model
         'slug',
         'order',
     ];
+
+    public function getShortDestinationsListAttribute(): array
+    {
+        if (empty($this->short_destinations)) {
+            return [];
+        }
+
+        return array_values(array_filter(array_map('trim', explode(',', $this->short_destinations))));
+    }
 
     public function country()
     {

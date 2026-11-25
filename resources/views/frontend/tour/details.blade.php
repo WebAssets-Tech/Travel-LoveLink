@@ -242,7 +242,8 @@ tour Area
                                                     $dayNumPadded = str_pad($dayNumber, 2, '0', STR_PAD_LEFT);
 
                                                     // Normalize text lines
-                                                    $cleanDetails = str_replace(["\r\n", "\r"], "\n", trim($details));
+                                                    $rawDetailsText = is_string($details) ? $details : (is_array($details) ? implode("\n", array_map('strval', $details)) : (string) ($details ?? ''));
+                                                    $cleanDetails = str_replace(["\r\n", "\r"], "\n", trim($rawDetailsText));
                                                     $lines = array_values(array_filter(explode("\n", $cleanDetails), function($line) {
                                                         return trim($line) !== '';
                                                     }));
@@ -254,8 +255,8 @@ tour Area
                                                         $first = trim($lines[0]);
                                                         // Check for *Title* pattern
                                                         if (preg_match('/^\*([^*]+)\*(.*)$/', $first, $m)) {
-                                                            $dayTitle = trim($m[1]);
-                                                            $rest = trim($m[2]);
+                                                            $dayTitle = trim($m[1] ?? '');
+                                                            $rest = trim($m[2] ?? '');
                                                             if (!empty($rest)) {
                                                                 $bodyLines[0] = ltrim($rest, " \t-–—:");
                                                             } else {
@@ -266,9 +267,9 @@ tour Area
                                                             $dayTitle = trim($first, "* \t-–—");
                                                             array_shift($bodyLines);
                                                         } elseif (preg_match('/^(Arrival\s+(?:at|in)\s+[^,.]+)/i', $first, $m)) {
-                                                            $dayTitle = trim($m[1]);
-                                                        } elseif (preg_match('/^(?:After\s+(?:the\s+)?breakfast,\s*(?:proceed|drive|travel)\s+(?:to|towards)\s+[^,.]+)/i', $first, $m)) {
-                                                            $dayTitle = trim($m[1]);
+                                                            $dayTitle = trim($m[1] ?? $m[0] ?? "Day {$dayNumber} Itinerary");
+                                                        } elseif (preg_match('/^(After\s+(?:the\s+)?breakfast,\s*(?:proceed|drive|travel)\s+(?:to|towards)\s+[^,.]+)/i', $first, $m)) {
+                                                            $dayTitle = trim($m[1] ?? $m[0] ?? "Day {$dayNumber} Itinerary");
                                                         } else {
                                                             $dayTitle = "Day {$dayNumber} Itinerary";
                                                         }
@@ -748,35 +749,61 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     let activeLink = navLinks.find(l => l.classList.contains('active')) || navLinks[0];
+    let isClickScrolling = false;
+    let clickScrollTimer = null;
+    let clickScrollTargetY = null;
 
-    // Mobile Header Offset Sync
-    function updateMobileHeaderOffset() {
-        if (!navCol) return;
-        if (window.innerWidth < 992) {
-            const hdr = document.querySelector('.kaw-hdr');
-            const isHeaderVisible = hdr && hdr.classList.contains('nav-scrolled') && !hdr.classList.contains('nav-hidden');
-            if (isHeaderVisible) {
-                navCol.style.setProperty('top', '56px', 'important');
-            } else {
-                navCol.style.setProperty('top', '0px', 'important');
-            }
-        } else {
-            navCol.style.setProperty('top', '90px', 'important');
+    function releaseClickScrollLock() {
+        isClickScrolling = false;
+        clickScrollTargetY = null;
+        if (clickScrollTimer) {
+            clearTimeout(clickScrollTimer);
+            clickScrollTimer = null;
         }
     }
 
-    // Accurate Glider Positioning (includes scrollLeft for horizontal mobile overflow)
+    // Cancel programmatic scroll lock immediately if the user manually touches/wheels
+    ['wheel', 'touchstart'].forEach(function (evt) {
+        window.addEventListener(evt, function () {
+            if (isClickScrolling) releaseClickScrollLock();
+        }, { passive: true });
+    });
+
+    // Accurate Header Offset Sync (only offset if header is genuinely fixed & visible in viewport)
+    function updateMobileHeaderOffset() {
+        if (!navCol) return;
+        const hdr = document.querySelector('.kaw-hdr');
+        let fixedHeaderHeight = 0;
+        if (hdr) {
+            const hdrPos = window.getComputedStyle(hdr).position;
+            const hdrRect = hdr.getBoundingClientRect();
+            if (hdrPos === 'fixed' && !hdr.classList.contains('nav-hidden') && hdrRect.bottom > 0) {
+                fixedHeaderHeight = Math.round(hdrRect.bottom);
+            }
+        }
+        if (window.innerWidth < 992) {
+            navCol.style.setProperty('top', fixedHeaderHeight + 'px', 'important');
+        } else {
+            navCol.style.setProperty('top', Math.max(24, fixedHeaderHeight + 16) + 'px', 'important');
+        }
+    }
+
+    // Accurate Glider Positioning using stable offsetParent coordinates (zero scroll jitter)
     function positionTourGlider(targetLink, immediate) {
         if (!navList || !glider || !targetLink) return;
 
-        const listRect = navList.getBoundingClientRect();
-        const linkRect = targetLink.getBoundingClientRect();
-
-        // Include scrollLeft / scrollTop so the glider is placed accurately in the scroll canvas
-        const targetTop = Math.round(linkRect.top - listRect.top + navList.scrollTop);
-        const targetLeft = Math.round(linkRect.left - listRect.left + navList.scrollLeft);
-        const targetWidth = Math.round(linkRect.width);
-        const targetHeight = Math.round(linkRect.height);
+        let targetTop, targetLeft;
+        if (targetLink.offsetParent === navList) {
+            targetTop = Math.round(targetLink.offsetTop);
+            targetLeft = Math.round(targetLink.offsetLeft);
+        } else {
+            const listRect = navList.getBoundingClientRect();
+            const linkRect = targetLink.getBoundingClientRect();
+            targetTop = Math.round(linkRect.top - listRect.top + navList.scrollTop);
+            targetLeft = Math.round(linkRect.left - listRect.left + navList.scrollLeft);
+        }
+        const targetWidth = Math.round(targetLink.offsetWidth || targetLink.getBoundingClientRect().width);
+        const targetHeight = Math.round(targetLink.offsetHeight || targetLink.getBoundingClientRect().height);
 
         glider.style.opacity = '1';
 
@@ -813,19 +840,18 @@ document.addEventListener('DOMContentLoaded', function () {
         glider._currWidth = targetWidth;
         glider._currHeight = targetHeight;
 
-        // Trigger fluid water wave shimmer
-        glider.classList.remove('is-water-flowing');
-        void glider.offsetWidth;
-        glider.classList.add('is-water-flowing');
-
         gsap.killTweensOf(glider);
         glider.style.removeProperty('transition');
 
-        const isHorizontal = window.innerWidth < 992;
-
-        const waterTL = gsap.timeline({
+        gsap.to(glider, {
+            top: targetTop,
+            left: targetLeft,
+            width: targetWidth,
+            height: targetHeight,
+            duration: 0.32,
+            ease: "power3.out",
+            overwrite: "auto",
             onComplete: function () {
-                glider.classList.remove('is-water-flowing');
                 glider.style.setProperty('top', targetTop + 'px', 'important');
                 glider.style.setProperty('left', targetLeft + 'px', 'important');
                 glider.style.setProperty('width', targetWidth + 'px', 'important');
@@ -833,118 +859,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 glider.style.setProperty('transform', 'none', 'important');
             }
         });
-
-        if (isHorizontal) {
-            const movingRight = targetLeft > currentLeft;
-            if (movingRight) {
-                const totalSpan = (targetLeft + targetWidth) - currentLeft;
-                waterTL.to(glider, {
-                    left: currentLeft,
-                    top: targetTop,
-                    width: totalSpan * 0.95,
-                    height: targetHeight,
-                    scaleY: 0.84,
-                    duration: 0.20,
-                    ease: "power2.in"
-                })
-                .to(glider, {
-                    left: targetLeft,
-                    top: targetTop,
-                    width: targetWidth,
-                    height: targetHeight,
-                    scaleY: 1.08,
-                    duration: 0.22,
-                    ease: "power2.out"
-                })
-                .to(glider, {
-                    scaleY: 1.0,
-                    scaleX: 1.0,
-                    duration: 0.28,
-                    ease: "elastic.out(1.2, 0.45)"
-                });
-            } else {
-                const totalSpan = (currentLeft + currentWidth) - targetLeft;
-                waterTL.to(glider, {
-                    left: targetLeft,
-                    top: targetTop,
-                    width: totalSpan * 0.95,
-                    height: targetHeight,
-                    scaleY: 0.84,
-                    duration: 0.20,
-                    ease: "power2.in"
-                })
-                .to(glider, {
-                    left: targetLeft,
-                    top: targetTop,
-                    width: targetWidth,
-                    height: targetHeight,
-                    scaleY: 1.08,
-                    duration: 0.22,
-                    ease: "power2.out"
-                })
-                .to(glider, {
-                    scaleY: 1.0,
-                    scaleX: 1.0,
-                    duration: 0.28,
-                    ease: "elastic.out(1.2, 0.45)"
-                });
-            }
-        } else {
-            const movingDown = targetTop > currentTop;
-            if (movingDown) {
-                const totalSpan = (targetTop + targetHeight) - currentTop;
-                waterTL.to(glider, {
-                    top: currentTop,
-                    left: targetLeft,
-                    height: totalSpan * 0.95,
-                    width: targetWidth,
-                    scaleX: 0.90,
-                    duration: 0.20,
-                    ease: "power2.in"
-                })
-                .to(glider, {
-                    top: targetTop,
-                    left: targetLeft,
-                    height: targetHeight,
-                    width: targetWidth,
-                    scaleX: 1.06,
-                    duration: 0.22,
-                    ease: "power2.out"
-                })
-                .to(glider, {
-                    scaleX: 1.0,
-                    scaleY: 1.0,
-                    duration: 0.28,
-                    ease: "elastic.out(1.2, 0.45)"
-                });
-            } else {
-                const totalSpan = (currentTop + currentHeight) - targetTop;
-                waterTL.to(glider, {
-                    top: targetTop,
-                    left: targetLeft,
-                    height: totalSpan * 0.95,
-                    width: targetWidth,
-                    scaleX: 0.90,
-                    duration: 0.20,
-                    ease: "power2.in"
-                })
-                .to(glider, {
-                    top: targetTop,
-                    left: targetLeft,
-                    height: targetHeight,
-                    width: targetWidth,
-                    scaleX: 1.06,
-                    duration: 0.22,
-                    ease: "power2.out"
-                })
-                .to(glider, {
-                    scaleX: 1.0,
-                    scaleY: 1.0,
-                    duration: 0.28,
-                    ease: "elastic.out(1.2, 0.45)"
-                });
-            }
-        }
     }
 
     function setActiveTab(newLink, immediate) {
@@ -952,6 +866,8 @@ document.addEventListener('DOMContentLoaded', function () {
         navLinks.forEach(function (l) { l.classList.remove('active'); });
         newLink.classList.add('active');
         activeLink = newLink;
+
+        positionTourGlider(newLink, immediate);
 
         if (window.innerWidth < 992 && navList) {
             // Smoothly center the active tab in the horizontal scroll track
@@ -961,18 +877,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const targetScrollLeft = Math.max(0, linkLeft - (listWidth / 2) + (linkWidth / 2));
             navList.scrollTo({
                 left: targetScrollLeft,
-                behavior: 'smooth'
+                behavior: immediate ? 'auto' : 'smooth'
             });
-            // Update glider position after scroll starts
-            setTimeout(function () {
-                positionTourGlider(newLink, immediate);
-            }, 50);
-        } else {
-            positionTourGlider(newLink, immediate);
         }
     }
 
-    // Click navigation handler
+    // Click navigation handler (locks ScrollSpy during smooth scroll to prevent intermediate flicker)
     navLinks.forEach(function (link) {
         link.addEventListener('click', function (e) {
             e.preventDefault();
@@ -980,16 +890,31 @@ document.addEventListener('DOMContentLoaded', function () {
             const targetEl = document.getElementById(targetId);
             if (targetEl) {
                 const isMobile = window.innerWidth < 992;
-                const headerOffset = isMobile ? 60 : 105;
+                const hdr = document.querySelector('.kaw-hdr');
+                const hdrFixed = hdr && window.getComputedStyle(hdr).position === 'fixed' && !hdr.classList.contains('nav-hidden');
+                const headerOffset = isMobile ? (hdrFixed ? 120 : 66) : 24;
                 const elementTop = targetEl.getBoundingClientRect().top + window.pageYOffset;
                 const offsetPosition = Math.max(0, elementTop - headerOffset);
 
+                // Lock scrollspy so intermediate sections do not hijack active tab mid-scroll
+                releaseClickScrollLock();
+                isClickScrolling = true;
+                clickScrollTargetY = offsetPosition;
+                clickScrollTimer = setTimeout(releaseClickScrollLock, 950);
+
                 setActiveTab(link, false);
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
+                if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+                    window.lenis.scrollTo(offsetPosition, {
+                        duration: 0.75,
+                        onComplete: releaseClickScrollLock
+                    });
+                } else {
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     });
@@ -998,6 +923,18 @@ document.addEventListener('DOMContentLoaded', function () {
     let isTicking = false;
     function highlightActiveTab() {
         updateMobileHeaderOffset();
+        if (isClickScrolling) {
+            // If native scroll reached destination, release lock cleanly
+            if ((!window.lenis || typeof window.lenis.scrollTo !== 'function') && clickScrollTargetY !== null) {
+                const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+                const clampedTarget = Math.min(clickScrollTargetY, maxScroll);
+                if (Math.abs(window.pageYOffset - clampedTarget) <= 4) {
+                    releaseClickScrollLock();
+                }
+            }
+            isTicking = false;
+            return;
+        }
         const isMobile = window.innerWidth < 992;
         const threshold = isMobile ? 80 : 160;
         let currentSectionId = '';

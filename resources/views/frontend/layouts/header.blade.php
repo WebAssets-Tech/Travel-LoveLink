@@ -164,14 +164,58 @@
 </div>
 
 <!--==============================
-	Header Area  
+	Header Area (MMT-Inspired Floating Menu + Top Updates & Contact Bar)
 ==============================-->
-<header class="kaw-hdr">
+@php
+    $hdr_wa_raw = !empty($setting->whatsapp)
+        ? $setting->whatsapp
+        : (!empty($setting->phone)
+            ? $setting->phone
+            : (!empty($setting->phone1) ? $setting->phone1 : '917006338617'));
+    $hdr_wa_clean = preg_replace('/[^0-9]/', '', (string)$hdr_wa_raw);
+    if (strlen($hdr_wa_clean) === 10) {
+        $hdr_wa_clean = '91' . $hdr_wa_clean;
+    }
+    if (empty($hdr_wa_clean)) {
+        $hdr_wa_clean = '917006338617';
+    }
+
+    $isSliderIconSectionActive = true;
+    $statusCheckKeys = [
+        'slider_icon_status', 'slidericon_status', 'slider_icons_status',
+        'slider_icon', 'slidericon', 'header_icon_status', 'header_icons_status',
+        'feature_icon_status', 'feature_icons_status', 'is_slider_icon',
+        'is_slidericon', 'is_slider_icon_active', 'show_slider_icons'
+    ];
+    if (isset($setting)) {
+        foreach ($statusCheckKeys as $key) {
+            if (isset($setting->$key)) {
+                $val = $setting->$key;
+                if ($val === 0 || $val === '0' || $val === false || $val === 'inactive' || $val === 'off') {
+                    $isSliderIconSectionActive = false;
+                    break;
+                }
+            }
+        }
+    }
+    $activeSliderIcons = collect($slidericon ?? [])->filter(function ($item) {
+        if (is_object($item) && isset($item->status)) {
+            return $item->status == 1 || $item->status === true || $item->status === '1' || $item->status === 'active';
+        }
+        if (is_array($item) && isset($item['status'])) {
+            return $item['status'] == 1 || $item['status'] === true || $item['status'] === '1' || $item['status'] === 'active';
+        }
+        return true;
+    })->values();
+@endphp
+
+<header class="kaw-hdr kaw-mmt-hdr">
+    {{-- ROW 1: Top Header Bar (Logo + Updates Ticker + Phone/Email + CTA + Hamburger) --}}
     <div class="kaw-hdr-sticky">
         <div class="container th-container">
-            <div class="kaw-hdr-wrap">
+            <div class="kaw-hdr-wrap kaw-mmt-top-row">
 
-                {{-- LEFT: Logo --}}
+                {{-- LEFT: Brand Logo --}}
                 <div class="kaw-hdr-logo-area">
                     <a href="{{ route('home') }}">
                         <img src="{{ asset('storage/' . $setting->header_logo) }}" alt="{{ $setting->name }}"
@@ -179,185 +223,126 @@
                     </a>
                 </div>
 
-                {{-- CENTER: Feature Icons (Defensive Active Filtering) --}}
-                @php
-                    $isSliderIconSectionActive = true;
+                {{-- CENTER: Live Updates Ticker inside Top Header --}}
+                <div class="kaw-hdr-updates-wrap">
+                    <div class="kz-ent-notice-bar kz-ent-header-bar" id="kzEntNoticeBar">
+                        <div class="kz-ent-badge">
+                            <span class="kz-ent-pulse">
+                                <span class="kz-ent-dot"></span>
+                                <span class="kz-ent-ring"></span>
+                            </span>
+                            <span class="kz-ent-badge-text">UPDATES</span>
+                        </div>
 
-                    // 1. Check all standard toggle/status keys on $setting
-                    $statusCheckKeys = [
-                        'slider_icon_status',
-                        'slidericon_status',
-                        'slider_icons_status',
-                        'slider_icon',
-                        'slidericon',
-                        'header_icon_status',
-                        'header_icons_status',
-                        'feature_icon_status',
-                        'feature_icons_status',
-                        'is_slider_icon',
-                        'is_slidericon',
-                        'is_slider_icon_active',
-                        'show_slider_icons'
-                    ];
-
-                    if (isset($setting)) {
-                        foreach ($statusCheckKeys as $key) {
-                            if (isset($setting->$key)) {
-                                $val = $setting->$key;
-                                if ($val === 0 || $val === '0' || $val === false || $val === 'inactive' || $val === 'off') {
-                                    $isSliderIconSectionActive = false;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-
-                    // 2. Filter collection: remove items explicitly marked inactive (status = 0 / inactive)
-                    $activeSliderIcons = collect($slidericon ?? [])->filter(function ($item) {
-                        if (is_object($item) && isset($item->status)) {
-                            return $item->status == 1 || $item->status === true || $item->status === '1' || $item->status === 'active';
-                        }
-                        if (is_array($item) && isset($item['status'])) {
-                            return $item['status'] == 1 || $item['status'] === true || $item['status'] === '1' || $item['status'] === 'active';
-                        }
-                        return true;
-                    });
-                @endphp
-
-                @if($isSliderIconSectionActive && $activeSliderIcons->isNotEmpty())
-                    <div class="kaw-hdr-icons-area">
-                        <div class="kaw-hdr-fi" id="kawHdrFi">
-                            @foreach($activeSliderIcons as $index => $slid)
-                                @php
-                                    $itemClass = '';
-                                    if ($index >= 8) {
-                                        $itemClass = 'kaw-hdr-fi-hidden';
-                                    } elseif ($index >= 6) {
-                                        $itemClass = 'kaw-hdr-fi-desktop-only';
-                                    }
-                                    $itemUrl = \Illuminate\Support\Str::startsWith($slid->link, ['http://', 'https://'])
-                                        ? $slid->link
-                                        : url('/' . ltrim($slid->link, '/'));
-                                @endphp
-                                <div class="kaw-hdr-fi-item {{ $itemClass }}" onclick="location.href='{{ $itemUrl }}'">
-                                    @if($slid->image)
-                                        <div class="kaw-hdr-fi-icon">
-                                            <img src="{{ asset('storage/' . $slid->image) }}" alt="{{ $slid->title }}"
-                                                class="kaw-hdr-fi-img" width="32" height="32" loading="lazy" decoding="async">
-                                        </div>
-                                    @else
-                                        <div class="kaw-hdr-fi-icon">
-                                            <span class="kaw-hdr-fi-no-icon"></span>
-                                        </div>
-                                    @endif
-                                    <p class="kaw-hdr-fi-label">{{ $slid->title }}</p>
-                                </div>
-                            @endforeach
-
-                            {{-- More button (always visible if > 6 icons on mobile; only > 8 on desktop) --}}
-                            @if($activeSliderIcons->count() > 6)
-                                <button
-                                    class="kaw-hdr-fi-more {{ $activeSliderIcons->count() <= 8 ? 'kaw-hdr-fi-more-mobile-only' : '' }}"
-                                    id="kawFiMoreBtn" type="button" aria-expanded="false" aria-controls="kawFiPanel">
-                                    <div class="kaw-hdr-fi-icon">
-                                        <span class="kaw-hdr-fi-more-svg">
-                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
-                                                <circle cx="8" cy="8" r="2"></circle>
-                                                <circle cx="16" cy="8" r="2"></circle>
-                                                <circle cx="8" cy="16" r="2"></circle>
-                                                <circle cx="16" cy="16" r="2"></circle>
-                                            </svg>
-                                        </span>
+                        <div class="kz-ent-ticker-viewport" id="kzEntViewport" aria-live="polite">
+                            <div class="kz-ent-ticker-track" id="kzEntTrack">
+                                <div class="kz-ent-item active" data-index="1">
+                                    <span class="kz-ent-tag tag-dest"><i class="fas fa-mountain"></i> Trending</span>
+                                    <div class="kz-ent-content">
+                                        <span class="kz-ent-strong">We Offer:</span>
+                                        <span class="kz-ent-text">Kashmir • Leh–Ladakh • Shimla–Manali • Goa • Golden Triangle</span>
                                     </div>
-                                    <p class="kaw-hdr-fi-label" id="kawFiMoreLabel">More</p>
+                                    <a href="{{ url('category/domestic') }}" class="kz-ent-action" title="Explore Packages">
+                                        <span class="kz-ent-action-txt">Explore</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+
+                                <div class="kz-ent-item" data-index="2">
+                                    <span class="kz-ent-tag tag-verified"><i class="fas fa-shield-alt"></i> Certified</span>
+                                    <div class="kz-ent-content">
+                                        <span class="kz-ent-strong">Govt. Recognized:</span>
+                                        <span class="kz-ent-text">Govt. of J&amp;K Registered Agency • 50,000+ Happy Travelers</span>
+                                    </div>
+                                    <a href="{{ route('aboutus.index') }}" class="kz-ent-action" title="About LoveLink">
+                                        <span class="kz-ent-action-txt">About</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+
+                                <div class="kz-ent-item" data-index="3">
+                                    <span class="kz-ent-tag tag-offer"><i class="fas fa-tag"></i> Offer</span>
+                                    <div class="kz-ent-content">
+                                        <span class="kz-ent-strong">Early Bird:</span>
+                                        <span class="kz-ent-text">Save up to 20% on Custom Kashmir, Ladakh &amp; Himachal Packages</span>
+                                    </div>
+                                    <a href="{{ route('home.contact') }}" class="kz-ent-action" title="Get Free Quote">
+                                        <span class="kz-ent-action-txt">Quote</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+
+                                <div class="kz-ent-item" data-index="4">
+                                    <span class="kz-ent-tag tag-fleet"><i class="fas fa-car-side"></i> Fleet</span>
+                                    <div class="kz-ent-content">
+                                        <span class="kz-ent-strong">Zero Middlemen:</span>
+                                        <span class="kz-ent-text">Sanitized Sedans, Innova Crysta &amp; Tempo Travelers with Native Chauffeurs</span>
+                                    </div>
+                                    <a href="{{ route('home.cabs') }}" class="kz-ent-action" title="View Fleet">
+                                        <span class="kz-ent-action-txt">Fleet</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+
+                                <div class="kz-ent-item" data-index="5">
+                                    <span class="kz-ent-tag tag-support"><i class="fas fa-headset"></i> 24/7</span>
+                                    <div class="kz-ent-content">
+                                        <span class="kz-ent-strong">Always Here:</span>
+                                        <span class="kz-ent-text">Dedicated Ground Coordinators in Srinagar &amp; Leh for Seamless Trips</span>
+                                    </div>
+                                    <a href="https://api.whatsapp.com/send?phone={{ $hdr_wa_clean }}&text=Hi%20LoveLink%2C%20I%20would%20like%20to%20plan%20a%20tour" target="_blank" class="kz-ent-action" title="WhatsApp Concierge">
+                                        <span class="kz-ent-action-txt">Chat</span>
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="kz-ent-controls">
+                            <div class="kz-ent-counter">
+                                <span id="kzEntCurrent" class="kz-cur">01</span>
+                                <span class="kz-divider">/</span>
+                                <span id="kzEntTotal" class="kz-tot">05</span>
+                            </div>
+                            <div class="kz-ent-btns">
+                                <button type="button" class="kz-ent-nav-btn prev" id="kzEntPrev" aria-label="Previous notification" title="Previous">
+                                    <i class="fas fa-chevron-up"></i>
                                 </button>
-                            @endif
-                        </div>
-
-                        {{-- Backdrop --}}
-                        <div class="kaw-hdr-fi-backdrop" id="kawFiBackdrop"></div>
-
-                        {{-- More dropdown panel --}}
-                        @if($activeSliderIcons->count() > 6)
-                            <div class="kaw-hdr-fi-panel" id="kawFiPanel">
-                                @foreach($activeSliderIcons as $index => $slid)
-                                    @if($index >= 6)
-                                        @php
-                                            $panelItemUrl = \Illuminate\Support\Str::startsWith($slid->link, ['http://', 'https://'])
-                                                ? $slid->link
-                                                : url('/' . ltrim($slid->link, '/'));
-                                        @endphp
-                                        <div class="kaw-hdr-fi-panel-item {{ $index < 8 ? 'kaw-hdr-fi-mobile-only' : '' }}"
-                                            onclick="location.href='{{ $panelItemUrl }}'">
-                                            @if($slid->image)
-                                                <div class="kaw-hdr-fi-icon">
-                                                    <img src="{{ asset('storage/' . $slid->image) }}" alt="{{ $slid->title }}"
-                                                        class="kaw-hdr-fi-img" width="32" height="32" loading="lazy" decoding="async">
-                                                </div>
-                                            @else
-                                                <div class="kaw-hdr-fi-icon">
-                                                    <span class="kaw-hdr-fi-no-icon"></span>
-                                                </div>
-                                            @endif
-                                            <p class="kaw-hdr-fi-panel-title">{{ $slid->title }}</p>
-                                        </div>
-                                    @endif
-                                @endforeach
+                                <button type="button" class="kz-ent-nav-btn next" id="kzEntNext" aria-label="Next notification" title="Next">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
                             </div>
-                        @endif
-                    </div>
-                @endif
-
-                {{-- RIGHT: Customer Service + Hamburger (always visible) --}}
-                <div class="kaw-hdr-actions">
-                    <div class="kaw-hdr-cs-wrap">
-                        <button class="kaw-hdr-cs-btn" id="kawCsBtn" type="button" aria-expanded="false">
-                            <span class="kaw-hdr-cs-pulse-dot"></span>
-                            <i class="fa-regular fa-headset kaw-hdr-cs-icon"></i>
-                            <span class="kaw-hdr-cs-label">Customer Service</span>
-                            <i class="fa-regular fa-chevron-down kaw-hdr-cs-arrow"></i>
-                        </button>
-                        <div class="kaw-hdr-cs-drop" id="kawCsDrop">
-                            <div class="kaw-cs-card-head">
-                                <span class="kaw-cs-badge"><i class="fa-solid fa-sparkles text-warning me-1"></i>
-                                    Concierge 24/7</span>
-                                <span class="kaw-cs-live-pill"><span class="kaw-cs-pulse"></span> Online</span>
-                            </div>
-                            <a href="tel:{{ $setting->phone }}" class="kaw-hdr-cs-link">
-                                <div class="kaw-cs-ico-wrap phone-ico">
-                                    <i class="fa-solid fa-phone-volume"></i>
-                                </div>
-                                <div class="kaw-cs-body">
-                                    <span class="kaw-cs-sub">Helpline & Hotline</span>
-                                    <span class="kaw-cs-val">{{ $setting->phone }}</span>
-                                </div>
-                                <i class="fa-regular fa-chevron-right kaw-cs-chevron"></i>
-                            </a>
-                            <a href="mailto:{{ $setting->email }}" class="kaw-hdr-cs-link">
-                                <div class="kaw-cs-ico-wrap mail-ico">
-                                    <i class="fa-solid fa-envelope"></i>
-                                </div>
-                                <div class="kaw-cs-body">
-                                    <span class="kaw-cs-sub">Email Assistance</span>
-                                    <span class="kaw-cs-val">{{ $setting->email }}</span>
-                                </div>
-                                <i class="fa-regular fa-chevron-right kaw-cs-chevron"></i>
-                            </a>
-                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $setting->phone ?? '917006338617') }}"
-                                target="_blank" class="kaw-hdr-cs-link kaw-hdr-cs-wa">
-                                <div class="kaw-cs-ico-wrap wa-ico">
-                                    <i class="fa-brands fa-whatsapp"></i>
-                                </div>
-                                <div class="kaw-cs-body">
-                                    <span class="kaw-cs-sub">WhatsApp Support</span>
-                                    <span class="kaw-cs-val">{{ $setting->phone ?? '+91 7006338617' }}</span>
-                                </div>
-                                <i class="fa-regular fa-chevron-right kaw-cs-chevron"></i>
-                            </a>
                         </div>
                     </div>
+                </div>
 
-                    {{-- Hamburger: ALWAYS visible (menu lives in sidebar) --}}
+                {{-- RIGHT: Direct Phone + Email (MMT utility style) + CTA Button + Hamburger --}}
+                <div class="kaw-hdr-actions kaw-mmt-actions">
+                    @if(!empty($setting->phone))
+                        <a href="tel:{{ $setting->phone }}" class="kaw-mmt-util-item kaw-mmt-util-phone" title="Call {{ $setting->phone }}">
+                            <span class="kaw-mmt-util-ico"><i class="fa-solid fa-phone"></i></span>
+                            <span class="kaw-mmt-util-text">
+                                <small>24/7 Helpline</small>
+                                <strong>{{ $setting->phone }}</strong>
+                            </span>
+                        </a>
+                    @endif
+
+                    @if(!empty($setting->email))
+                        <a href="mailto:{{ $setting->email }}" class="kaw-mmt-util-item kaw-mmt-util-email" title="Email {{ $setting->email }}">
+                            <span class="kaw-mmt-util-ico"><i class="fa-solid fa-envelope"></i></span>
+                            <span class="kaw-mmt-util-text">
+                                <small>Email Us</small>
+                                <strong>{{ $setting->email }}</strong>
+                            </span>
+                        </a>
+                    @endif
+
+                    <button type="button" class="kaw-mmt-cta-btn" data-bs-toggle="modal" data-bs-target="#globalContactModal">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Book Now</span>
+                    </button>
+
                     <button type="button" class="kaw-hdr-burger th-menu-toggle" aria-label="Open Navigation Menu">
                         <i class="far fa-bars"></i>
                     </button>
@@ -366,4 +351,54 @@
             </div>
         </div>
     </div>
+
+    {{-- ROW 2: MakeMyTrip-Style Floating Category Icon Menu Card --}}
+    @if($isSliderIconSectionActive && $activeSliderIcons->isNotEmpty())
+        <div class="kaw-mmt-menu-stage">
+            <div class="container th-container">
+                <nav class="kaw-mmt-menu-card" aria-label="Travel Categories">
+                    <div class="kaw-mmt-menu-track">
+                        @php
+                            $currentPath = trim(request()->path(), '/');
+                            $isHomeRoute = request()->routeIs('home') || request()->routeIs('home.index') || $currentPath === '';
+                            $matchedAny = false;
+                            foreach ($activeSliderIcons as $checkSlid) {
+                                $checkPath = trim((string)parse_url(\Illuminate\Support\Str::startsWith($checkSlid->link, ['http://', 'https://']) ? $checkSlid->link : url('/' . ltrim($checkSlid->link, '/')), PHP_URL_PATH), '/');
+                                if ($checkPath !== '' && ($currentPath === $checkPath || \Illuminate\Support\Str::startsWith($currentPath, $checkPath . '/'))) {
+                                    $matchedAny = true;
+                                    break;
+                                }
+                            }
+                        @endphp
+
+                        @foreach($activeSliderIcons as $index => $slid)
+                            @php
+                                $itemUrl = \Illuminate\Support\Str::startsWith($slid->link, ['http://', 'https://'])
+                                    ? $slid->link
+                                    : url('/' . ltrim($slid->link, '/'));
+                                $itemPath = trim((string)parse_url($itemUrl, PHP_URL_PATH), '/');
+                                $isActiveItem = false;
+                                if ($matchedAny) {
+                                    $isActiveItem = $itemPath !== '' && ($currentPath === $itemPath || \Illuminate\Support\Str::startsWith($currentPath, $itemPath . '/'));
+                                } elseif ($isHomeRoute && $index === 0) {
+                                    $isActiveItem = true;
+                                }
+                            @endphp
+                            <a href="{{ $itemUrl }}" class="kaw-mmt-cat-item {{ $isActiveItem ? 'is-active' : '' }}">
+                                <div class="kaw-mmt-cat-ico">
+                                    @if($slid->image)
+                                        <img src="{{ asset('storage/' . $slid->image) }}" alt="{{ $slid->title }}"
+                                            width="38" height="38" loading="eager" decoding="async">
+                                    @else
+                                        <span class="kaw-hdr-fi-no-icon"></span>
+                                    @endif
+                                </div>
+                                <span class="kaw-mmt-cat-label">{{ $slid->title }}</span>
+                            </a>
+                        @endforeach
+                    </div>
+                </nav>
+            </div>
+        </div>
+    @endif
 </header>

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCountryRequest;
 use App\Http\Requests\UpdateCountryRequest;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class CountryController extends Controller
@@ -52,6 +53,7 @@ class CountryController extends Controller
         }
 
         Country::create($data);
+        Cache::forget('homepage_curated_data');
 
         return redirect()->back()->withSuccess('New country is added successfully.');
     }
@@ -93,6 +95,7 @@ class CountryController extends Controller
         $data['gallery'] = json_encode(array_values($existingImages));
 
         $country->update($data);
+        Cache::forget('homepage_curated_data');
 
         return redirect()->back()->withSuccess('Country updated successfully.');
     }
@@ -122,6 +125,7 @@ class CountryController extends Controller
         }
 
         $country->delete();
+        Cache::forget('homepage_curated_data');
 
         return redirect()->route('country.index')->withSuccess('Country is deleted successfully.');
     }

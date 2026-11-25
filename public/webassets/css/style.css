@@ -23701,7 +23701,7 @@ body .th-btn::after {
 /* ---------------- Responsive tweaks ---------------- */
 @media (max-width: 991px) {
   .dst-card-title {
-    font-size: 16rem;
+    font-size: 15px;
   }
 
   .dst-nav-btn {
@@ -39430,80 +39430,37 @@ select.kaw-input {
    - Brand Partner Logos: BIG, Crisp, Vivid & Seamless Continuous Infinite Marquee
    ========================================================================== */
 
-/* 1. Domestic & International Water-Transfer Toggle */
+/* 1. Domestic & International Luxury Theme Segmented Toggle */
 .dst-toggle-group {
   position: relative !important;
   display: inline-flex !important;
   align-items: center !important;
-  background: #eef3f8 !important;
+  background: #f1f5fa !important;
   padding: 4px !important;
   border-radius: 999px !important;
-  border: 1.5px solid rgba(11, 61, 145, 0.16) !important;
-  box-shadow: inset 0 2px 5px rgba(11, 61, 145, 0.08), 0 4px 12px rgba(11, 61, 145, 0.04) !important;
+  border: 1px solid rgba(11, 61, 145, 0.14) !important;
+  box-shadow: inset 0 1px 3px rgba(7, 35, 85, 0.06), 0 4px 14px rgba(11, 61, 145, 0.05) !important;
   overflow: hidden !important;
 }
 
-/* Water Glider Pill with Liquid Caustics & Reflection */
+/* Satin Navy & Gold Luxury Glider Pill (No water sheen or caustics) */
 .dst-toggle-glider {
   position: absolute !important;
   top: 4px !important;
   bottom: 4px !important;
-  /* left controlled by JS */
   border-radius: 999px !important;
-  background: linear-gradient(135deg, #072B68 0%, #0B3D91 38%, #1a6fe8 72%, #0047BA 100%) !important;
-  box-shadow: 0 4px 16px rgba(11, 61, 145, 0.38),
-    inset 0 2px 4px rgba(255, 255, 255, 0.6),
-    inset 0 -2px 4px rgba(2, 18, 48, 0.3) !important;
+  background: linear-gradient(135deg, #072355 0%, #0B3D91 100%) !important;
+  border: 1px solid rgba(221, 171, 67, 0.42) !important;
+  box-shadow: 0 4px 12px rgba(7, 35, 85, 0.24) !important;
   z-index: 1 !important;
   pointer-events: none !important;
-  will-change: transform, width !important;
-  transform-origin: center center !important;
+  will-change: left, width !important;
 }
 
-/* Surface light reflection (meniscus curved highlight) */
-.dst-toggle-glider::before {
-  content: '' !important;
-  position: absolute !important;
-  top: 1px !important;
-  left: 10px !important;
-  right: 10px !important;
-  height: 45% !important;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
-  border-radius: 999px 999px 60% 60% !important;
-  pointer-events: none !important;
-}
-
-/* Fluid water wave shimmer across the glider when transferring */
+.dst-toggle-glider::before,
 .dst-toggle-glider::after {
-  content: '' !important;
-  position: absolute !important;
-  inset: 0 !important;
-  border-radius: 999px !important;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%) !important;
-  opacity: 0 !important;
-  transform: translateX(-100%) scaleY(1.2) !important;
-  pointer-events: none !important;
-}
-
-.dst-toggle-glider.is-water-flowing::after {
-  animation: waterWaveCaustic 0.55s ease-out forwards !important;
-}
-
-@keyframes waterWaveCaustic {
-  0% {
-    opacity: 0.8;
-    transform: translateX(-80%) scaleY(1.3);
-  }
-
-  50% {
-    opacity: 0.95;
-    transform: translateX(10%) scaleY(0.9);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateX(100%) scaleY(1);
-  }
+  content: none !important;
+  display: none !important;
 }
 
 /* Toggle Buttons */
@@ -39512,13 +39469,13 @@ select.kaw-input {
   z-index: 2 !important;
   border: none !important;
   background: transparent !important;
-  padding: 7px 24px !important;
+  padding: 8px 24px !important;
   border-radius: 999px !important;
-  font-size: 0.92rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.25px !important;
-  color: #556987 !important;
-  transition: color 0.3s ease !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.2px !important;
+  color: #475569 !important;
+  transition: color 0.28s ease !important;
   white-space: nowrap !important;
   cursor: pointer !important;
   box-shadow: none !important;
@@ -39527,12 +39484,13 @@ select.kaw-input {
 
 .dst-toggle-btn.active {
   color: #ffffff !important;
+  font-weight: 700 !important;
   background: transparent !important;
-  text-shadow: 0 1px 3px rgba(0, 20, 60, 0.45) !important;
+  text-shadow: none !important;
 }
 
 .dst-toggle-btn:hover:not(.active) {
-  color: #0B3D91 !important;
+  color: #072355 !important;
   background: transparent !important;
 }
 
@@ -40686,12 +40644,10 @@ marquee {
    ========================================================================== */
 .site-footer.kz-luxury-footer,
 .site-footer {
-  background: radial-gradient(circle at 50% 0%, rgba(221, 171, 67, 0.09) 0%, transparent 60%),
-              radial-gradient(circle at 85% 30%, rgba(11, 61, 145, 0.25) 0%, transparent 55%),
-              linear-gradient(180deg, #071731 0%, #030a16 100%) !important;
+  background: #1A2332 !important;
   color: #ffffff !important;
   position: relative !important;
-  border-top: 2px solid rgba(221, 171, 67, 0.35) !important;
+  border-top: 2px solid rgba(221, 171, 67, 0.45) !important;
   padding-top: 48px !important;
   overflow-x: clip !important;
 }
@@ -40704,18 +40660,18 @@ marquee {
 .kz-ftr-cta-wrap {
   position: relative;
   margin-top: 0;
-  margin-bottom: 35px;
+  margin-bottom: 24px;
   z-index: 10;
 }
 
 .kz-ftr-cta-card {
-  background: linear-gradient(135deg, rgba(11, 61, 145, 0.65) 0%, rgba(5, 18, 38, 0.92) 100%) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(221, 171, 67, 0.4) !important;
-  border-radius: 22px !important;
+  background: linear-gradient(135deg, #212c3e 0%, #161e2c 100%) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(221, 171, 67, 0.28) !important;
+  border-radius: 20px !important;
   padding: 34px 44px !important;
-  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.5), 0 0 35px rgba(221, 171, 67, 0.12) !important;
+  box-shadow: 0 18px 42px rgba(10, 15, 24, 0.38) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -40729,9 +40685,9 @@ marquee {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1.6px;
-  color: #ddab43;
+  color: rgba(255, 255, 255, 0.9);
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .kz-ftr-cta-title {
@@ -40745,7 +40701,7 @@ marquee {
 
 .kz-ftr-cta-subtitle {
   font-size: 14px !important;
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: rgba(255, 255, 255, 0.82) !important;
   margin: 0 !important;
   line-height: 1.5 !important;
 }
@@ -40761,46 +40717,49 @@ marquee {
   display: inline-flex !important;
   align-items: center !important;
   gap: 10px !important;
-  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
   color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
   padding: 13px 24px !important;
   border-radius: 50px !important;
   font-size: 14px !important;
   font-weight: 700 !important;
   text-decoration: none !important;
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35) !important;
-  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  box-shadow: 0 6px 18px rgba(10, 15, 24, 0.25) !important;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease !important;
   white-space: nowrap !important;
 }
 
 .kz-ftr-btn-wa:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.5) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(221, 171, 67, 0.65) !important;
+  box-shadow: 0 10px 24px rgba(10, 15, 24, 0.35) !important;
   color: #ffffff !important;
 }
 
 .kz-pulse-dot {
-  width: 9px;
-  height: 9px;
-  background: #ffffff;
+  width: 8px;
+  height: 8px;
+  background: #ddab43;
   border-radius: 50%;
   display: inline-block;
-  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 0 0 rgba(221, 171, 67, 0.65);
   animation: kzPulse 1.8s infinite;
 }
 
 @keyframes kzPulse {
   0% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 0 0 rgba(221, 171, 67, 0.65);
   }
   70% {
     transform: scale(1.1);
-    box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 8px rgba(221, 171, 67, 0);
   }
   100% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 0 rgba(221, 171, 67, 0);
   }
 }
 
@@ -40808,87 +40767,40 @@ marquee {
   display: inline-flex !important;
   align-items: center !important;
   gap: 9px !important;
-  background: linear-gradient(135deg, #ddab43 0%, #b8860b 100%) !important;
-  color: #040d1a !important;
+  background: #ffffff !important;
+  color: #1A2332 !important;
   padding: 13px 24px !important;
   border-radius: 50px !important;
   font-size: 14px !important;
   font-weight: 700 !important;
-  border: none !important;
+  border: 1px solid #ffffff !important;
   cursor: pointer !important;
-  box-shadow: 0 6px 20px rgba(221, 171, 67, 0.35) !important;
-  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  box-shadow: 0 8px 22px rgba(10, 15, 24, 0.28) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease !important;
   white-space: nowrap !important;
 }
 
 .kz-ftr-btn-custom:hover {
+  background: #f4f6f9 !important;
+  color: #1A2332 !important;
+  border-color: rgba(221, 171, 67, 0.75) !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 10px 25px rgba(221, 171, 67, 0.45) !important;
+  box-shadow: 0 12px 26px rgba(10, 15, 24, 0.36) !important;
 }
 
-/* --- 2. Trust & Authority Ribbon --- */
-.kz-ftr-trust-strip {
-  padding: 24px 0 26px !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-  background: rgba(0, 0, 0, 0.18) !important;
-}
-
-.kz-ftr-trust-grid {
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
-  gap: 24px !important;
-  align-items: center !important;
-}
-
-.kz-trust-item {
-  display: flex !important;
-  align-items: center !important;
-  gap: 14px !important;
-}
-
-.kz-trust-icon-box {
-  width: 44px !important;
-  height: 44px !important;
-  border-radius: 12px !important;
-  background: rgba(221, 171, 67, 0.1) !important;
-  border: 1px solid rgba(221, 171, 67, 0.28) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-size: 18px !important;
-  color: #ddab43 !important;
-  flex-shrink: 0 !important;
-}
-
-.kz-trust-text strong {
-  display: block !important;
-  font-size: 13.5px !important;
-  font-weight: 700 !important;
-  color: #ffffff !important;
-  line-height: 1.3 !important;
-}
-
-.kz-trust-text span {
-  display: block !important;
-  font-size: 12px !important;
-  color: rgba(255, 255, 255, 0.65) !important;
-  line-height: 1.3 !important;
-  margin-top: 2px !important;
-}
-
-/* --- 3. Main Footer 4-Column Luxury Grid --- */
+/* --- 2. Main Footer 4-Column Luxury Grid --- */
 .kz-ftr-main {
-  padding: 50px 0 38px !important;
+  padding: 28px 0 42px !important;
 }
 
 .kz-ftr-grid {
   display: grid !important;
-  grid-template-columns: 1.3fr 0.95fr 0.95fr 1.25fr !important;
-  gap: 40px !important;
+  grid-template-columns: 1.25fr 0.95fr 0.95fr 1.3fr !important;
+  gap: 38px !important;
+  align-items: start !important;
 }
 
-/* Column 1: Brand & Heritage */
+/* Column 4: About / Brand & Heritage */
 .kz-col-brand .kz-ftr-logo-box {
   display: inline-flex !important;
   align-items: center !important;
@@ -40896,7 +40808,7 @@ marquee {
   padding: 10px 20px !important;
   border-radius: 14px !important;
   border: 1px solid rgba(221, 171, 67, 0.35) !important;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35) !important;
+  box-shadow: 0 10px 28px rgba(10, 15, 24, 0.35) !important;
   margin-bottom: 18px !important;
   transition: transform 0.3s ease !important;
 }
@@ -40915,7 +40827,7 @@ marquee {
 .kz-brand-bio {
   font-size: 13.5px !important;
   line-height: 1.65 !important;
-  color: rgba(255, 255, 255, 0.74) !important;
+  color: rgba(255, 255, 255, 0.84) !important;
   margin: 0 0 16px !important;
 }
 
@@ -40925,9 +40837,9 @@ marquee {
   gap: 8px !important;
   font-size: 12px !important;
   font-weight: 600 !important;
-  color: #ddab43 !important;
-  background: rgba(221, 171, 67, 0.1) !important;
-  border: 1px solid rgba(221, 171, 67, 0.25) !important;
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(221, 171, 67, 0.32) !important;
   padding: 6px 14px !important;
   border-radius: 30px !important;
   margin-bottom: 20px !important;
@@ -40946,8 +40858,8 @@ marquee {
   width: 36px !important;
   height: 36px !important;
   border-radius: 50% !important;
-  background: rgba(255, 255, 255, 0.07) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
   color: #ffffff !important;
   font-size: 14px !important;
   text-decoration: none !important;
@@ -40955,19 +40867,19 @@ marquee {
 }
 
 .kz-social-btn:hover {
-  background: #0B3D91 !important;
+  background: rgba(221, 171, 67, 0.14) !important;
   border-color: #ddab43 !important;
   color: #ddab43 !important;
   transform: translateY(-3px) scale(1.08) !important;
-  box-shadow: 0 6px 16px rgba(11, 61, 145, 0.4) !important;
+  box-shadow: 0 6px 16px rgba(10, 15, 24, 0.35) !important;
 }
 
-/* Columns 2 & 3: Navigation Headings & Links */
+/* Column Headings & Navigation Links */
 .kz-col-heading {
   font-size: 18px !important;
   font-weight: 700 !important;
   color: #ffffff !important;
-  letter-spacing: 0.5px !important;
+  letter-spacing: 0.4px !important;
   margin: 0 0 22px 0 !important;
   position: relative !important;
   padding-bottom: 10px !important;
@@ -40997,38 +40909,39 @@ marquee {
 .kz-ftr-nav a {
   display: inline-flex !important;
   align-items: center !important;
-  color: rgba(255, 255, 255, 0.74) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
   font-size: 14px !important;
   text-decoration: none !important;
   transition: all 0.25s ease !important;
 }
 
 .kz-ftr-nav a:hover {
-  color: #ddab43 !important;
+  color: #ffffff !important;
   transform: translateX(6px) !important;
-  text-shadow: 0 0 10px rgba(221, 171, 67, 0.3) !important;
+  text-shadow: none !important;
 }
 
 .kz-ftr-nav a i {
   font-size: 10px !important;
-  color: #ddab43 !important;
+  color: rgba(221, 171, 67, 0.85) !important;
   margin-right: 9px !important;
-  opacity: 0.8 !important;
-  transition: transform 0.25s ease !important;
+  opacity: 0.9 !important;
+  transition: transform 0.25s ease, color 0.25s ease !important;
 }
 
 .kz-ftr-nav a:hover i {
+  color: #ddab43 !important;
   transform: translateX(2px) !important;
   opacity: 1 !important;
 }
 
-/* Column 4: 24/7 Concierge */
+/* Column 1: 24/7 Concierge */
 .kz-ftr-call-pill {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(221, 171, 67, 0.3) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(221, 171, 67, 0.28) !important;
   border-radius: 14px !important;
   padding: 10px 14px !important;
   margin-bottom: 16px !important;
@@ -41045,7 +40958,7 @@ marquee {
   width: 34px !important;
   height: 34px !important;
   border-radius: 50% !important;
-  background: rgba(221, 171, 67, 0.15) !important;
+  background: rgba(221, 171, 67, 0.14) !important;
   color: #ddab43 !important;
   display: flex !important;
   align-items: center !important;
@@ -41058,7 +40971,7 @@ marquee {
   display: block !important;
   font-size: 11px !important;
   font-weight: 600 !important;
-  color: #ddab43 !important;
+  color: rgba(255, 255, 255, 0.78) !important;
   line-height: 1.2 !important;
 }
 
@@ -41076,20 +40989,22 @@ marquee {
 }
 
 .kz-pill-inquire-btn {
-  background: #ddab43 !important;
-  color: #040d1a !important;
+  background: #ffffff !important;
+  color: #1A2332 !important;
   font-weight: 700 !important;
   font-size: 12.5px !important;
   border-radius: 8px !important;
   padding: 7px 14px !important;
-  border: none !important;
+  border: 1px solid #ffffff !important;
   cursor: pointer !important;
   transition: all 0.2s ease !important;
   white-space: nowrap !important;
 }
 
 .kz-pill-inquire-btn:hover {
-  background: #e6b856 !important;
+  background: #f4f6f9 !important;
+  color: #1A2332 !important;
+  border-color: rgba(221, 171, 67, 0.75) !important;
   transform: translateY(-1px) !important;
 }
 
@@ -41102,19 +41017,19 @@ marquee {
   align-items: flex-start !important;
   gap: 10px !important;
   font-size: 13px !important;
-  color: rgba(255, 255, 255, 0.72) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
   margin-bottom: 8px !important;
-  line-height: 1.4 !important;
+  line-height: 1.45 !important;
 }
 
 .kz-meta-item a {
-  color: rgba(255, 255, 255, 0.72) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
   text-decoration: none !important;
   transition: color 0.2s ease !important;
 }
 
 .kz-meta-item a:hover {
-  color: #ddab43 !important;
+  color: #ffffff !important;
 }
 
 .kz-meta-icon {
@@ -41126,9 +41041,9 @@ marquee {
 
 /* Other Offices Accordion */
 .kz-other-offices {
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
   padding-top: 10px !important;
-  margin-bottom: 18px !important;
+  margin-bottom: 8px !important;
 }
 
 .kz-offices-toggle {
@@ -41144,7 +41059,7 @@ marquee {
 }
 
 .kz-offices-toggle:hover {
-  color: #ddab43 !important;
+  color: rgba(255, 255, 255, 0.88) !important;
 }
 
 .other-offices-chevron {
@@ -41172,83 +41087,22 @@ marquee {
   gap: 8px !important;
   font-size: 12.5px !important;
   margin-bottom: 6px !important;
-  color: rgba(255, 255, 255, 0.7) !important;
+  color: rgba(255, 255, 255, 0.84) !important;
 }
 
 .office-contact-item a {
-  color: rgba(255, 255, 255, 0.7) !important;
+  color: rgba(255, 255, 255, 0.84) !important;
   text-decoration: none !important;
 }
 
 .office-contact-item a:hover {
-  color: #ddab43 !important;
-}
-
-/* Instagram Guest Moments */
-.kz-ftr-insta-box {
-  margin-top: 14px !important;
-}
-
-.kz-insta-title {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  font-size: 13px !important;
-  font-weight: 700 !important;
   color: #ffffff !important;
-  margin-bottom: 10px !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
 }
 
-.kz-insta-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 8px !important;
-}
-
-.kz-insta-item {
-  position: relative !important;
-  aspect-ratio: 1 / 1 !important;
-  border-radius: 8px !important;
-  overflow: hidden !important;
-  background: #071731 !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-}
-
-.kz-insta-item img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  display: block !important;
-  transition: transform 0.35s ease !important;
-}
-
-.kz-insta-item:hover img {
-  transform: scale(1.12) !important;
-}
-
-.kz-insta-overlay {
-  position: absolute !important;
-  inset: 0 !important;
-  background: rgba(11, 61, 145, 0.6) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  color: #ffffff !important;
-  font-size: 18px !important;
-  opacity: 0 !important;
-  transition: opacity 0.3s ease !important;
-}
-
-.kz-insta-item:hover .kz-insta-overlay {
-  opacity: 1 !important;
-}
-
-/* --- 4. Bottom Bar: Legal, Security & Payments --- */
+/* --- 3. Bottom Bar: Legal, Security & Payments --- */
 .kz-ftr-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-  background: rgba(0, 0, 0, 0.4) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: #141c28 !important;
   padding: 22px 0 !important;
 }
 
@@ -41262,7 +41116,7 @@ marquee {
 
 .kz-copy {
   font-size: 13px !important;
-  color: rgba(255, 255, 255, 0.68) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
   margin: 0 !important;
 }
 
@@ -41273,7 +41127,7 @@ marquee {
 
 .footer-copy-divider {
   margin: 0 8px !important;
-  color: rgba(255, 255, 255, 0.3) !important;
+  color: rgba(255, 255, 255, 0.35) !important;
 }
 
 .footer-credit-link {
@@ -41283,12 +41137,13 @@ marquee {
 }
 
 .footer-credit-link:hover {
+  color: #ffffff !important;
   text-decoration: underline !important;
 }
 
 .kz-safe-badge {
   font-size: 13px !important;
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
   display: flex !important;
   align-items: center !important;
   font-weight: 500 !important;
@@ -41302,7 +41157,7 @@ marquee {
 
 .kz-ftr-payments .accept-label {
   font-size: 12.5px !important;
-  color: rgba(255, 255, 255, 0.6) !important;
+  color: rgba(255, 255, 255, 0.74) !important;
   font-weight: 500 !important;
 }
 
@@ -41313,7 +41168,7 @@ marquee {
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)) !important;
 }
 
-/* --- 5. Responsive Breakpoints --- */
+/* --- 4. Responsive Breakpoints --- */
 @media (min-width: 768px) {
   .site-footer .accordion-icon {
     display: none !important;
@@ -41351,11 +41206,6 @@ marquee {
     justify-content: center !important;
   }
 
-  .kz-ftr-trust-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 18px !important;
-  }
-
   .kz-ftr-grid {
     grid-template-columns: 1fr 1fr !important;
     gap: 30px !important;
@@ -41373,17 +41223,12 @@ marquee {
 
 @media (max-width: 767px) {
   .kz-ftr-cta-wrap {
-    margin-top: -60px !important;
-    margin-bottom: 25px !important;
+    margin-top: 0 !important;
+    margin-bottom: 24px !important;
   }
 
   .kz-ftr-cta-title {
     font-size: 20px !important;
-  }
-
-  .kz-ftr-trust-grid {
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
   }
 
   .kz-ftr-grid {
@@ -41391,23 +41236,25 @@ marquee {
     gap: 0 !important;
   }
 
-  .kz-col-brand {
+  .kz-col-concierge {
     order: 1 !important;
-    grid-column: span 1 !important;
-    text-align: left !important;
-    padding-bottom: 20px !important;
-  }
-
-  .kz-col-destinations {
-    order: 2 !important;
   }
 
   .kz-col-links {
+    order: 2 !important;
+  }
+
+  .kz-col-destinations {
     order: 3 !important;
   }
 
-  .kz-col-concierge {
+  .kz-col-brand {
     order: 4 !important;
+    grid-column: span 1 !important;
+    text-align: left !important;
+    padding-top: 22px !important;
+    padding-bottom: 10px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
   }
 
   .kz-col-brand .kz-social-links {
@@ -41421,7 +41268,7 @@ marquee {
     justify-content: space-between !important;
     padding: 16px 0 !important;
     cursor: pointer !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
     -webkit-tap-highlight-color: transparent !important;
   }
 
@@ -43091,12 +42938,10 @@ form.woocommerce-ordering {
 }
 
 /* Sticky Navigation Column */
-
-/* Sticky Navigation Column */
 .kz-tour-nav-col {
   position: -webkit-sticky !important;
   position: sticky !important;
-  top: 90px !important;
+  top: 24px !important;
   align-self: flex-start !important;
   z-index: 30 !important;
 }
@@ -43141,53 +42986,41 @@ form.woocommerce-ordering {
   background: transparent !important;
 }
 
-/* Water Glider Pill for Tour Details Tabs (Exact replica of Homepage Domestic/International liquid toggle) */
+/* Modern Luxury Navy & Gold Indicator Glider for Tour Details Tabs */
 .kz-tour-glider {
   position: absolute !important;
   top: 0;
   left: 0;
   width: 0;
   height: 0;
-  border-radius: 999px !important;
-  background: linear-gradient(135deg, #072B68 0%, #0B3D91 38%, #1a6fe8 72%, #0047BA 100%) !important;
-  box-shadow: 0 4px 16px rgba(11, 61, 145, 0.38),
-    inset 0 2px 4px rgba(255, 255, 255, 0.6),
-    inset 0 -2px 4px rgba(2, 18, 48, 0.3) !important;
+  border-radius: 12px !important;
+  background: linear-gradient(90deg, rgba(11, 61, 145, 0.085) 0%, rgba(221, 171, 67, 0.05) 100%) !important;
+  border: 1px solid rgba(11, 61, 145, 0.14) !important;
+  box-shadow: 0 2px 10px rgba(7, 35, 85, 0.06) !important;
   z-index: 1 !important;
   pointer-events: none !important;
-  will-change: top, left, width, height, transform !important;
-  transform-origin: center center !important;
+  will-change: top, left, width, height !important;
   opacity: 0;
   transition: opacity 0.2s ease !important;
 }
 
-/* Surface light reflection (meniscus curved highlight) */
+/* Crisp Left Vertical Navy-to-Gold Accent Rail */
 .kz-tour-glider::before {
   content: '' !important;
   position: absolute !important;
-  top: 1px !important;
-  left: 14px !important;
-  right: 14px !important;
-  height: 45% !important;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
-  border-radius: 999px 999px 60% 60% !important;
+  top: 20% !important;
+  left: -1px !important;
+  width: 3.5px !important;
+  height: 60% !important;
+  background: linear-gradient(180deg, #0B3D91 0%, #ddab43 100%) !important;
+  border-radius: 0 4px 4px 0 !important;
+  box-shadow: 0 0 8px rgba(221, 171, 67, 0.35) !important;
   pointer-events: none !important;
 }
 
-/* Fluid water wave shimmer across the glider when transferring */
 .kz-tour-glider::after {
-  content: '' !important;
-  position: absolute !important;
-  inset: 0 !important;
-  border-radius: 999px !important;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0) 100%) !important;
-  opacity: 0 !important;
-  transform: translateX(-100%) scaleY(1.2) !important;
-  pointer-events: none !important;
-}
-
-.kz-tour-glider.is-water-flowing::after {
-  animation: waterWaveCaustic 0.55s ease-out forwards !important;
+  content: none !important;
+  display: none !important;
 }
 
 .kz-nav-link {
@@ -43195,45 +43028,76 @@ form.woocommerce-ordering {
   z-index: 2 !important;
   display: flex !important;
   align-items: center !important;
-  gap: 10px !important;
-  padding: 10px 18px !important;
-  border-radius: 999px !important;
+  gap: 11px !important;
+  padding: 7px 12px !important;
+  border-radius: 12px !important;
   color: #475569 !important;
   font-size: 13.5px !important;
   font-weight: 600 !important;
   text-decoration: none !important;
   background: transparent !important;
-  transition: color 0.3s ease, transform 0.25s ease !important;
+  transition: color 0.25s ease, transform 0.2s ease !important;
 }
 
 .kz-nav-link i {
-  font-size: 17px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 30px !important;
+  height: 30px !important;
+  flex-shrink: 0 !important;
+  border-radius: 8px !important;
+  background: #f1f5f9 !important;
+  font-size: 15.5px !important;
   color: #64748b !important;
-  transition: color 0.3s ease, transform 0.25s ease !important;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+/* Subtle right active gold-ring status dot */
+.kz-nav-link::after {
+  content: '' !important;
+  margin-left: auto !important;
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: #ddab43 !important;
+  box-shadow: 0 0 0 3px rgba(221, 171, 67, 0.22) !important;
+  opacity: 0 !important;
+  transform: scale(0.4) !important;
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
 }
 
 .kz-nav-link:hover:not(.active) {
-  background: rgba(11, 61, 145, 0.04) !important;
+  background: rgba(11, 61, 145, 0.035) !important;
   color: #0B3D91 !important;
-  transform: translateX(3px) !important;
+  transform: translateX(2px) !important;
 }
 
 .kz-nav-link:hover:not(.active) i {
+  background: rgba(11, 61, 145, 0.09) !important;
   color: #0B3D91 !important;
 }
 
 .kz-nav-link.active {
   background: transparent !important;
-  color: #ffffff !important;
+  color: #072355 !important;
   font-weight: 700 !important;
-  text-shadow: 0 1px 3px rgba(0, 20, 60, 0.45) !important;
+  text-shadow: none !important;
   box-shadow: none !important;
   transform: none !important;
 }
 
 .kz-nav-link.active i {
+  background: linear-gradient(135deg, #072355 0%, #0B3D91 100%) !important;
   color: #ffffff !important;
-  text-shadow: 0 1px 3px rgba(0, 20, 60, 0.45) !important;
+  border: 1px solid rgba(221, 171, 67, 0.35) !important;
+  box-shadow: 0 4px 10px rgba(7, 35, 85, 0.22) !important;
+  text-shadow: none !important;
+}
+
+.kz-nav-link.active::after {
+  opacity: 1 !important;
+  transform: scale(1) !important;
 }
 
 .kz-sticky-cta {
@@ -43625,24 +43489,21 @@ form.woocommerce-ordering {
    MOBILE RESPONSIVENESS & COMPACT MINIMAL GAPING DESIGN SYSTEM
    ==================================================================== */
 @media (max-width: 991.98px) {
-  /* Tabs stack at proper top of screen (0px gap) */
+  /* Tabs stack flush at top of screen (0px gap, even when scrolling back up) */
   .kz-tour-nav-col {
+    position: -webkit-sticky !important;
     position: sticky !important;
     top: 0px !important;
     z-index: 100 !important;
     margin-left: -12px !important;
     margin-right: -12px !important;
     width: calc(100% + 24px) !important;
-    padding: 6px 10px !important;
+    padding: 8px 12px !important;
     background: #ffffff !important;
     border-bottom: 1px solid rgba(11, 61, 145, 0.1) !important;
-    box-shadow: 0 3px 12px rgba(11, 61, 145, 0.06) !important;
+    box-shadow: 0 4px 14px rgba(11, 61, 145, 0.07) !important;
     transition: top 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
     margin-bottom: 10px !important;
-  }
-
-  body:has(.kaw-hdr.nav-scrolled:not(.nav-hidden)) .kz-tour-nav-col {
-    top: 56px !important;
   }
 
   .kz-sticky-tabs-wrap {
@@ -43658,69 +43519,97 @@ form.woocommerce-ordering {
     display: none !important;
   }
 
-  /* Sleek pill track like homepage domestic/international toggle */
-  .kz-sticky-nav-list {
+  /* Crisp modern segmented pill track */
+  #tourScrollspyNav.kz-sticky-nav-list {
     flex-direction: row !important;
     overflow-x: auto !important;
     white-space: nowrap !important;
     gap: 4px !important;
-    padding: 3px !important;
-    background: #eef3f8 !important;
+    padding: 4px !important;
+    background: #e8eef5 !important;
     border-radius: 999px !important;
-    border: 1px solid rgba(11, 61, 145, 0.14) !important;
-    box-shadow: inset 0 2px 4px rgba(11, 61, 145, 0.05) !important;
+    border: 1px solid rgba(11, 61, 145, 0.1) !important;
+    box-shadow: inset 0 1px 3px rgba(11, 61, 145, 0.06) !important;
     -webkit-overflow-scrolling: touch !important;
     scrollbar-width: none !important;
   }
 
-  .kz-sticky-nav-list::-webkit-scrollbar {
+  #tourScrollspyNav.kz-sticky-nav-list::-webkit-scrollbar {
     display: none !important;
   }
 
-  .kz-nav-link {
-    padding: 5px 13px !important;
+  #tourScrollspyNav .kz-nav-link {
+    padding: 6px 14px !important;
+    gap: 6px !important;
     font-size: 11.5px !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.2px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.15px !important;
     white-space: nowrap !important;
     border-radius: 999px !important;
-    color: #556987 !important;
+    color: #475569 !important;
     flex-shrink: 0 !important;
     background: transparent !important;
   }
 
-  .kz-nav-link i {
-    font-size: 13px !important;
+  #tourScrollspyNav .kz-nav-link i {
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    font-size: 13.5px !important;
     color: inherit !important;
+    transform: none !important;
   }
 
-  .kz-nav-link:hover:not(.active) {
+  #tourScrollspyNav .kz-nav-link::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  #tourScrollspyNav .kz-nav-link:hover:not(.active) {
     color: #0B3D91 !important;
     background: transparent !important;
     transform: none !important;
   }
 
-  .kz-nav-link.active {
-    color: #ffffff !important;
+  #tourScrollspyNav .kz-nav-link:hover:not(.active) i {
     background: transparent !important;
-    text-shadow: 0 1px 3px rgba(0, 20, 60, 0.45) !important;
+    color: #0B3D91 !important;
   }
 
-  .kz-nav-link.active i {
+  #tourScrollspyNav .kz-nav-link.active {
     color: #ffffff !important;
-    text-shadow: 0 1px 3px rgba(0, 20, 60, 0.45) !important;
+    font-weight: 700 !important;
+    background: transparent !important;
+    text-shadow: none !important;
   }
 
-  .kz-tour-glider {
+  #tourScrollspyNav .kz-nav-link.active i {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #ddab43 !important;
+    text-shadow: none !important;
+    transform: none !important;
+  }
+
+  #tourScrollspyNav .kz-tour-glider {
     border-radius: 999px !important;
+    background: linear-gradient(135deg, #072355 0%, #0B3D91 100%) !important;
+    border: 1px solid rgba(221, 171, 67, 0.35) !important;
+    box-shadow: 0 3px 10px rgba(7, 35, 85, 0.22) !important;
   }
 
-  .kz-tour-glider::before {
-    border-radius: 999px 999px 60% 60% !important;
+  #tourScrollspyNav .kz-tour-glider::before {
+    display: none !important;
+    content: none !important;
   }
 
-  .kz-tour-glider::after {
-    border-radius: 999px !important;
+  #tourScrollspyNav .kz-tour-glider::after {
+    display: none !important;
+    content: none !important;
   }
 }
 
@@ -44005,5 +43894,1287 @@ form.woocommerce-ordering {
   .kz-policy-contact-btn {
     width: 100% !important;
     justify-content: center !important;
+  }
+}
+
+/* ==========================================================================
+   MMT-INSPIRED HEADER + TOP UPDATES TICKER + FLOATING CATEGORY MENU BAR
+   - Top bar: Brand logo + inline Updates ticker + Phone/Email + Book Now CTA
+   - Floating white card category menu with active blue underline indicator
+   ========================================================================== */
+.kaw-mmt-hdr .kaw-hdr-sticky {
+  border-bottom: 1px solid rgba(11, 61, 145, 0.08) !important;
+  box-shadow: 0 2px 12px rgba(7, 35, 85, 0.05) !important;
+}
+
+.kaw-mmt-top-row {
+  min-height: 66px !important;
+  padding: 6px 0 !important;
+  gap: 14px !important;
+  flex-wrap: nowrap !important;
+}
+
+.kaw-mmt-top-row .kaw-hdr-logo-area {
+  padding: 2px 0 !important;
+}
+
+.kaw-mmt-top-row .kaw-hdr-logo-area img {
+  height: 44px !important;
+  max-width: 155px !important;
+}
+
+/* Inline Updates Ticker in Top Header */
+.kaw-hdr-updates-wrap {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.kz-ent-header-bar {
+  width: 100% !important;
+  min-height: 38px !important;
+  padding: 3px 8px 3px 4px !important;
+  gap: 8px !important;
+  background: #f8fafc !important;
+  border: 1px solid rgba(11, 61, 145, 0.12) !important;
+  box-shadow: inset 0 1px 2px rgba(11, 61, 145, 0.03) !important;
+}
+
+.kz-ent-header-bar .kz-ent-badge {
+  padding: 4px 9px !important;
+  font-size: 9.5px !important;
+  letter-spacing: 0.6px !important;
+}
+
+.kz-ent-header-bar .kz-ent-ticker-viewport {
+  height: 28px !important;
+}
+
+.kz-ent-header-bar .kz-ent-item {
+  gap: 8px !important;
+}
+
+.kz-ent-header-bar .kz-ent-tag {
+  padding: 2px 7px !important;
+  font-size: 10px !important;
+}
+
+.kz-ent-header-bar .kz-ent-content {
+  font-size: 12px !important;
+  gap: 5px !important;
+}
+
+.kz-ent-header-bar .kz-ent-action {
+  padding: 3px 8px !important;
+  font-size: 10.5px !important;
+}
+
+.kz-ent-header-bar .kz-ent-counter {
+  font-size: 10px !important;
+  padding: 2px 6px !important;
+}
+
+.kz-ent-header-bar .kz-ent-nav-btn {
+  width: 16px !important;
+  height: 12px !important;
+  font-size: 8px !important;
+}
+
+/* Right Contact Utilities + CTA Button */
+.kaw-mmt-actions {
+  gap: 10px !important;
+  padding: 4px 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.kaw-mmt-util-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 5px 10px !important;
+  border-radius: 10px !important;
+  text-decoration: none !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  transition: all 0.22s ease !important;
+  white-space: nowrap !important;
+}
+
+.kaw-mmt-util-item:hover {
+  background: rgba(11, 61, 145, 0.04) !important;
+  border-color: rgba(11, 61, 145, 0.1) !important;
+}
+
+.kaw-mmt-util-ico {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  background: rgba(11, 61, 145, 0.08) !important;
+  color: #0B3D91 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 12px !important;
+  flex-shrink: 0 !important;
+  transition: all 0.22s ease !important;
+}
+
+.kaw-mmt-util-item:hover .kaw-mmt-util-ico {
+  background: #0B3D91 !important;
+  color: #ffffff !important;
+}
+
+.kaw-mmt-util-text {
+  display: flex !important;
+  flex-direction: column !important;
+  line-height: 1.15 !important;
+}
+
+.kaw-mmt-util-text small {
+  font-size: 9.5px !important;
+  font-weight: 600 !important;
+  color: #64748b !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.3px !important;
+}
+
+.kaw-mmt-util-text strong {
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  color: #072355 !important;
+}
+
+/* MMT-Style Blue Gradient CTA Pill Button */
+.kaw-mmt-cta-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  padding: 9px 18px !important;
+  background: linear-gradient(90deg, #2b86f6 0%, #065af3 55%, #0B3D91 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 999px !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.25px !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  box-shadow: 0 4px 14px rgba(6, 90, 243, 0.3) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.kaw-mmt-cta-btn:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(6, 90, 243, 0.4) !important;
+  background: linear-gradient(90deg, #1a76e8 0%, #054cd1 55%, #072b68 100%) !important;
+}
+
+.kaw-mmt-cta-btn i {
+  font-size: 11.5px !important;
+}
+
+.kaw-mmt-top-row .kaw-hdr-burger {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 10px !important;
+}
+
+/* ROW 2: MMT-Style Floating White Category Icon Card */
+.kaw-mmt-menu-stage {
+  position: relative !important;
+  padding: 14px 0 12px !important;
+  background: #ffffff !important;
+}
+
+.kaw-mmt-menu-stage::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 54% !important;
+  background: linear-gradient(135deg, #051636 0%, #092c6b 55%, #0e439c 100%) !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+
+.kaw-mmt-menu-stage .container {
+  position: relative !important;
+  z-index: 2 !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.kaw-mmt-menu-card {
+  display: inline-flex !important;
+  max-width: 100% !important;
+  background: #ffffff !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(11, 61, 145, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(5, 22, 54, 0.14), 0 2px 8px rgba(11, 61, 145, 0.06) !important;
+  padding: 0 16px !important;
+  overflow: hidden !important;
+}
+
+.kaw-mmt-menu-track {
+  display: flex !important;
+  align-items: stretch !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.kaw-mmt-menu-track::-webkit-scrollbar {
+  display: none !important;
+}
+
+.kaw-mmt-cat-item {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  padding: 12px 18px 13px !important;
+  text-decoration: none !important;
+  color: #475569 !important;
+  flex-shrink: 0 !important;
+  min-width: 84px !important;
+  transition: all 0.22s ease !important;
+}
+
+.kaw-mmt-cat-item::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 14px !important;
+  right: 14px !important;
+  height: 3.5px !important;
+  border-radius: 3px 3px 0 0 !important;
+  background: linear-gradient(90deg, #008cff 0%, #0B3D91 100%) !important;
+  transform: scaleX(0) !important;
+  opacity: 0 !important;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease !important;
+}
+
+.kaw-mmt-cat-ico {
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.kaw-mmt-cat-ico img {
+  width: 32px !important;
+  height: 32px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 2px 4px rgba(11, 61, 145, 0.08)) !important;
+}
+
+.kaw-mmt-cat-label {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  color: #334155 !important;
+  white-space: nowrap !important;
+  transition: color 0.2s ease !important;
+}
+
+.kaw-mmt-cat-item:hover {
+  background: rgba(0, 140, 255, 0.03) !important;
+}
+
+.kaw-mmt-cat-item:hover .kaw-mmt-cat-ico {
+  transform: translateY(-2px) scale(1.06) !important;
+}
+
+.kaw-mmt-cat-item:hover .kaw-mmt-cat-label,
+.kaw-mmt-cat-item.is-active .kaw-mmt-cat-label {
+  color: #0077e6 !important;
+  font-weight: 700 !important;
+}
+
+.kaw-mmt-cat-item.is-active::after,
+.kaw-mmt-cat-item:hover::after {
+  transform: scaleX(1) !important;
+  opacity: 1 !important;
+}
+
+/* Responsive Breakpoints for MMT Header & Menu */
+@media (max-width: 1399px) {
+  .kz-ent-header-bar .kz-ent-action-txt {
+    display: none !important;
+  }
+  .kz-ent-header-bar .kz-ent-action {
+    padding: 4px 6px !important;
+  }
+}
+
+@media (max-width: 1199px) {
+  .kaw-mmt-util-email {
+    display: none !important;
+  }
+  .kaw-mmt-cat-item {
+    padding: 10px 14px 12px !important;
+    min-width: 76px !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .kaw-mmt-hdr .kaw-hdr-sticky {
+    background: #f3f5f9 !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+  }
+
+  .kaw-mmt-top-row {
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 8px 0 6px !important;
+    min-height: auto !important;
+  }
+
+  /* Unwrap .kaw-mmt-actions so burger sits left and logo sits right (matching mobile reference) */
+  .kaw-mmt-actions {
+    display: contents !important;
+  }
+
+  .kaw-mmt-top-row .kaw-hdr-burger {
+    order: 1 !important;
+    margin-right: auto !important;
+    position: relative !important;
+    width: 34px !important;
+    height: 34px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #0f172a !important;
+    font-size: 20px !important;
+    padding: 0 !important;
+  }
+
+  .kaw-mmt-top-row .kaw-hdr-burger::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 5px !important;
+    right: 4px !important;
+    width: 7px !important;
+    height: 7px !important;
+    border-radius: 50% !important;
+    background: #ef4444 !important;
+    border: 1.5px solid #f3f5f9 !important;
+  }
+
+  .kaw-mmt-util-phone {
+    order: 2 !important;
+    padding: 0 !important;
+  }
+
+  .kaw-mmt-util-text {
+    display: none !important;
+  }
+
+  .kaw-mmt-util-ico {
+    width: 32px !important;
+    height: 32px !important;
+    background: #ffffff !important;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06) !important;
+  }
+
+  .kaw-mmt-cta-btn {
+    order: 3 !important;
+    padding: 6px 12px !important;
+    font-size: 11px !important;
+    box-shadow: 0 3px 10px rgba(6, 90, 243, 0.25) !important;
+  }
+
+  .kaw-mmt-top-row .kaw-hdr-logo-area {
+    order: 4 !important;
+    margin-right: 0 !important;
+    padding: 0 !important;
+  }
+
+  .kaw-mmt-top-row .kaw-hdr-logo-area img {
+    height: 36px !important;
+    max-width: 120px !important;
+  }
+
+  .kaw-hdr-updates-wrap {
+    order: 5 !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+  }
+
+  .kz-ent-header-bar {
+    background: #ffffff !important;
+    border: 1px solid rgba(11, 61, 145, 0.08) !important;
+    min-height: 34px !important;
+    padding: 2px 6px 2px 4px !important;
+  }
+
+  .kz-ent-header-bar .kz-ent-ticker-viewport {
+    height: 24px !important;
+  }
+
+  .kz-ent-header-bar .kz-ent-counter,
+  .kz-ent-header-bar .kz-ent-tag {
+    display: none !important;
+  }
+
+  /* Soft grey stage + 4-per-row individual white rounded cards (like mobile screenshot) */
+  .kaw-mmt-menu-stage {
+    padding: 6px 0 16px !important;
+    background: linear-gradient(180deg, #f3f5f9 0%, #f3f5f9 82%, #ffffff 100%) !important;
+  }
+
+  .kaw-mmt-menu-stage::before {
+    display: none !important;
+    content: none !important;
+  }
+
+  .kaw-mmt-menu-card {
+    width: 100% !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+  }
+
+  .kaw-mmt-menu-track {
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    padding: 2px 1px 6px !important;
+    scroll-snap-type: x mandatory !important;
+  }
+
+  .kaw-mmt-cat-item {
+    flex: 0 0 calc((100% - 24px) / 4) !important;
+    min-width: 76px !important;
+    background: #ffffff !important;
+    border-radius: 14px !important;
+    border: 1px solid rgba(15, 23, 42, 0.05) !important;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.05) !important;
+    padding: 13px 6px 11px !important;
+    gap: 7px !important;
+    scroll-snap-align: start !important;
+    justify-content: flex-start !important;
+  }
+
+  .kaw-mmt-cat-item::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .kaw-mmt-cat-item.is-active {
+    border-color: rgba(0, 119, 230, 0.35) !important;
+    box-shadow: 0 4px 14px rgba(11, 61, 145, 0.1) !important;
+  }
+
+  .kaw-mmt-cat-ico {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .kaw-mmt-cat-ico img {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .kaw-mmt-cat-label {
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    text-align: center !important;
+    line-height: 1.2 !important;
+    white-space: normal !important;
+  }
+}
+
+/* ==========================================================================
+   FORMAL DESTINATION CARDS WITH DYNAMIC TITLE & SHORT DESTINATIONS CHIPS
+   (Theme coloring: #072355 Deep Navy, #0B3D91 Royal Blue, #ddab43 Gold)
+   ========================================================================== */
+.dst-carousel-wrap .swiper-wrapper,
+#countryTabContent .swiper-wrapper {
+  margin-top: 26px !important;
+  align-items: stretch !important;
+}
+
+.dst-carousel-wrap .swiper-slide {
+  height: auto !important;
+  display: flex !important;
+}
+
+.dst-card.dst-card-formal {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding-top: 0 !important;
+  background: #ffffff !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(11, 61, 145, 0.1) !important;
+  box-shadow: 0 6px 22px rgba(7, 35, 85, 0.06) !important;
+  overflow: hidden !important;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, border-color 0.28s ease !important;
+}
+
+.dst-card.dst-card-formal:hover {
+  transform: translateY(-5px) !important;
+  border-color: rgba(11, 61, 145, 0.28) !important;
+  box-shadow: 0 14px 32px rgba(7, 35, 85, 0.12) !important;
+}
+
+.dst-card-formal .dst-card-media {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  height: 165px !important;
+  overflow: hidden !important;
+  background: #eef3f8 !important;
+  flex-shrink: 0 !important;
+}
+
+.dst-card-formal .dst-card-img,
+.dst-card-formal .dst-card-img-placeholder {
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 0 !important;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.dst-card.dst-card-formal:hover .dst-card-img {
+  transform: scale(1.06) !important;
+}
+
+.dst-card-count-badge {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  background: rgba(7, 35, 85, 0.86) !important;
+  backdrop-filter: blur(6px) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(221, 171, 67, 0.45) !important;
+  border-radius: 999px !important;
+  padding: 3px 9px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.3px !important;
+  line-height: 1.2 !important;
+}
+
+.dst-card-formal .dst-card-body {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 1 auto !important;
+  padding: 14px 14px 12px !important;
+  background: #ffffff !important;
+}
+
+.dst-card-formal .dst-card-title {
+  position: static !important;
+  margin: 0 0 10px !important;
+  padding: 0 !important;
+  text-align: center !important;
+  font-size: 15.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1px !important;
+  text-transform: capitalize !important;
+  color: #072355 !important;
+  text-shadow: none !important;
+  line-height: 1.3 !important;
+}
+
+.dst-card-formal .dst-card-title a {
+  color: inherit !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+
+.dst-card-formal .dst-card-title a:hover {
+  color: #0B3D91 !important;
+}
+
+.dst-short-chips {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  margin-bottom: 12px !important;
+}
+
+.dst-short-chip {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 4px 9px !important;
+  background: #f8fafc !important;
+  border: 1px solid rgba(11, 61, 145, 0.14) !important;
+  border-radius: 7px !important;
+  color: #334155 !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.dst-short-chip:hover {
+  background: rgba(11, 61, 145, 0.06) !important;
+  border-color: #0B3D91 !important;
+  color: #072355 !important;
+}
+
+.dst-card-footer {
+  margin-top: auto !important;
+  padding-top: 10px !important;
+  border-top: 1px solid rgba(11, 61, 145, 0.08) !important;
+  text-align: center !important;
+}
+
+.dst-card-viewmore {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  color: #0B3D91 !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease, gap 0.2s ease !important;
+}
+
+.dst-card-viewmore:hover {
+  color: #072355 !important;
+  gap: 8px !important;
+}
+
+.dst-card-viewmore i {
+  font-size: 13px !important;
+  color: #ddab43 !important;
+}
+
+.dst-carousel-wrap .dst-nav-btn {
+  top: 82px !important;
+  transform: translateY(-50%) !important;
+}
+
+@media (max-width: 767.98px) {
+  .dst-carousel-wrap .dst-nav-btn {
+    top: 63px !important;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 0.9rem !important;
+  }
+
+  .dst-carousel-wrap .swiper-wrapper,
+  #countryTabContent .swiper-wrapper {
+    margin-top: 18px !important;
+  }
+
+  .dst-card-formal .dst-card-media {
+    height: 126px !important;
+  }
+
+  .dst-card-formal .dst-card-body {
+    padding: 10px 10px 9px !important;
+  }
+
+  .dst-card-formal .dst-card-title {
+    font-size: 13.5px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .dst-short-chips {
+    gap: 4px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .dst-short-chip {
+    font-size: 10px !important;
+    padding: 3px 7px !important;
+    border-radius: 6px !important;
+  }
+
+  .dst-card-footer {
+    padding-top: 7px !important;
+  }
+
+  .dst-card-viewmore {
+    font-size: 11.5px !important;
+  }
+}
+
+/* ==========================================================================
+   MODERN FORMAL FAQs PAGE (.kz-faq-page-*)
+   ========================================================================== */
+.kz-faq-page-hero {
+  background: radial-gradient(circle at 18% 15%, rgba(221, 171, 67, 0.12) 0%, transparent 45%),
+              radial-gradient(circle at 85% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 45%),
+              linear-gradient(135deg, #072355 0%, #0B3D91 65%, #124bb5 100%) !important;
+  padding: 50px 0 54px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  color: #ffffff !important;
+}
+
+.kz-faq-hero-inner {
+  max-width: 720px !important;
+  margin: 0 auto !important;
+}
+
+.kz-faq-hero-eyebrow {
+  display: inline-block !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  color: #ddab43 !important;
+  margin-bottom: 8px !important;
+}
+
+.kz-faq-hero-title {
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem) !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  margin: 0 0 12px !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.2 !important;
+}
+
+.kz-faq-hero-subtitle {
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+  color: rgba(255, 255, 255, 0.84) !important;
+  margin: 0 auto 26px !important;
+  max-width: 600px !important;
+}
+
+.kz-faq-search-wrap {
+  position: relative !important;
+  max-width: 580px !important;
+  width: 100% !important;
+}
+
+.kz-faq-search-ico {
+  position: absolute !important;
+  left: 20px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #0B3D91 !important;
+  font-size: 15px !important;
+  pointer-events: none !important;
+}
+
+.kz-faq-search-input {
+  width: 100% !important;
+  height: 52px !important;
+  padding: 0 48px 0 48px !important;
+  border-radius: 999px !important;
+  border: 2px solid rgba(255, 255, 255, 0.25) !important;
+  background: #ffffff !important;
+  color: #1A2332 !important;
+  font-size: 14.5px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 14px 32px rgba(7, 35, 85, 0.24) !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.kz-faq-search-input::placeholder {
+  color: #64748b !important;
+}
+
+.kz-faq-search-input:focus {
+  outline: none !important;
+  border-color: #ddab43 !important;
+  box-shadow: 0 16px 36px rgba(7, 35, 85, 0.32), 0 0 0 4px rgba(221, 171, 67, 0.22) !important;
+}
+
+.kz-faq-search-clear {
+  position: absolute !important;
+  right: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  font-size: 12px !important;
+  transition: background 0.2s ease, color 0.2s ease !important;
+}
+
+.kz-faq-search-clear:hover {
+  background: #072355 !important;
+  color: #ffffff !important;
+}
+
+.kz-faq-search-clear.d-none,
+.kz-faq-page-card.d-none,
+.kz-faq-empty-box.d-none {
+  display: none !important;
+}
+
+/* Main FAQ Knowledge Base Canvas */
+.kz-faq-page-section {
+  background: #f4f7fb !important;
+  padding: 44px 0 64px !important;
+}
+
+.kz-faq-toolbar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  margin-bottom: 18px !important;
+  flex-wrap: wrap !important;
+}
+
+.kz-faq-count-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: #ffffff !important;
+  border: 1px solid #dbe4f0 !important;
+  color: #072355 !important;
+  padding: 7px 14px !important;
+  border-radius: 999px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 8px rgba(7, 35, 85, 0.04) !important;
+}
+
+.kz-faq-count-pill i {
+  color: #0B3D91 !important;
+  font-size: 12px !important;
+}
+
+.kz-faq-toggle-all-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  background: #ffffff !important;
+  border: 1px solid #dbe4f0 !important;
+  color: #0B3D91 !important;
+  padding: 7px 15px !important;
+  border-radius: 999px !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.kz-faq-toggle-all-btn:hover {
+  background: #0B3D91 !important;
+  border-color: #0B3D91 !important;
+  color: #ffffff !important;
+}
+
+/* Accordion Cards */
+.kz-faq-page-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+.kz-faq-page-card {
+  position: relative !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 14px rgba(7, 35, 85, 0.04) !important;
+  overflow: hidden !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease !important;
+}
+
+.kz-faq-page-card:hover {
+  border-color: rgba(11, 61, 145, 0.28) !important;
+  box-shadow: 0 8px 22px rgba(7, 35, 85, 0.07) !important;
+}
+
+.kz-faq-page-card.is-open {
+  border-color: #0B3D91 !important;
+  box-shadow: 0 12px 28px rgba(7, 35, 85, 0.1) !important;
+}
+
+.kz-faq-page-card.is-open::before {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 4px !important;
+  background: linear-gradient(180deg, #0B3D91 0%, #ddab43 100%) !important;
+  z-index: 2 !important;
+}
+
+.kz-faq-page-trigger {
+  width: 100% !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 18px 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  text-align: left !important;
+  cursor: pointer !important;
+  transition: background 0.2s ease !important;
+}
+
+.kz-faq-page-card.is-open .kz-faq-page-trigger {
+  background: rgba(11, 61, 145, 0.025) !important;
+}
+
+.kz-faq-page-num {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 10px !important;
+  background: #edf2f9 !important;
+  color: #0B3D91 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 12.5px !important;
+  font-weight: 800 !important;
+  flex-shrink: 0 !important;
+  transition: all 0.25s ease !important;
+}
+
+.kz-faq-page-card.is-open .kz-faq-page-num {
+  background: linear-gradient(135deg, #072355 0%, #0B3D91 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 10px rgba(7, 35, 85, 0.22) !important;
+}
+
+.kz-faq-page-q {
+  flex: 1 1 auto !important;
+  font-size: 15.5px !important;
+  font-weight: 700 !important;
+  color: #072355 !important;
+  line-height: 1.4 !important;
+}
+
+.kz-faq-page-ico {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  background: #f1f5f9 !important;
+  color: #0B3D91 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 11px !important;
+  flex-shrink: 0 !important;
+  transition: all 0.25s ease !important;
+}
+
+.kz-faq-page-trigger:not(.collapsed) .kz-faq-page-ico {
+  background: #0B3D91 !important;
+  color: #ffffff !important;
+  transform: rotate(180deg) !important;
+}
+
+.kz-faq-page-body {
+  padding: 2px 24px 20px 68px !important;
+  border-top: 1px solid #f1f5f9 !important;
+}
+
+.kz-faq-page-body p {
+  font-size: 14.5px !important;
+  line-height: 1.7 !important;
+  color: #475569 !important;
+  margin: 12px 0 0 !important;
+}
+
+/* Empty State */
+.kz-faq-empty-box {
+  background: #ffffff !important;
+  border: 1px dashed #cbd5e1 !important;
+  border-radius: 16px !important;
+  padding: 42px 24px !important;
+  text-align: center !important;
+}
+
+.kz-faq-empty-box i {
+  font-size: 32px !important;
+  color: #0B3D91 !important;
+  opacity: 0.7 !important;
+  margin-bottom: 12px !important;
+}
+
+.kz-faq-empty-box h4 {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #072355 !important;
+  margin: 0 0 6px !important;
+}
+
+.kz-faq-empty-box p {
+  font-size: 14px !important;
+  color: #64748b !important;
+  margin: 0 0 16px !important;
+}
+
+.kz-faq-reset-btn {
+  background: #0B3D91 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 9px 20px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+}
+
+/* Sidebar */
+@media (min-width: 992px) {
+  .kz-faq-sidebar {
+    position: sticky !important;
+    top: 94px !important;
+  }
+}
+
+.kz-faq-concierge-box {
+  background: #1A2332 !important;
+  border: 1px solid rgba(221, 171, 67, 0.3) !important;
+  border-radius: 18px !important;
+  padding: 24px !important;
+  color: #ffffff !important;
+  box-shadow: 0 14px 30px rgba(26, 35, 50, 0.16) !important;
+}
+
+.kz-faq-concierge-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(221, 171, 67, 0.35) !important;
+  padding: 5px 12px !important;
+  border-radius: 999px !important;
+  margin-bottom: 14px !important;
+}
+
+.kz-faq-concierge-badge i {
+  color: #ddab43 !important;
+}
+
+.kz-faq-concierge-title {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin: 0 0 8px !important;
+}
+
+.kz-faq-concierge-text {
+  font-size: 13.5px !important;
+  line-height: 1.55 !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  margin: 0 0 18px !important;
+}
+
+.kz-faq-concierge-actions {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.kz-faq-call-btn,
+.kz-faq-wa-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 9px !important;
+  width: 100% !important;
+  padding: 11px 16px !important;
+  border-radius: 11px !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.kz-faq-call-btn {
+  background: #ffffff !important;
+  color: #1A2332 !important;
+}
+
+.kz-faq-call-btn:hover {
+  background: #f1f5f9 !important;
+  color: #072355 !important;
+  transform: translateY(-1px) !important;
+}
+
+.kz-faq-wa-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+}
+
+.kz-faq-wa-btn:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: #ddab43 !important;
+  color: #ffffff !important;
+}
+
+/* Form Card */
+.kz-faq-form-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 18px !important;
+  padding: 26px 24px !important;
+  box-shadow: 0 10px 28px rgba(7, 35, 85, 0.06) !important;
+}
+
+.kz-faq-form-head {
+  margin-bottom: 18px !important;
+}
+
+.kz-faq-form-eyebrow {
+  display: inline-block !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.14em !important;
+  color: #ddab43 !important;
+  margin-bottom: 4px !important;
+}
+
+.kz-faq-form-title {
+  font-size: 21px !important;
+  font-weight: 800 !important;
+  color: #072355 !important;
+  margin: 0 0 4px !important;
+}
+
+.kz-faq-form-subtitle {
+  font-size: 13px !important;
+  color: #64748b !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+}
+
+.kz-faq-field {
+  position: relative !important;
+  margin-bottom: 12px !important;
+}
+
+.kz-faq-field-ico {
+  position: absolute !important;
+  left: 15px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #0B3D91 !important;
+  font-size: 13px !important;
+  opacity: 0.72 !important;
+  pointer-events: none !important;
+}
+
+.kz-faq-input,
+.kz-faq-select,
+.kz-faq-textarea {
+  width: 100% !important;
+  background: #f8fafc !important;
+  border: 1px solid #dbe4f0 !important;
+  border-radius: 11px !important;
+  font-size: 13.5px !important;
+  color: #1A2332 !important;
+  transition: all 0.2s ease !important;
+}
+
+.kz-faq-input,
+.kz-faq-select {
+  height: 44px !important;
+  padding: 0 14px 0 40px !important;
+}
+
+.kz-faq-textarea {
+  padding: 12px 14px !important;
+  resize: vertical !important;
+  min-height: 92px !important;
+}
+
+.kz-faq-input:focus,
+.kz-faq-select:focus,
+.kz-faq-textarea:focus {
+  background: #ffffff !important;
+  border-color: #0B3D91 !important;
+  box-shadow: 0 0 0 3px rgba(11, 61, 145, 0.1) !important;
+  outline: none !important;
+}
+
+.kz-faq-submit-btn {
+  width: 100% !important;
+  height: 46px !important;
+  border: none !important;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, #072355 0%, #0B3D91 100%) !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  cursor: pointer !important;
+  box-shadow: 0 8px 20px rgba(7, 35, 85, 0.22) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  margin-top: 4px !important;
+}
+
+.kz-faq-submit-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 24px rgba(7, 35, 85, 0.3) !important;
+}
+
+@media (max-width: 767.98px) {
+  .kz-faq-page-hero {
+    padding: 36px 0 38px !important;
+  }
+
+  .kz-faq-page-section {
+    padding: 30px 0 44px !important;
+  }
+
+  .kz-faq-page-trigger {
+    padding: 14px 16px !important;
+    gap: 10px !important;
+  }
+
+  .kz-faq-page-num {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 11.5px !important;
+  }
+
+  .kz-faq-page-q {
+    font-size: 14px !important;
+  }
+
+  .kz-faq-page-body {
+    padding: 2px 16px 16px 54px !important;
+  }
+
+  .kz-faq-page-body p {
+    font-size: 13.5px !important;
   }
 }

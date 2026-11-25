@@ -65,6 +65,15 @@
                                 </div>
                             </div>
 
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label class="form-label">Short Destinations (comma-separated)</label>
+                                    <input type="text" name="short_destinations" value="{{ old('short_destinations', $state->short_destinations) }}" class="form-control @error('short_destinations') is-invalid @enderror" placeholder="e.g. Srinagar, Gulmarg, Pahalgam, Sonamarg">
+                                    <small class="text-muted">Shown as short destination pills inside the homepage destination card.</small>
+                                    @error('short_destinations') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
                             <hr>
                             <h5 class="mb-3">Images</h5>
 

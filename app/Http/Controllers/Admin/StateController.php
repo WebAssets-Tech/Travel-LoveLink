@@ -8,6 +8,7 @@ use App\Http\Requests\StoreStateRequest;
 use App\Http\Requests\UpdateStateRequest;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class StateController extends Controller
@@ -54,6 +55,7 @@ class StateController extends Controller
         }
 
         State::create($data);
+        Cache::forget('homepage_curated_data');
 
         return redirect()->back()->withSuccess('New state is added successfully.');
     }
@@ -96,6 +98,7 @@ class StateController extends Controller
         $data['gallery'] = json_encode(array_values($existingImages));
 
         $state->update($data);
+        Cache::forget('homepage_curated_data');
 
         return redirect()->back()->withSuccess('State updated successfully.');
     }
@@ -125,6 +128,7 @@ class StateController extends Controller
         }
 
         $state->delete();
+        Cache::forget('homepage_curated_data');
 
         return redirect()->route('state.index')->withSuccess('State is deleted successfully.');
     }

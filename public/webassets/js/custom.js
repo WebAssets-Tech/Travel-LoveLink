@@ -1025,74 +1025,22 @@ document.querySelectorAll('[data-offices-toggle]').forEach(function (toggle) {
 
             glider._currLeft = targetLeft;
             glider._currWidth = targetWidth;
-            const movingRight = targetLeft > currentLeft;
-
-            // Trigger water ripple caustics
-            glider.classList.remove('is-water-flowing');
-            void glider.offsetWidth;
-            glider.classList.add('is-water-flowing');
 
             gsap.killTweensOf(glider);
             glider.style.removeProperty('transition');
-            
-            const waterTL = gsap.timeline({
+
+            gsap.to(glider, {
+                left: targetLeft,
+                width: targetWidth,
+                duration: 0.34,
+                ease: "power3.out",
+                overwrite: "auto",
                 onComplete: function () {
-                    glider.classList.remove('is-water-flowing');
                     glider.style.setProperty('left', targetLeft + 'px', 'important');
                     glider.style.setProperty('width', targetWidth + 'px', 'important');
                     glider.style.setProperty('transform', 'none', 'important');
                 }
             });
-
-            if (movingRight) {
-                const totalSpan = (targetLeft + targetWidth) - currentLeft;
-                // Stage 1: Liquid stretches forward across both buttons
-                waterTL.to(glider, {
-                    left: currentLeft,
-                    width: totalSpan * 0.95,
-                    scaleY: 0.84,
-                    duration: 0.20,
-                    ease: "power2.in"
-                })
-                // Stage 2: Liquid pulls into target button with elastic rebound
-                .to(glider, {
-                    left: targetLeft,
-                    width: targetWidth,
-                    scaleY: 1.08,
-                    duration: 0.22,
-                    ease: "power2.out"
-                })
-                // Stage 3: Liquid settles into calm surface
-                .to(glider, {
-                    scaleY: 1.0,
-                    duration: 0.28,
-                    ease: "elastic.out(1.2, 0.45)"
-                });
-            } else {
-                const totalSpan = (currentLeft + currentWidth) - targetLeft;
-                // Stage 1: Liquid stretches backwards across both buttons
-                waterTL.to(glider, {
-                    left: targetLeft,
-                    width: totalSpan * 0.95,
-                    scaleY: 0.84,
-                    duration: 0.20,
-                    ease: "power2.in"
-                })
-                // Stage 2: Liquid pulls into target button with elastic rebound
-                .to(glider, {
-                    left: targetLeft,
-                    width: targetWidth,
-                    scaleY: 1.08,
-                    duration: 0.22,
-                    ease: "power2.out"
-                })
-                // Stage 3: Liquid settles into calm surface
-                .to(glider, {
-                    scaleY: 1.0,
-                    duration: 0.28,
-                    ease: "elastic.out(1.2, 0.45)"
-                });
-            }
         }
 
         positionToggleGlider(null, true);
@@ -1137,13 +1085,19 @@ document.querySelectorAll('[data-offices-toggle]').forEach(function (toggle) {
             targetBtn.setAttribute('aria-selected', 'true');
             positionToggleGlider(targetBtn, false);
 
-            // 2. Hide other panes and show target pane
+            // 2. Hide other panes and pre-hide new cards before revealing pane (prevents 1-frame flash)
+            const newCards = targetPane.querySelectorAll('.dst-card');
+            if (typeof gsap !== 'undefined' && newCards.length > 0) {
+                gsap.set(newCards, { opacity: 0, y: 16 });
+            }
+
             const allPanes = document.querySelectorAll('#countryTabContent .tab-pane');
             allPanes.forEach(function (pane) {
                 pane.classList.remove('show', 'active');
                 pane.style.display = 'none';
             });
 
+            targetPane.classList.remove('fade');
             targetPane.style.display = 'block';
             targetPane.classList.add('show', 'active');
             targetPane.offsetHeight; // Force reflow so Swiper measures correct container width
@@ -1157,21 +1111,16 @@ document.querySelectorAll('[data-offices-toggle]').forEach(function (toggle) {
                 swiper.slideTo(0, 0);
             }
 
-            // 4. Premium staggered cascade on destination cards
-            const newCards = targetPane.querySelectorAll('.dst-card');
+            // 4. Clean fade-up reveal on destination cards (no elastic scale jitter)
             if (typeof gsap !== 'undefined' && newCards.length > 0) {
-                gsap.fromTo(newCards,
-                    { opacity: 0, y: 30, scale: 0.92 },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        scale: 1,
-                        duration: 0.48,
-                        stagger: 0.05,
-                        ease: 'back.out(1.2)',
-                        clearProps: 'transform,opacity'
-                    }
-                );
+                gsap.to(newCards, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.35,
+                    stagger: 0.04,
+                    ease: 'power2.out',
+                    clearProps: 'transform,opacity'
+                });
             }
         }
 

@@ -23,6 +23,7 @@ class StoreStateRequest extends FormRequest
             'country_id'           => 'required|exists:countries,id',
             'name'                 => 'required|string|max:191',
             'code'                 => 'nullable|string|max:10',
+            'short_destinations'   => 'nullable|string|max:500',
             'order'                => 'nullable|integer|min:0',
             'status'               => 'nullable|boolean',
             'image'                => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',

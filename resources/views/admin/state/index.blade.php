@@ -40,6 +40,7 @@
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Name</th>
+                                        <th scope="col">Short Destinations</th>
                                         <th scope="col">Code</th>
                                         <th scope="col">Country</th>
                                         <th scope="col">Status</th>
@@ -51,6 +52,7 @@
                                     <tr>
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>{{ $state->name }}</td>
+                                        <td><small class="text-muted">{{ Str::limit($state->short_destinations, 45) ?: '-' }}</small></td>
                                         <td>{{ $state->code }}</td>
                                         <td>{{ $state->country->name ?? '-' }}</td>
                                         <td>
@@ -73,7 +75,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="6">
+                                        <td colspan="7">
                                             <span class="text-danger"><strong>No state found!</strong></span>
                                         </td>
                                     </tr>

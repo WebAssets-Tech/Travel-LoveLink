@@ -33,112 +33,7 @@
 @endphp
 
 <!--==============================
-Enterprise Announcement & Notification Bar (Top-to-Bottom Animated)
-==============================-->
-<div class="kt-top-marquee kz-ent-notice-wrap">
-    <div class="container">
-        <div class="kz-ent-notice-bar" id="kzEntNoticeBar">
-            <!-- Left Live Badge -->
-            <div class="kz-ent-badge">
-                <span class="kz-ent-pulse">
-                    <span class="kz-ent-dot"></span>
-                    <span class="kz-ent-ring"></span>
-                </span>
-                <span class="kz-ent-badge-text">UPDATES</span>
-            </div>
-
-            <!-- Ticker Viewport with Vertical Top-to-Bottom Transitions -->
-            <div class="kz-ent-ticker-viewport" id="kzEntViewport" aria-live="polite">
-                <div class="kz-ent-ticker-track" id="kzEntTrack">
-                    <!-- Notification 1: Popular Destinations (User's Exact Items) -->
-                    <div class="kz-ent-item active" data-index="1">
-                        <span class="kz-ent-tag tag-dest"><i class="fas fa-mountain"></i> Trending Tours</span>
-                        <div class="kz-ent-content">
-                            <span class="kz-ent-strong">We Offer:</span>
-                            <span class="kz-ent-text">Kashmir • Leh–Ladakh • Shimla–Manali • Goa • Golden Triangle</span>
-                        </div>
-                        <a href="{{ url('category/domestic') }}" class="kz-ent-action">
-                            <span>Explore Packages</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    <!-- Notification 2: Govt Recognition & Trust -->
-                    <div class="kz-ent-item" data-index="2">
-                        <span class="kz-ent-tag tag-verified"><i class="fas fa-shield-alt"></i> Govt. Recognized</span>
-                        <div class="kz-ent-content">
-                            <span class="kz-ent-strong">Certified Operator:</span>
-                            <span class="kz-ent-text">Govt. of J&K Registered Agency • Trusted by 50,000+ Happy Travelers</span>
-                        </div>
-                        <a href="{{ route('aboutus.index') }}" class="kz-ent-action">
-                            <span>About LoveLink</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    <!-- Notification 3: Early Bird Special Offer -->
-                    <div class="kz-ent-item" data-index="3">
-                        <span class="kz-ent-tag tag-offer"><i class="fas fa-tag"></i> Special Offer</span>
-                        <div class="kz-ent-content">
-                            <span class="kz-ent-strong">Early Bird Deals:</span>
-                            <span class="kz-ent-text">Save up to 20% on Custom Kashmir, Ladakh & Himachal Family Holidays</span>
-                        </div>
-                        <a href="{{ route('home.contact') }}" class="kz-ent-action">
-                            <span>Get Free Quote</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    <!-- Notification 4: In-House Fleet & Cabs -->
-                    <div class="kz-ent-item" data-index="4">
-                        <span class="kz-ent-tag tag-fleet"><i class="fas fa-car-side"></i> In-House Fleet</span>
-                        <div class="kz-ent-content">
-                            <span class="kz-ent-strong">Zero Middlemen:</span>
-                            <span class="kz-ent-text">Sanitized Luxury Sedans, Innova Crysta & Tempo Travelers with Verified Native Chauffeurs</span>
-                        </div>
-                        <a href="{{ route('home.cabs') }}" class="kz-ent-action">
-                            <span>View Fleet</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    <!-- Notification 5: 24/7 Dedicated Support -->
-                    <div class="kz-ent-item" data-index="5">
-                        <span class="kz-ent-tag tag-support"><i class="fas fa-headset"></i> 24/7 Concierge</span>
-                        <div class="kz-ent-content">
-                            <span class="kz-ent-strong">Always Here for You:</span>
-                            <span class="kz-ent-text">Dedicated Ground Coordinators in Srinagar & Leh for Seamless Trips</span>
-                        </div>
-                        <a href="https://api.whatsapp.com/send?phone={{ $wa_phone_clean }}&text=Hi%20LoveLink%2C%20I%20would%20like%20to%20plan%20a%20tour" target="_blank" class="kz-ent-action">
-                            <span>WhatsApp Concierge</span>
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Controls: Counter & Micro Up/Down Arrows -->
-            <div class="kz-ent-controls">
-                <div class="kz-ent-counter">
-                    <span id="kzEntCurrent" class="kz-cur">01</span>
-                    <span class="kz-divider">/</span>
-                    <span id="kzEntTotal" class="kz-tot">05</span>
-                </div>
-                <div class="kz-ent-btns">
-                    <button type="button" class="kz-ent-nav-btn prev" id="kzEntPrev" aria-label="Previous notification" title="Previous">
-                        <i class="fas fa-chevron-up"></i>
-                    </button>
-                    <button type="button" class="kz-ent-nav-btn next" id="kzEntNext" aria-label="Next notification" title="Next">
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--==============================
-Hero Area
+Hero Area (Slider kept untouched)
 ==============================-->
 <div class="th-hero-wrapper hero-1" id="hero">
 
@@ -230,16 +125,43 @@ Destinations Section
                     <div class="swiper" id="stateSwiper{{ $country->id }}">
                         <div class="swiper-wrapper">
                             @foreach($country->states as $stateIndex => $state)
+                            @php
+                                $shortDests = $state->short_destinations_list;
+                            @endphp
                             <div class="swiper-slide">
-                                <a href="{{ route('home.tour.state', $state->slug) }}" class="dst-card">
-                                    @if($state->image)
-                                        <img src="{{ asset('storage/' . $state->image) }}" alt="{{ $state->name }}" class="dst-card-img" width="100" height="100" loading="lazy" decoding="async">
-                                    @else
-                                        <div class="dst-card-img dst-card-img-placeholder"></div>
-                                    @endif
-                                    <span class="dst-card-overlay"></span>
-                                    <h3 class="dst-card-title">{{ $state->name }}</h3>
-                                </a>
+                                <div class="dst-card dst-card-formal">
+                                    <a href="{{ route('home.tour.state', $state->slug) }}" class="dst-card-media">
+                                        @if($state->image)
+                                            <img src="{{ asset('storage/' . $state->image) }}" alt="{{ $state->name }}" class="dst-card-img" width="320" height="200" loading="lazy" decoding="async">
+                                        @else
+                                            <div class="dst-card-img dst-card-img-placeholder"></div>
+                                        @endif
+                                        @if(($state->tours_count ?? 0) > 0)
+                                            <span class="dst-card-count-badge">{{ $state->tours_count }} {{ $state->tours_count == 1 ? 'Package' : 'Packages' }}</span>
+                                        @endif
+                                    </a>
+
+                                    <div class="dst-card-body">
+                                        <h3 class="dst-card-title">
+                                            <a href="{{ route('home.tour.state', $state->slug) }}">{{ $state->name }}</a>
+                                        </h3>
+
+                                        @if(!empty($shortDests))
+                                            <div class="dst-short-chips">
+                                                @foreach($shortDests as $chip)
+                                                    <a href="{{ route('home.tour.state', $state->slug) }}" class="dst-short-chip">{{ $chip }}</a>
+                                                @endforeach
+                                            </div>
+                                        @endif
+
+                                        <div class="dst-card-footer">
+                                            <a href="{{ route('home.tour.state', $state->slug) }}" class="dst-card-viewmore">
+                                                <span>View More</span>
+                                                <i class="ti ti-arrow-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             @endforeach
                         </div>

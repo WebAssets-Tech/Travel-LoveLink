@@ -35,6 +35,7 @@
             touchMultiplier: 1.5,
             infinite: false,
         });
+        window.lenis = lenis;
 
         // 1:1 hardware frame sync with GSAP Ticker
         lenis.on('scroll', ScrollTrigger.update);
@@ -116,6 +117,40 @@
 
                 lastScrollY = scrollY;
             });
+
+            // ================================================================
+            // 20. Animated Number Counters (All viewports)
+            // ================================================================
+            const counters = document.querySelectorAll('.kz-about-stat-card h3, .kz-about-exp-badge span, .anim-counter');
+            counters.forEach(function (counter) {
+                const text = counter.innerText.trim();
+                const num = parseFloat(text.replace(/[^0-9.]/g, ''));
+                if (isNaN(num)) return;
+
+                const suffix = text.replace(/[0-9.]/g, '');
+                const obj = { val: 0 };
+
+                gsap.to(obj, {
+                    val: num,
+                    duration: 1.6,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: counter,
+                        start: 'top 95%',
+                        once: true,
+                    },
+                    onUpdate: function () {
+                        const formatted = (num % 1 === 0) ? Math.floor(obj.val).toLocaleString() : obj.val.toFixed(1);
+                        counter.textContent = formatted + suffix;
+                    }
+                });
+            });
+
+        }); // end all-viewports reduced-motion matchMedia
+
+        // Desktop-only scroll-reveal & opacity animations (>= 992px)
+        // Mobile (< 992px) keeps all sections immediately visible with zero opacity: 0 lockouts
+        mm.add('(min-width: 992px) and (prefers-reduced-motion: no-preference)', function () {
 
             // ================================================================
             // 4. Hero Section: Cinematic Ingress Timeline on Page Load
@@ -504,57 +539,27 @@
             }
 
             // ================================================================
-            // 20. Animated Number Counters
+            // 21. Subtle Magnetic Micro-Interactions on CTA Buttons
             // ================================================================
-            const counters = document.querySelectorAll('.kz-about-stat-card h3, .kz-about-exp-badge span, .anim-counter');
-            counters.forEach(function (counter) {
-                const text = counter.innerText.trim();
-                const num = parseFloat(text.replace(/[^0-9.]/g, ''));
-                if (isNaN(num)) return;
+            const magneticBtns = document.querySelectorAll(
+                '.kt-s-btn, .kz-about-btn-cta, .kz-cab-btn, .kz-glass-btn, ' +
+                '.kz-hotel-detail-btn, .kz-blog-viewall-btn, .kz-contact-submit-btn, .btn-magnetic'
+            );
 
-                const suffix = text.replace(/[0-9.]/g, '');
-                const obj = { val: 0 };
+            magneticBtns.forEach(function (btn) {
+                btn.addEventListener('mousemove', function (e) {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    gsap.to(btn, { x: x * 0.22, y: y * 0.22, duration: 0.25, ease: 'power2.out' });
+                });
 
-                gsap.to(obj, {
-                    val: num,
-                    duration: 1.6,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: counter,
-                        start: 'top 90%',
-                        once: true,
-                    },
-                    onUpdate: function () {
-                        const formatted = (num % 1 === 0) ? Math.floor(obj.val).toLocaleString() : obj.val.toFixed(1);
-                        counter.textContent = formatted + suffix;
-                    }
+                btn.addEventListener('mouseleave', function () {
+                    gsap.to(btn, { x: 0, y: 0, duration: 0.45, ease: 'elastic.out(1, 0.4)', clearProps: 'transform' });
                 });
             });
 
-            // ================================================================
-            // 21. Subtle Magnetic Micro-Interactions on CTA Buttons
-            // ================================================================
-            if (window.innerWidth >= 992) {
-                const magneticBtns = document.querySelectorAll(
-                    '.kt-s-btn, .kz-about-btn-cta, .kz-cab-btn, .kz-glass-btn, ' +
-                    '.kz-hotel-detail-btn, .kz-blog-viewall-btn, .kz-contact-submit-btn, .btn-magnetic'
-                );
-
-                magneticBtns.forEach(function (btn) {
-                    btn.addEventListener('mousemove', function (e) {
-                        const rect = btn.getBoundingClientRect();
-                        const x = e.clientX - rect.left - rect.width / 2;
-                        const y = e.clientY - rect.top - rect.height / 2;
-                        gsap.to(btn, { x: x * 0.22, y: y * 0.22, duration: 0.25, ease: 'power2.out' });
-                    });
-
-                    btn.addEventListener('mouseleave', function () {
-                        gsap.to(btn, { x: 0, y: 0, duration: 0.45, ease: 'elastic.out(1, 0.4)', clearProps: 'transform' });
-                    });
-                });
-            }
-
-        }); // end matchMedia
+        }); // end desktop matchMedia
 
         // Refresh ScrollTrigger when images finish loading
         window.addEventListener('load', function () {
