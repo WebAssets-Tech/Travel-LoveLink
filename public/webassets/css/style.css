@@ -28555,15 +28555,17 @@ html.lenis-scrolling .kz-gallery-card {
 .kz-cabs-header {
   text-align: center;
   margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
 }
 
-.kz-cabs-eyebrow {
+.kz-cabs-header .kz-cabs-eyebrow {
   display: inline-block;
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--kz-blue);
+  color: var(--kz-gold);
   margin-bottom: 6px;
 }
 
@@ -28575,11 +28577,12 @@ html.lenis-scrolling .kz-gallery-card {
   letter-spacing: -0.02em;
 }
 
-.kz-cabs-subtitle {
+.kz-cabs-header .kz-cabs-subtitle {
   font-size: 14px;
   color: var(--kz-text-muted);
   margin: 0 auto;
-  max-width: 520px;
+  max-width: 580px;
+  line-height: 1.6;
 }
 
 .kz-cab-box {
@@ -33176,7 +33179,7 @@ select.kaw-input {
   font-weight: 700;
 }
 
-.kz-cabs-eyebrow {
+.kz-cabs-hero .kz-cabs-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -33197,7 +33200,7 @@ select.kaw-input {
   margin: 0 0 12px;
 }
 
-.kz-cabs-subtitle {
+.kz-cabs-hero .kz-cabs-subtitle {
   font-size: 14.5px;
   color: rgba(255, 255, 255, 0.85);
   max-width: 600px;
@@ -34639,7 +34642,7 @@ select.kaw-input {
   font-weight: 700;
 }
 
-.kz-hotels-eyebrow {
+.kz-hotels-hero .kz-hotels-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -34660,7 +34663,7 @@ select.kaw-input {
   margin: 0 0 12px;
 }
 
-.kz-hotels-subtitle {
+.kz-hotels-hero .kz-hotels-subtitle {
   font-size: 14.5px;
   color: rgba(255, 255, 255, 0.85);
   max-width: 600px;
@@ -40699,7 +40702,7 @@ marquee {
   .kz-hotels-heading {
     font-size: 26px !important;
   }
-  .kz-hotels-subtitle {
+  .kz-hotels-header .kz-hotels-subtitle {
     font-size: 13px !important;
   }
   .kz-hotel-home-card .kz-hotel-media {
@@ -41939,8 +41942,8 @@ marquee {
   font-weight: 700 !important;
 }
 
-.kz-hotels-eyebrow,
-.kz-cabs-eyebrow {
+.kz-hotels-hero .kz-hotels-eyebrow,
+.kz-cabs-hero .kz-cabs-eyebrow {
   display: inline-flex !important;
   align-items: center !important;
   gap: 5px !important;
@@ -41962,8 +41965,8 @@ marquee {
   margin: 0 0 4px !important;
 }
 
-.kz-hotels-subtitle,
-.kz-cabs-subtitle {
+.kz-hotels-hero .kz-hotels-subtitle,
+.kz-cabs-hero .kz-cabs-subtitle {
   font-size: 12.5px !important;
   color: rgba(255, 255, 255, 0.82) !important;
   max-width: 650px !important;
