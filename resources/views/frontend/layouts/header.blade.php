@@ -373,7 +373,7 @@
                                 <div class="kaw-mmt-cat-ico">
                                     @if($slid->image)
                                         <img src="{{ asset('storage/' . $slid->image) }}" alt="{{ $slid->title }}"
-                                            width="38" height="38" loading="eager" decoding="async">
+                                            width="52" height="52" loading="eager" decoding="async">
                                     @else
                                         <span class="kaw-hdr-fi-no-icon"></span>
                                     @endif

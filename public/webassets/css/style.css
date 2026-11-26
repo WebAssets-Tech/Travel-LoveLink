@@ -44288,8 +44288,8 @@ form.woocommerce-ordering {
 }
 
 .kaw-mmt-cat-ico {
-  width: 42px !important;
-  height: 42px !important;
+  width: 56px !important;
+  height: 56px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -44297,8 +44297,8 @@ form.woocommerce-ordering {
 }
 
 .kaw-mmt-cat-ico img {
-  width: 48px !important;
-  height: 32px !important;
+  width: 52px !important;
+  height: 52px !important;
   object-fit: contain !important;
   transition: transform 0.22s ease !important;
 }
@@ -44508,13 +44508,13 @@ form.woocommerce-ordering {
   }
 
   .kaw-mmt-cat-ico {
-    width: 38px !important;
-    height: 38px !important;
+    width: 50px !important;
+    height: 50px !important;
   }
 
   .kaw-mmt-cat-ico img {
-    width: 36px !important;
-    height: 36px !important;
+    width: 48px !important;
+    height: 48px !important;
     object-fit: contain !important;
   }
 
