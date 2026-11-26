@@ -320,14 +320,14 @@
               <label class="gb-label" for="cab-vehicle">Choose Vehicle</label>
               <select class="form-control gb-select" id="cab-vehicle" name="vehicle" required>
                 <option value="" disabled selected>Select a vehicle</option>
-                <option value="swift-dzire" data-url="https://demo-lovelinktourandtravels-com.stackstaging.com/cab/swift-dzire">Swift Dzire</option>
-                <option value="ertiga" data-url="https://demo-lovelinktourandtravels-com.stackstaging.com/cab/ertiga">Ertiga</option>
-                <option value="innova-crysta" data-url="https://demo-lovelinktourandtravels-com.stackstaging.com/cab/innova-crysta">Innova Crysta</option>
-                <option value="toyota-etios" data-url="https://demo-lovelinktourandtravels-com.stackstaging.com/cab/toyota-etios">Toyota Etios</option>
-                <option value="tavera" data-url="https://demo-lovelinktourandtravels-com.stackstaging.com/cab/tavera">Tavera</option>
+                <option value="swift-dzire" data-url="{{ url('cab/swift-dzire') }}">Swift Dzire</option>
+                <option value="ertiga" data-url="{{ url('cab/ertiga') }}">Ertiga</option>
+                <option value="innova-crysta" data-url="{{ url('cab/innova-crysta') }}">Innova Crysta</option>
+                <option value="toyota-etios" data-url="{{ url('cab/toyota-etios') }}">Toyota Etios</option>
+                <option value="tavera" data-url="{{ url('cab/tavera') }}">Tavera</option>
                 <option value="scorpio">Scorpio</option>
-                <option value="tempo-traveller" data-url="https://demo-lovelinktourandtravels-com.stackstaging.com/cab/tempo-traveller">Tempo Traveller</option>
-                <option value="toyota-innova" data-url="https://demo-lovelinktourandtravels-com.stackstaging.com/cab/toyota-innova-1">Toyota Innova</option>
+                <option value="tempo-traveller" data-url="{{ url('cab/tempo-traveller') }}">Tempo Traveller</option>
+                <option value="toyota-innova" data-url="{{ url('cab/toyota-innova-1') }}">Toyota Innova</option>
                 <option value="bus">Bus</option>
               </select>
             </div>

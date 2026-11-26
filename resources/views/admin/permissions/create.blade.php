@@ -50,7 +50,7 @@
 
                                 <div class="col-lg-8">
                                     <div class="text-end mb-4">
-                                        <button type="submit" class="btn btn-primary">Create Project</button>
+                                        <button type="submit" class="btn btn-primary">Create Permission</button>
                                     </div>
                                 </div>
                             </div>

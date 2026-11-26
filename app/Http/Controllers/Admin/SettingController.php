@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller; 
 use App\Models\Setting;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreSettingRequest;
 use App\Http\Requests\UpdateSettingRequest;
 use Spatie\Permission\Models\Permission;
 use Illuminate\View\View;

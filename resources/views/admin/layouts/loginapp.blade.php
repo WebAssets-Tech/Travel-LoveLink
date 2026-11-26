@@ -5,12 +5,12 @@
         <meta charset="utf-8" />
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Login || Travel ERP</title>
+        <title>Login | WebAssets Admin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Travel ERP" name="description" />
-        <meta content="Love Link" name="author" />
+        <meta content="WebAssets Admin Panel" name="description" />
+        <meta content="WebAssets" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ url('/') }}/assets/images/favicon.ico">
+        <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
         <!-- owl.carousel css -->
         <link rel="stylesheet" href="{{asset('assets/libs/owl.carousel/assets/owl.carousel.min.css')}}">

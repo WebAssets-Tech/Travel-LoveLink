@@ -1,8 +1,8 @@
 @extends('admin.layouts.app')
+@section('web_page_title', 'Create User')
 
 @section('content')
 
- 
             <div class="page-content">
                     <div class="container-fluid">
 
@@ -10,7 +10,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">Create New</h4>
+                                    <h4 class="mb-sm-0 font-size-18">Create New User</h4>
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
@@ -24,7 +24,7 @@
                         </div>
                         <!-- end page title -->
 
-                        <form id="createproject-form" autocomplete="off" class="needs-validation" novalidate action="{{ route('users.store') }}" method="POST">
+                        <form id="createuser-form" autocomplete="off" class="needs-validation" novalidate action="{{ route('users.store') }}" method="POST">
                         @csrf
                             <div class="row">
                                 <div class="col-lg-8">
@@ -33,38 +33,38 @@
                                     <div class="card">
                                         <div class="card-body">   
                                             <div class="mb-3">
-                                                <label for="projectname-input" class="form-label">Name</label>
+                                                <label for="user-name" class="form-label">Name</label>
                                                 
-                                                <input id="projectname-name" name="name" type="text" class="form-control" placeholder="Enter name..." >
-                                                <div class="invalid-feedback">Please enter a permissions name.</div>
+                                                <input id="user-name" name="name" type="text" class="form-control" placeholder="Enter name..." value="{{ old('name') }}" required>
+                                                <div class="invalid-feedback">Please enter a name.</div>
                                             </div> 
                                             <div class="mb-3">
-                                                <label for="projectname-input" class="form-label">E-Mail</label>
+                                                <label for="user-email" class="form-label">E-Mail</label>
                                                 
-                                                <input id="projectname-email" name="email" type="email" class="form-control" placeholder="Enter email..." >
-                                                <div class="invalid-feedback">Please enter an email.</div>
+                                                <input id="user-email" name="email" type="email" class="form-control" placeholder="Enter email..." value="{{ old('email') }}" required>
+                                                <div class="invalid-feedback">Please enter an email address.</div>
                                             </div>  
                                             <div class="mb-3">
-                                                <label for="projectname-input" class="form-label">Phone</label>
+                                                <label for="user-phone" class="form-label">Phone</label>
                                                 
-                                                <input id="projectname-phone" name="phone" type="tel" class="form-control" placeholder="Enter phone..." >
-                                                <div class="invalid-feedback">Please enter an email.</div>
+                                                <input id="user-phone" name="phone" type="tel" class="form-control" placeholder="Enter phone..." value="{{ old('phone') }}">
+                                                <div class="invalid-feedback">Please enter a phone number.</div>
                                             </div>  
                                             <div class="mb-3">
-                                                <label for="projectname-input" class="form-label">Password</label>
+                                                <label for="user-password" class="form-label">Password</label>
                                                 
-                                                <input id="projectname-password" name="password" type="password" class="form-control" placeholder="Enter password..." >
+                                                <input id="user-password" name="password" type="password" class="form-control" placeholder="Enter password..." required>
                                                 <div class="invalid-feedback">Please enter a password.</div>
                                             </div>  
                                             <div class="mb-3">
-                                                <label for="projectname-input" class="form-label">Confirm Password</label>
+                                                <label for="user-password-confirmation" class="form-label">Confirm Password</label>
                                                 
-                                                <input id="projectname-password_confirmation" name="password_confirmation" type="password" class="form-control" placeholder="Enter Confirm Password..." >
-                                                <div class="invalid-feedback">Please enter a password.</div>
+                                                <input id="user-password-confirmation" name="password_confirmation" type="password" class="form-control" placeholder="Enter Confirm Password..." required>
+                                                <div class="invalid-feedback">Please confirm the password.</div>
                                             </div> 
                                             <div class="mb-3 row">
                                                 <label class="col-md-2 col-form-label">Roles</label> 
-                                                    <select class="select2"  name="roles[]" id="mySelect2">
+                                                    <select class="select2 form-control" name="roles[]" id="mySelect2" multiple>
                                                             @forelse ($roles as $role)
 
                                                                 @if ($role!='Super Admin')
@@ -106,13 +106,11 @@
                 </div>
                 <!-- End Page-content -->
 
-        <!-- bootstrap datepicker -->
-        <script src="{{ url('/') }}/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+@endsection
 
-        <!-- Plugins js -->
-        <script src="{{ url('/') }}/assets/libs/dropzone/dropzone-min.js"></script>
-
-        <script src="{{ url('/') }}/assets/js/pages/project-create.init.js"></script>
-
-
+@section('web_page_script')
+<script src="{{ url('/') }}/assets/libs/select2/js/select2.min.js"></script>
+<script>
+    $(".select2").select2();
+</script>
 @endsection

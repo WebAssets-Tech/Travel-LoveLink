@@ -10,24 +10,24 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-7">
                             <div class="text-center">
-                                <h4 class="mb-3"><i class="bx bxs-quote-alt-left text-primary h1 align-middle me-3"></i><span class="text-primary">5k</span>+ Satisfied clients</h4>
+                                <h4 class="mb-3"><i class="bx bxs-quote-alt-left text-primary h1 align-middle me-3"></i><span class="text-primary">WebAssets</span> - Futuristic Technology</h4>
                                 <div dir="ltr">
                                     <div class="owl-carousel owl-theme auth-review-carousel" id="auth-review-carousel">
                                         <div class="item">
                                             <div class="py-3">
-                                                <p class="font-size-16 mb-4">" Fantastic theme with a ton of options. "</p>
+                                                <p class="font-size-16 mb-4">" Empowering digital transformation with high-performance web architecture, robust digital marketing, and cutting-edge web technologies. "</p>
                                                 <div>
-                                                    <h4 class="font-size-16 text-primary">Abs1981</h4>
-                                                    <p class="font-size-14 mb-0">- Skote User</p>
+                                                    <h4 class="font-size-16 text-primary">WebAssets Technology</h4>
+                                                    <p class="font-size-14 mb-0">- Innovating Futuristic Technology</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="item">
                                             <div class="py-3">
-                                                <p class="font-size-16 mb-4">" Great support and documentation. "</p>
+                                                <p class="font-size-16 mb-4">" Enterprise-grade stability, seamless management tools, and modern application scalability built for growth. "</p>
                                                 <div>
-                                                    <h4 class="font-size-16 text-primary">nezerious</h4>
-                                                    <p class="font-size-14 mb-0">- Skote User</p>
+                                                    <h4 class="font-size-16 text-primary">WebAssets Solutions</h4>
+                                                    <p class="font-size-14 mb-0">- Digital Solutions Partner</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -57,7 +57,7 @@
                 <div class="my-auto">
                     <div>
                         <h5 class="text-primary">Welcome Back !</h5>
-                        <p class="text-muted">Sign in to continue to {{ config('app.name', 'Love Link') }} Admin.</p>
+                        <p class="text-muted">Sign in to continue to WebAssets Admin.</p>
                     </div>
 
                     <div class="mt-4">
@@ -111,7 +111,7 @@
                 </div>
 
                 <div class="mt-4 mt-md-5 text-center">
-                    <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> {{ config('app.name', 'Love Link') }}. All rights reserved.</p>
+                    <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> WebAssets. All rights reserved.</p>
                 </div>
             </div>
         </div>

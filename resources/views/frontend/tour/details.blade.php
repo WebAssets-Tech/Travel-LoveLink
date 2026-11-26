@@ -523,7 +523,7 @@ tour Area
                                     <input type="hidden" name="subject" value="Package Booking: {{ $tour->title }}">
                                     <input type="hidden" name="message" id="bk_message_hidden">
                                     {{-- Hidden Fallback Email for Backend Validation (ContactSubmit requires email) --}}
-                                    <input type="hidden" name="email" id="bk_email_hidden" value="{{ !empty($setting->email) ? $setting->email : 'booking@lovelinktourandtravels.com' }}">
+                                    <input type="hidden" name="email" id="bk_email_hidden" value="{{ !empty($setting->email) ? $setting->email : (config('mail.from.address') ?: 'info@webassets.tech') }}">
 
                                     <div class="row g-2">
                                         {{-- 1. Package Title (Automatic / Readonly) --}}

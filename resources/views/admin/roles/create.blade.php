@@ -14,7 +14,7 @@
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Permissions</a></li>
+                                            <li class="breadcrumb-item"><a href="{{ route('roles.index') }}">Roles</a></li>
                                             <li class="breadcrumb-item active">Create New</li>
                                         </ol>
                                     </div>

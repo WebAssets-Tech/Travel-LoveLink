@@ -29,7 +29,7 @@
                         </div>
                         <!-- end page title -->
 
-                        <form id="createproject-form" autocomplete="off" class="needs-validation" novalidate action="{{ route('users.update', $user->id) }}" method="POST">
+                        <form id="edituser-form" autocomplete="off" class="needs-validation" novalidate action="{{ route('users.update', $user->id) }}" method="POST">
                         @csrf
                     @method("PUT")
                             <div class="row">
@@ -39,34 +39,34 @@
                                     <div class="card">
                                         <div class="card-body">   
                                             <div class="mb-3">
-                                                <label for="projectname-input" class="form-label">Name</label>
+                                                <label for="user-name" class="form-label">Name</label>
                                                 
-                                                <input id="projectname-name" name="name" type="text" class="form-control" placeholder="Enter name..."  value="{{ $user->name }}">
-                                                <div class="invalid-feedback">Please enter a permissions name.</div>
+                                                <input id="user-name" name="name" type="text" class="form-control" placeholder="Enter name..."  value="{{ $user->name }}" required>
+                                                <div class="invalid-feedback">Please enter a name.</div>
                                             </div> 
                                             <div class="mb-3">
-                                                <label for="projectname-input" class="form-label">E-Mail</label>
+                                                <label for="user-email" class="form-label">E-Mail</label>
                                                 
-                                                <input id="projectname-email" name="email" type="email" class="form-control" placeholder="Enter email..."  value="{{ $user->email }}">
-                                                <div class="invalid-feedback">Please enter an email.</div>
+                                                <input id="user-email" name="email" type="email" class="form-control" placeholder="Enter email..."  value="{{ $user->email }}" required>
+                                                <div class="invalid-feedback">Please enter an email address.</div>
                                             </div>  
                                             <div class="mb-3">
-                                                <label for="projectname-input" class="form-label">Phone</label>
+                                                <label for="user-phone" class="form-label">Phone</label>
                                                 
-                                                <input id="projectname-email" name="phone" type="tel" class="form-control" placeholder="Enter Phone..."  value="{{ $user->phone }}">
-                                                <div class="invalid-feedback">Please enter an phone.</div>
+                                                <input id="user-phone" name="phone" type="tel" class="form-control" placeholder="Enter Phone..."  value="{{ $user->phone }}">
+                                                <div class="invalid-feedback">Please enter a phone number.</div>
                                             </div>  
                                             <div class="mb-3">
-                                                <label for="projectname-input" class="form-label">Password</label>
+                                                <label for="user-password" class="form-label">Password</label>
                                                 
-                                                <input id="projectname-password" name="password" type="password" class="form-control" placeholder="Enter password..." >
+                                                <input id="user-password" name="password" type="password" class="form-control" placeholder="Leave blank to keep current password..." >
                                                 <div class="invalid-feedback">Please enter a password.</div>
                                             </div>  
                                             <div class="mb-3">
-                                                <label for="projectname-input" class="form-label">Confirm Password</label>
+                                                <label for="user-password-confirmation" class="form-label">Confirm Password</label>
                                                 
-                                                <input id="projectname-password_confirmation" name="password_confirmation" type="password" class="form-control" placeholder="Enter Confirm Password..." >
-                                                <div class="invalid-feedback">Please enter a password.</div>
+                                                <input id="user-password-confirmation" name="password_confirmation" type="password" class="form-control" placeholder="Enter Confirm Password..." >
+                                                <div class="invalid-feedback">Please confirm the password.</div>
                                             </div> 
                                             <div class="mb-3 row">
                                                 <label class="col-md-2 col-form-label">Roles</label> 
