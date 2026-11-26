@@ -31531,24 +31531,16 @@ h2.box-title:first-of-type {
 .breadcumb-wrapper {
   position: relative;
   padding: 75px 0 70px;
-  background: linear-gradient(135deg, rgba(7, 35, 85, 0.92) 0%, rgba(11, 61, 145, 0.88) 100%), #072355;
   background-size: cover !important;
   background-position: center center !important;
+  background-repeat: no-repeat !important;
   color: #ffffff;
   overflow: hidden;
   text-align: center;
 }
 
 .breadcumb-wrapper::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(rgba(221, 171, 67, 0.15) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 24px 24px, 40px 40px;
-  pointer-events: none;
-  opacity: 0.85;
+  display: none !important;
 }
 
 .breadcumb-wrapper .container {
@@ -41805,9 +41797,16 @@ marquee {
 .kz-cabs-hero {
   position: relative !important;
   padding: 24px 0 20px !important;
-  background: linear-gradient(135deg, #072355 0%, #0B3D91 60%, #0e46a3 100%) !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
   color: #ffffff !important;
   overflow: hidden !important;
+}
+
+.kz-hotels-hero::before,
+.kz-cabs-hero::before {
+  display: none !important;
 }
 
 .kz-hotels-breadcrumb,

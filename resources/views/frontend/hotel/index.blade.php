@@ -24,7 +24,7 @@
 <!--==============================
 1. CINEMATIC HERO / BREADCRUMB
 ==============================-->
-<section class="kz-hotels-hero" style="background: linear-gradient(135deg, rgba(7, 35, 85, 0.88) 0%, rgba(11, 61, 145, 0.82) 100%), url('{{ $hotelHeroBg }}') center/cover no-repeat !important;">
+<section class="kz-hotels-hero" style="background: url('{{ $hotelHeroBg }}') center/cover no-repeat !important;">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-8 col-md-10">
