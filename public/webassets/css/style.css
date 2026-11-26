@@ -27029,6 +27029,7 @@ footer .icon i {
     transform: translateY(0);
     opacity: 0.94;
   }
+
   100% {
     transform: translateY(-3px);
     opacity: 1;
@@ -27040,6 +27041,7 @@ footer .icon i {
     transform: scale(0.85);
     opacity: 0.45;
   }
+
   100% {
     transform: scale(1.15);
     opacity: 0.85;
@@ -40038,6 +40040,7 @@ marquee {
     transform: scale(0.8);
     opacity: 0.95;
   }
+
   100% {
     transform: scale(2.2);
     opacity: 0;
@@ -40075,9 +40078,9 @@ marquee {
   visibility: hidden !important;
   pointer-events: none !important;
   transform: translateY(100%) !important;
-  transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), 
-              opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1), 
-              visibility 0.42s !important;
+  transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.42s !important;
   white-space: nowrap !important;
 }
 
@@ -40311,23 +40314,28 @@ marquee {
   .kz-ent-notice-wrap {
     padding: 6px 0 !important;
   }
+
   .kz-ent-notice-bar {
     gap: 8px !important;
     padding: 4px 8px 4px 5px !important;
     min-height: 38px !important;
   }
+
   .kz-ent-badge {
     padding: 4px 8px !important;
     font-size: 10px !important;
     letter-spacing: 0.5px !important;
   }
+
   .kz-ent-content {
     font-size: 12px !important;
   }
+
   .kz-ent-tag {
     font-size: 10px !important;
     padding: 2px 7px !important;
   }
+
   .kz-ent-counter {
     display: none !important;
   }
@@ -40337,12 +40345,15 @@ marquee {
   .kz-ent-tag {
     display: none !important;
   }
+
   .kz-ent-badge-text {
     font-size: 9.5px !important;
   }
+
   .kz-ent-content {
     font-size: 11.5px !important;
   }
+
   .kz-ent-notice-bar {
     border-radius: 12px !important;
   }
@@ -40357,7 +40368,7 @@ marquee {
   position: relative !important;
   overflow: hidden !important;
   background-color: #fafbfc !important;
-  background-image: 
+  background-image:
     linear-gradient(rgba(11, 61, 145, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(11, 61, 145, 0.035) 1px, transparent 1px) !important;
   background-size: 28px 28px !important;
@@ -40419,8 +40430,8 @@ marquee {
   height: 100% !important;
   display: flex !important;
   flex-direction: column !important;
-  transition: box-shadow 0.35s ease, 
-              border-color 0.35s ease !important;
+  transition: box-shadow 0.35s ease,
+    border-color 0.35s ease !important;
   box-sizing: border-box !important;
 }
 
@@ -40683,6 +40694,7 @@ marquee {
   .kz-hotels-prev {
     left: -8px !important;
   }
+
   .kz-hotels-next {
     right: -8px !important;
   }
@@ -40692,18 +40704,23 @@ marquee {
   .kz-hotels-nav-btn {
     display: none !important;
   }
+
   .kz-hotels-section {
     padding: 24px 0 30px !important;
   }
+
   .kz-hotels-header {
     margin-bottom: 25px !important;
   }
+
   .kz-hotels-heading {
     font-size: 26px !important;
   }
+
   .kz-hotels-header .kz-hotels-subtitle {
     font-size: 13px !important;
   }
+
   .kz-hotel-home-card .kz-hotel-media {
     height: 175px !important;
   }
@@ -40823,10 +40840,12 @@ marquee {
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(221, 171, 67, 0.65);
   }
+
   70% {
     transform: scale(1.1);
     box-shadow: 0 0 0 8px rgba(221, 171, 67, 0);
   }
+
   100% {
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(221, 171, 67, 0);
@@ -41235,7 +41254,7 @@ marquee {
   height: 24px !important;
   width: auto !important;
   object-fit: contain !important;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)) !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)) !important;
 }
 
 /* --- 4. Responsive Breakpoints --- */
@@ -41243,17 +41262,20 @@ marquee {
   .site-footer .accordion-icon {
     display: none !important;
   }
+
   .site-footer .footer-col-header {
     pointer-events: none !important;
     border: none !important;
     padding: 0 !important;
   }
+
   .site-footer .footer-accordion-col .footer-col-body {
     display: block !important;
   }
 }
 
 @media (max-width: 991px) {
+
   .site-footer.kz-luxury-footer,
   .site-footer {
     padding-top: 40px !important;
@@ -41656,10 +41678,12 @@ marquee {
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
   }
+
   70% {
     transform: scale(1.1);
     box-shadow: 0 0 0 6px rgba(37, 211, 102, 0);
   }
+
   100% {
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
@@ -41782,7 +41806,7 @@ marquee {
   .kaw-hdr-wrap {
     min-height: 64px !important;
   }
-  
+
   .kaw-hdr-fi {
     padding: 3px 6px !important;
     gap: 4px !important;
@@ -42275,11 +42299,12 @@ marquee {
 
 /* Responsive tweaks for Hotels & Cabs */
 @media (max-width: 991px) {
+
   .kz-hotels-title,
   .kz-cabs-title {
     font-size: 20px !important;
   }
-  
+
   .kz-hotel-media,
   .kz-cab-media {
     height: 180px !important;
@@ -42287,6 +42312,7 @@ marquee {
 }
 
 @media (max-width: 575px) {
+
   .kz-hotels-hero,
   .kz-cabs-hero {
     padding: 18px 0 16px !important;
@@ -42860,12 +42886,14 @@ form.woocommerce-ordering {
   .kaw-pkg-card.style-flex {
     flex-direction: column !important;
   }
+
   .kaw-pkg-card.style-flex .kaw-pkg-img-wrap {
     width: 100% !important;
     min-width: 100% !important;
     aspect-ratio: 16 / 10.5 !important;
     border-radius: 26px 26px 18px 18px !important;
   }
+
   .kaw-pkg-card.style-flex .kaw-pkg-body {
     padding: 16px 18px 18px !important;
   }
@@ -42998,7 +43026,7 @@ form.woocommerce-ordering {
 .kz-tour-badge.badge-rating {
   background: #ffffff;
   color: #072355;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .kz-tour-badge.badge-deal {
@@ -43592,6 +43620,7 @@ form.woocommerce-ordering {
    MOBILE RESPONSIVENESS & COMPACT MINIMAL GAPING DESIGN SYSTEM
    ==================================================================== */
 @media (max-width: 991.98px) {
+
   /* Tabs stack flush at top of screen (0px gap, even when scrolling back up) */
   .kz-tour-nav-col {
     position: -webkit-sticky !important;
@@ -43717,6 +43746,7 @@ form.woocommerce-ordering {
 }
 
 @media (max-width: 767.98px) {
+
   /* Minimal gaping & small font sizes in header (Screenshot 1) */
   .kz-tour-header-wrap {
     margin-top: 4px !important;
@@ -43994,6 +44024,7 @@ form.woocommerce-ordering {
     align-items: flex-start !important;
     gap: 16px !important;
   }
+
   .kz-policy-contact-btn {
     width: 100% !important;
     justify-content: center !important;
@@ -44266,13 +44297,13 @@ form.woocommerce-ordering {
 }
 
 .kaw-mmt-cat-ico img {
-  width: 38px !important;
-  height: 38px !important;
+  width: 48px !important;
+  height: 32px !important;
   object-fit: contain !important;
   transition: transform 0.22s ease !important;
 }
 
-.kaw-mmt-cat-label {
+.kaw-mmt-cat-label {url(http://194.163.160.147:1234/cabs)
   font-size: 12px !important;
   font-weight: 600 !important;
   line-height: 1.2 !important;
@@ -44306,6 +44337,7 @@ form.woocommerce-ordering {
   .kz-ent-header-bar .kz-ent-action-txt {
     display: none !important;
   }
+
   .kz-ent-header-bar .kz-ent-action {
     padding: 4px 6px !important;
   }
@@ -44315,6 +44347,7 @@ form.woocommerce-ordering {
   .kaw-mmt-util-email {
     display: none !important;
   }
+
   .kaw-mmt-cat-item {
     padding: 10px 14px 12px !important;
     min-width: 76px !important;
@@ -44717,8 +44750,8 @@ form.woocommerce-ordering {
    ========================================================================== */
 .kz-faq-page-hero {
   background: radial-gradient(circle at 18% 15%, rgba(221, 171, 67, 0.12) 0%, transparent 45%),
-              radial-gradient(circle at 85% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 45%),
-              linear-gradient(135deg, #072355 0%, #0B3D91 65%, #124bb5 100%) !important;
+    radial-gradient(circle at 85% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 45%),
+    linear-gradient(135deg, #072355 0%, #0B3D91 65%, #124bb5 100%) !important;
   padding: 50px 0 54px !important;
   position: relative !important;
   overflow: hidden !important;
@@ -45282,16 +45315,15 @@ form.woocommerce-ordering {
    with zero color seam or gap.
    ========================================================================== */
 @media (min-width: 992px) {
-  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage):has(
-    + .th-hero-wrapper,
+
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage):has(+ .th-hero-wrapper,
     + .breadcumb-wrapper,
     + .kz-cabs-hero,
     + .kz-hotels-hero,
     + .kz-about-page-hero,
     + .kz-faq-page-hero,
     + .kz-cab-detail-page,
-    + .kz-htld-wrapper
-  ) .kaw-mmt-menu-stage {
+    + .kz-htld-wrapper) .kaw-mmt-menu-stage {
     background: transparent !important;
   }
 
@@ -45304,44 +45336,44 @@ form.woocommerce-ordering {
     pointer-events: auto;
   }
 
-  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .th-hero-wrapper {
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage)+.th-hero-wrapper {
     margin-top: -56px !important;
   }
 
-  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .breadcumb-wrapper,
-  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-cabs-hero,
-  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-hotels-hero,
-  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-about-page-hero,
-  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-faq-page-hero,
-  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-cab-detail-page > .kz-cab-hero-banner,
-  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-htld-wrapper > .kz-htld-hero {
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage)+.breadcumb-wrapper,
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage)+.kz-cabs-hero,
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage)+.kz-hotels-hero,
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage)+.kz-about-page-hero,
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage)+.kz-faq-page-hero,
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage)+.kz-cab-detail-page>.kz-cab-hero-banner,
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage)+.kz-htld-wrapper>.kz-htld-hero {
     margin-top: -116px !important;
   }
 
-  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .breadcumb-wrapper {
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage)+.breadcumb-wrapper {
     padding-top: 184px !important;
     padding-bottom: 65px !important;
   }
 
-  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-about-page-hero,
-  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-about-page-hero.py-3 {
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage)+.kz-about-page-hero,
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage)+.kz-about-page-hero.py-3 {
     padding-top: 148px !important;
     padding-bottom: 34px !important;
   }
 
-  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-cabs-hero,
-  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-hotels-hero {
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage)+.kz-cabs-hero,
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage)+.kz-hotels-hero {
     padding-top: 140px !important;
     padding-bottom: 24px !important;
   }
 
-  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-faq-page-hero {
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage)+.kz-faq-page-hero {
     padding-top: 160px !important;
     padding-bottom: 50px !important;
   }
 
-  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-cab-detail-page > .kz-cab-hero-banner,
-  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-htld-wrapper > .kz-htld-hero {
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage)+.kz-cab-detail-page>.kz-cab-hero-banner,
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage)+.kz-htld-wrapper>.kz-htld-hero {
     padding-top: 176px !important;
     padding-bottom: 58px !important;
   }
