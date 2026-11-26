@@ -7,7 +7,7 @@
 <!--==============================
     Breadcumb
 ============================== -->
-<div class="breadcumb-wrapper " data-bg-src="{{ getImageByType(request()->segment(1),$setting) }}">
+<div class="breadcumb-wrapper " {!! breadcrumbBgAttrs(getImageByType(request()->segment(1), $setting ?? null), $setting ?? null) !!}>
         <div class="container">
             <div class="breadcumb-content">
                 <h1 class="breadcumb-title">Activities</h1>

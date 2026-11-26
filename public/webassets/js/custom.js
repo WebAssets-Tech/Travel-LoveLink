@@ -226,11 +226,27 @@ document.addEventListener('DOMContentLoaded', function () {
             var targetPanel = document.getElementById(tab.dataset.target);
             if (targetPanel) {
                 targetPanel.classList.add('active');
+                var panelBody = targetPanel.querySelector('.modal-body');
+                if (panelBody) panelBody.scrollTop = 0;
             }
         });
     });
 
     var modalEl = document.getElementById('globalContactModal');
+
+    if (modalEl) {
+        modalEl.addEventListener('show.bs.modal', function () {
+            if (window.lenis && typeof window.lenis.stop === 'function') {
+                window.lenis.stop();
+            }
+        });
+
+        modalEl.addEventListener('hidden.bs.modal', function () {
+            if (window.lenis && typeof window.lenis.start === 'function') {
+                window.lenis.start();
+            }
+        });
+    }
 
     // Reopen modal only if Laravel returns validation errors
     if (modalEl && modalEl.getAttribute('data-has-errors') === '1') {

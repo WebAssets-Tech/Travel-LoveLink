@@ -24428,23 +24428,32 @@ footer .icon i {
    from the theme's global .modal-content / .modal-body rules
    can bleed through again
 ============================================================ */
+#globalContactModal {
+  overflow-y: auto !important;
+  overscroll-behavior: contain;
+}
+
 #globalContactModal .gb-dialog {
   max-width: 560px !important;
 }
 
 #globalContactModal .gb-modal {
+  display: flex !important;
+  flex-direction: column !important;
   background: #ffffff !important;
   border: none !important;
   border-radius: 14px !important;
   overflow: hidden !important;
   box-shadow: 0 24px 60px rgba(11, 61, 145, 0.28) !important;
   max-height: 92vh !important;
+  max-height: 92dvh !important;
 }
 
 /* ============================================================
    HEADER
 ============================================================ */
 #globalContactModal .gb-header {
+  flex-shrink: 0;
   background: linear-gradient(135deg, #072b6b 0%, #0B3D91 100%) !important;
   padding: 18px 24px 16px !important;
   border: none !important;
@@ -24510,6 +24519,7 @@ footer .icon i {
    TABS
 ============================================================ */
 #globalContactModal .gb-tabs {
+  flex-shrink: 0;
   display: flex;
   background: #f2f5fb !important;
   border-bottom: 1px solid #dde4f0 !important;
@@ -24551,6 +24561,11 @@ footer .icon i {
 /* ============================================================
    ALERT
 ============================================================ */
+#globalContactModal .gb-alert,
+#globalContactModal #gc-form-alert {
+  flex-shrink: 0;
+}
+
 #globalContactModal .gb-alert {
   font-size: 12.5px;
   border-radius: 8px;
@@ -24566,23 +24581,36 @@ footer .icon i {
 }
 
 #globalContactModal .gb-panel.active {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
 }
 
 #globalContactModal .modal-body {
   background: #ffffff !important;
   padding: 20px 24px 10px !important;
-  max-height: 62vh;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
   overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  scrollbar-width: thin;
+  scrollbar-color: #c7d1e6 transparent;
 }
 
 #globalContactModal .modal-footer {
+  flex-shrink: 0;
   background: #ffffff !important;
 }
 
 /* Slim scrollbar */
 #globalContactModal .modal-body::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
 }
 
 #globalContactModal .modal-body::-webkit-scrollbar-thumb {
@@ -24759,7 +24787,6 @@ footer .icon i {
 
   #globalContactModal .modal-body {
     padding: 16px 18px 8px !important;
-    max-height: 55vh;
   }
 
   #globalContactModal .gb-row,
@@ -24780,6 +24807,21 @@ footer .icon i {
   #globalContactModal .gb-btn-primary {
     flex: 1;
     text-align: center;
+  }
+}
+
+@media (max-height: 520px) {
+  #globalContactModal .gb-dialog {
+    align-items: flex-start;
+  }
+
+  #globalContactModal .gb-modal {
+    max-height: none !important;
+  }
+
+  #globalContactModal .gb-panel.active,
+  #globalContactModal .modal-body {
+    overflow: visible;
   }
 }
 
@@ -44132,20 +44174,13 @@ form.woocommerce-ordering {
 /* ROW 2: MMT-Style Floating White Category Icon Card */
 .kaw-mmt-menu-stage {
   position: relative !important;
-  padding: 14px 0 12px !important;
-  background: #ffffff !important;
+  padding: 14px 0 40px !important;
+  background: linear-gradient(180deg, #f1f5fb 0%, #ffffff 100%) !important;
 }
 
 .kaw-mmt-menu-stage::before {
-  content: '' !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  height: 54% !important;
-  background: linear-gradient(135deg, #051636 0%, #092c6b 55%, #0e439c 100%) !important;
-  z-index: 0 !important;
-  pointer-events: none !important;
+  display: none !important;
+  content: none !important;
 }
 
 .kaw-mmt-menu-stage .container {
@@ -45225,5 +45260,76 @@ form.woocommerce-ordering {
 
   .kz-faq-page-body p {
     font-size: 13.5px !important;
+  }
+}
+
+/* ==========================================================================
+   SEAMLESS HEADER-TO-BREADCRUMB & HERO OVERLAP (DESKTOP)
+   Lets hero/breadcrumb background flow cleanly behind the floating category card
+   with zero color seam or gap.
+   ========================================================================== */
+@media (min-width: 992px) {
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage):has(
+    + .th-hero-wrapper,
+    + .breadcumb-wrapper,
+    + .kz-cabs-hero,
+    + .kz-hotels-hero,
+    + .kz-about-page-hero,
+    + .kz-faq-page-hero,
+    + .kz-cab-detail-page,
+    + .kz-htld-wrapper
+  ) .kaw-mmt-menu-stage {
+    background: transparent !important;
+  }
+
+  /* Home slider: float the category menu half above and half over the slider */
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage):has(+ .th-hero-wrapper) .kaw-mmt-menu-stage {
+    pointer-events: none;
+  }
+
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage):has(+ .th-hero-wrapper) .kaw-mmt-menu-card {
+    pointer-events: auto;
+  }
+
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .th-hero-wrapper {
+    margin-top: -56px !important;
+  }
+
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .breadcumb-wrapper,
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-cabs-hero,
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-hotels-hero,
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-about-page-hero,
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-faq-page-hero,
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-cab-detail-page > .kz-cab-hero-banner,
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-htld-wrapper > .kz-htld-hero {
+    margin-top: -116px !important;
+  }
+
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .breadcumb-wrapper {
+    padding-top: 184px !important;
+    padding-bottom: 65px !important;
+  }
+
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-about-page-hero,
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-about-page-hero.py-3 {
+    padding-top: 148px !important;
+    padding-bottom: 34px !important;
+  }
+
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-cabs-hero,
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-hotels-hero {
+    padding-top: 140px !important;
+    padding-bottom: 24px !important;
+  }
+
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-faq-page-hero {
+    padding-top: 160px !important;
+    padding-bottom: 50px !important;
+  }
+
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-cab-detail-page > .kz-cab-hero-banner,
+  header.kaw-mmt-hdr:has(.kaw-mmt-menu-stage) + .kz-htld-wrapper > .kz-htld-hero {
+    padding-top: 176px !important;
+    padding-bottom: 58px !important;
   }
 }

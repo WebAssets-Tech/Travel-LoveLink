@@ -57,6 +57,7 @@ class SettingController extends Controller
                 $setting->update([$file => $filePath]);
             }
         }
+        $updatedImages = [];
         if ($request->has('about_images')) {
             $existingImages = is_string($setting->about_images)    ? json_decode($setting->about_images, true)  : ($setting->about_images ?? []); // Get existing images
             $updatedImages = [];
@@ -118,9 +119,19 @@ class SettingController extends Controller
         
         
   
+        $defaultBreadcrumbColor = 'linear-gradient(135deg, #072355 0%, #0B3D91 60%, #0e46a3 100%)';
+        $breadcrumbBgType = in_array($request->input('breadcrumb_bg_type'), ['image', 'color'], true)
+            ? $request->input('breadcrumb_bg_type')
+            : 'image';
+        $rawBreadcrumbColor = trim((string) $request->input('breadcrumb_bg_color', ''));
+        $rawBreadcrumbColor = preg_replace('/\s*!important\s*;?\s*$/i', '', $rawBreadcrumbColor);
+        $breadcrumbBgColor = $rawBreadcrumbColor !== '' ? $rawBreadcrumbColor : $defaultBreadcrumbColor;
+
         $setting->fill([
            'social_link' => $request->social_link ?? json_encode([]),
             'about_images' => $updatedImages,
+            'breadcrumb_bg_type' => $breadcrumbBgType,
+            'breadcrumb_bg_color' => $breadcrumbBgColor,
             'about_ot_content' => $request->about_ot_content ?? json_encode([]),
             'home_counter' => $request->home_counter ?? json_encode([]),
             'name' => $request->name,

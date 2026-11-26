@@ -13,7 +13,12 @@
 <!--==============================
     Breadcrumb Section
 ============================== -->
-<div class="breadcumb-wrapper">
+@php
+    $categoryBgImage = !empty($category->page_bg_image)
+        ? asset('storage/' . $category->page_bg_image)
+        : getImageByType('tours', $setting ?? null);
+@endphp
+<div class="breadcumb-wrapper" {!! breadcrumbBgAttrs($categoryBgImage, $setting ?? null, true) !!}>
     <div class="container">
         <div class="breadcumb-content">
             <h1 class="breadcumb-title">{{ $category->name }} Tours</h1>

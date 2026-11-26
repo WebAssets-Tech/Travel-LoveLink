@@ -8,7 +8,7 @@
     <!--==============================
     Breadcumb
 ============================== -->
-<div class="breadcumb-wrapper " data-bg-src="{{ asset('storage/' . $destination->page_bg_image) }}">
+<div class="breadcumb-wrapper " {!! breadcrumbBgAttrs(!empty($destination->page_bg_image) ? asset('storage/' . $destination->page_bg_image) : getImageByType(request()->segment(1), $setting ?? null), $setting ?? null) !!}>
         <div class="container">
             <div class="breadcumb-content">
                 <h1 class="breadcumb-title">{{ $destination->title }} Tours</h1>

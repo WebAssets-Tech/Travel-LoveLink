@@ -87,6 +87,21 @@
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="{{ asset('webassets/css/style.css') }}?v={{ filemtime(public_path('webassets/css/style.css')) }}">
 @yield('page_css') 
+    @if(useBreadcrumbColor($setting ?? null))
+        @php $breadcrumbBgValue = getBreadcrumbBgColor($setting ?? null); @endphp
+        <style id="kz-breadcrumb-bg-style">
+            .breadcumb-wrapper,
+            .kz-cabs-hero,
+            .kz-hotels-hero,
+            .kz-cab-hero-banner,
+            .kz-htld-hero,
+            .kz-about-page-hero,
+            .kz-faq-page-hero {
+                background: {{ $breadcrumbBgValue }} !important;
+                background-image: {{ $breadcrumbBgValue }} !important;
+            }
+        </style>
+    @endif
     @if(!empty($setting->header_script))
         {!! $setting->header_script !!}
     @endif
@@ -100,7 +115,7 @@
     
     @include('frontend.layouts.footer') <!-- Footer File -->
     
-<div class="modal fade" id="globalContactModal" data-default-wa="{{ $wa_phone_clean }}" data-has-errors="{{ $errors->any() ? '1' : '0' }}" tabindex="-1" aria-labelledby="globalContactModalLabel" aria-hidden="true">
+<div class="modal fade" id="globalContactModal" data-lenis-prevent data-default-wa="{{ $wa_phone_clean }}" data-has-errors="{{ $errors->any() ? '1' : '0' }}" tabindex="-1" aria-labelledby="globalContactModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered gb-dialog">
     <div class="modal-content gb-modal">
 

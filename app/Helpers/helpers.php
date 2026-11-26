@@ -38,6 +38,50 @@ if (!function_exists('getImageByType')) {
     }
 }
 
+if (!function_exists('useBreadcrumbColor')) {
+    function useBreadcrumbColor($setting = null): bool
+    {
+        return ($setting->breadcrumb_bg_type ?? 'image') === 'color';
+    }
+}
+
+if (!function_exists('getBreadcrumbBgColor')) {
+    function getBreadcrumbBgColor($setting = null): string
+    {
+        $default = 'linear-gradient(135deg, #072355 0%, #0B3D91 60%, #0e46a3 100%)';
+        $color = trim((string) ($setting->breadcrumb_bg_color ?? ''));
+        $color = preg_replace('/\s*!important\s*;?\s*$/i', '', $color);
+        return $color !== '' ? $color : $default;
+    }
+}
+
+if (!function_exists('breadcrumbBgAttrs')) {
+    function breadcrumbBgAttrs(?string $imageUrl, $setting = null, bool $withInlineFallback = false, bool $useInlineBackground = false): string
+    {
+        if (useBreadcrumbColor($setting)) {
+            $bgColor = e(getBreadcrumbBgColor($setting));
+            return 'style="background: ' . $bgColor . ' !important;"';
+        }
+
+        if (empty($imageUrl)) {
+            return '';
+        }
+
+        $escapedUrl = e($imageUrl);
+
+        if ($useInlineBackground) {
+            return 'style="background: url(\'' . $escapedUrl . '\') center/cover no-repeat !important;"';
+        }
+
+        $attrs = 'data-bg-src="' . $escapedUrl . '"';
+        if ($withInlineFallback) {
+            $attrs .= ' style="background-image: url(\'' . $escapedUrl . '\');"';
+        }
+
+        return $attrs;
+    }
+}
+
 if (!function_exists('generateMetaTags')) {
     function generateMetaTags($entity)
     {

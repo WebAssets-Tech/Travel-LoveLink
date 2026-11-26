@@ -23,7 +23,7 @@
 <!--==============================
     1. CINEMATIC HERO BANNER
 ==============================-->
-<section class="kz-cabs-hero" style="background: url('{{ $cabHeroBg }}') center/cover no-repeat !important;">
+<section class="kz-cabs-hero" {!! breadcrumbBgAttrs($cabHeroBg, $setting ?? null, false, true) !!}>
     <div class="container text-center text-md-start">
         <div class="row align-items-center">
             <div class="col-lg-8">

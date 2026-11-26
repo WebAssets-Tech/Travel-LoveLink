@@ -24,7 +24,7 @@
 <!--==============================
 1. CINEMATIC HERO / BREADCRUMB
 ==============================-->
-<section class="kz-hotels-hero" style="background: url('{{ $hotelHeroBg }}') center/cover no-repeat !important;">
+<section class="kz-hotels-hero" {!! breadcrumbBgAttrs($hotelHeroBg, $setting ?? null, false, true) !!}>
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-8 col-md-10">

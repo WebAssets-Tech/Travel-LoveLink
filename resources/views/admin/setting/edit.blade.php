@@ -339,6 +339,38 @@
 
 
 
+                                                @php
+                                                    $currentBreadcrumbBgType = old('breadcrumb_bg_type', $setting->breadcrumb_bg_type ?? 'image');
+                                                    $defaultBreadcrumbGradient = 'linear-gradient(135deg, #072355 0%, #0B3D91 60%, #0e46a3 100%)';
+                                                    $currentBreadcrumbBgColor = old('breadcrumb_bg_color', $setting->breadcrumb_bg_color ?: $defaultBreadcrumbGradient);
+                                                @endphp
+                                                <div class="row mt-3 mb-4 p-3 rounded border bg-light-subtle">
+                                                    <div class="col-12 mb-2">
+                                                        <h3 class="mb-1">Breadcrumb Background Settings</h3>
+                                                        <p class="text-muted mb-3">Choose whether frontend breadcrumbs display the Page Background Images below or a solid/gradient background color.</p>
+                                                    </div>
+                                                    <div class="col-md-5 mb-3">
+                                                        <label for="breadcrumb_bg_type" class="form-label fw-semibold">Breadcrumb Display Mode</label>
+                                                        <select id="breadcrumb_bg_type" name="breadcrumb_bg_type" class="form-select">
+                                                            <option value="image" {{ $currentBreadcrumbBgType === 'image' ? 'selected' : '' }}>Show Breadcrumb Image</option>
+                                                            <option value="color" {{ $currentBreadcrumbBgType === 'color' ? 'selected' : '' }}>Show Breadcrumb Background Color</option>
+                                                        </select>
+                                                        <small class="text-muted d-block mt-1">Switch anytime between uploaded page images and background color without losing your images.</small>
+                                                    </div>
+                                                    <div class="col-md-7 mb-3" id="breadcrumbBgColorGroup">
+                                                        <label for="breadcrumb_bg_color" class="form-label fw-semibold">Breadcrumb Background Color / Gradient</label>
+                                                        <div class="input-group">
+                                                            <input type="color" id="breadcrumb_bg_color_picker" class="form-control form-control-color" value="#0B3D91" title="Pick a solid color" style="max-width: 52px;">
+                                                            <input id="breadcrumb_bg_color" name="breadcrumb_bg_color" type="text" class="form-control" placeholder="{{ $defaultBreadcrumbGradient }}" value="{{ $currentBreadcrumbBgColor }}">
+                                                            <button type="button" class="btn btn-outline-secondary" id="resetBreadcrumbGradientBtn">Default Gradient</button>
+                                                        </div>
+                                                        <div class="mt-2 p-2 rounded text-white d-flex align-items-center justify-content-between" id="breadcrumbBgPreview" style="background: {{ $currentBreadcrumbBgColor }}; min-height: 44px;">
+                                                            <span class="small fw-semibold px-2">Breadcrumb Preview</span>
+                                                            <span class="badge bg-light text-dark opacity-75">Home &rsaquo; Page</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 <div class="row">
                                                     <h3>Page Backgorund Image</h3>
                                                     <div class="page_bg_image">
@@ -667,7 +699,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("addImageItem").addEventListener("click", function () {
         let container = document.getElementById("aboutImagesList");
         let newRow = `
-            <div class="row about-image-item">
+            <div class="row page_bg_image-image-item">
                 <div class="mb-4 col-lg-4">
                     <label for="image" class="form-label">Image</label> 
                     <input name="about_images[${itemIndex}][image]" type="file" accept="image/*" class="form-control">
@@ -701,7 +733,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("addpage_bg_imageImageItem").addEventListener("click", function () {
         let container = document.getElementById("page_bg_imageImagesList");
         let newRow = `
-            <div class="row about-image-item">
+            <div class="row page_bg_image-image-item">
                 <div class="mb-4 col-lg-4">
                     <label for="image" class="form-label">Image</label> 
                     <input name="page_bg_image[${itemIndex}][image]" type="file" accept="image/*" class="form-control">
@@ -727,6 +759,47 @@ document.addEventListener("DOMContentLoaded", function () {
             event.target.closest(".page_bg_image-image-item").remove();
         }
     });
+});
+document.addEventListener("DOMContentLoaded", function () {
+    const modeSelect = document.getElementById("breadcrumb_bg_type");
+    const colorGroup = document.getElementById("breadcrumbBgColorGroup");
+    const colorInput = document.getElementById("breadcrumb_bg_color");
+    const colorPicker = document.getElementById("breadcrumb_bg_color_picker");
+    const resetBtn = document.getElementById("resetBreadcrumbGradientBtn");
+    const preview = document.getElementById("breadcrumbBgPreview");
+    const defaultGradient = "linear-gradient(135deg, #072355 0%, #0B3D91 60%, #0e46a3 100%)";
+
+    function updatePreview() {
+        if (!colorInput || !preview) return;
+        const val = colorInput.value.replace(/\s*!important\s*;?\s*$/i, "").trim() || defaultGradient;
+        preview.style.background = val;
+    }
+
+    function toggleColorGroup() {
+        if (!modeSelect || !colorGroup) return;
+        colorGroup.style.opacity = modeSelect.value === "color" ? "1" : "0.65";
+    }
+
+    if (modeSelect) {
+        modeSelect.addEventListener("change", toggleColorGroup);
+        toggleColorGroup();
+    }
+    if (colorInput) {
+        colorInput.addEventListener("input", updatePreview);
+        updatePreview();
+    }
+    if (colorPicker && colorInput) {
+        colorPicker.addEventListener("input", function () {
+            colorInput.value = colorPicker.value;
+            updatePreview();
+        });
+    }
+    if (resetBtn && colorInput) {
+        resetBtn.addEventListener("click", function () {
+            colorInput.value = defaultGradient;
+            updatePreview();
+        });
+    }
 });
 </script>
 @endsection

@@ -22,6 +22,8 @@ class Setting extends Model
      protected $fillable = [
         'name',
         'page_bg_image',
+        'breadcrumb_bg_type',
+        'breadcrumb_bg_color',
         'meta_image',
         'footer_script',
         'youtube_vid_link',

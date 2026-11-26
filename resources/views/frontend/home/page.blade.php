@@ -20,9 +20,8 @@
 <!--==============================
     Dynamic Breadcrumb Section
 ==============================-->
-<div class="breadcumb-wrapper background-image" 
-     data-bg-src="{{ $breadcrumbImage }}" 
-     style="background-image: url('{{ $breadcrumbImage }}');">
+<div class="breadcumb-wrapper {{ useBreadcrumbColor($setting ?? null) ? '' : 'background-image' }}" 
+     {!! breadcrumbBgAttrs($breadcrumbImage, $setting ?? null, true) !!}>
     <div class="container">
         <div class="breadcumb-content">
             <h1 class="breadcumb-title">{{ $page->title }}</h1>

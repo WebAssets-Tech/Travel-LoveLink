@@ -26,7 +26,9 @@ class UpdateSettingRequest extends FormRequest
             'email' => 'required',
             'phone' => 'required' ,
             'address' => 'required' , 
-            'meta_title' => 'required' 
+            'meta_title' => 'required',
+            'breadcrumb_bg_type' => 'nullable|in:image,color',
+            'breadcrumb_bg_color' => 'nullable|string|max:500',
         ];
     }
 }
