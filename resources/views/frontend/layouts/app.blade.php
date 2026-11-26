@@ -447,7 +447,7 @@
 
           <div class="gb-row">
             <div class="gb-field">
-              <label class="gb-label" for="houseboa-location">Houseboat Location Location</label>
+              <label class="gb-label" for="houseboa-location">Houseboat Location</label>
               <select class="form-control gb-select" id="houseboa-location" name="houseboa_location" required>
                 <option value="" disabled selected>Select location</option>
                 <option value="sonamarg">Dal Lake</option>
