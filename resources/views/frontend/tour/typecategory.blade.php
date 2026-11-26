@@ -5,7 +5,10 @@
 @endsection
 @section('content')
 
-<div class="kz-about-page-hero py-3 text-center" style="background: linear-gradient(135deg, #072654 0%, #0B3D91 100%); margin-bottom: 24px;">
+@php
+    $typeCategoryBg = getImageByType('tours', $setting ?? null);
+@endphp
+<div class="kz-about-page-hero py-3 text-center position-relative overflow-hidden mb-4" {!! breadcrumbBgAttrs($typeCategoryBg, $setting ?? null, true, true) !!}>
     <div class="container">
         <span class="kz-about-hero-tag" style="font-size: 11px; letter-spacing: 0.12em; color: #ddab43;">CURATED PACKAGES</span>
         <h1 class="kz-about-hero-title mb-1" style="font-size: 26px; font-weight: 800; color: #ffffff;">{{ $type }} Tours & Packages</h1>

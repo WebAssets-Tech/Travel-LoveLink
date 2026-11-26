@@ -41868,11 +41868,12 @@ marquee {
    - Modern 4-Cards-In-A-Row Desktop Grid
    ========================================================================== */
 
-/* --- 1. HERO BANNERS (Hotels & Cabs) --- */
+/* --- 1. HERO BANNERS (Hotels, Cabs, Category & Static Pages) --- */
 .kz-hotels-hero,
-.kz-cabs-hero {
+.kz-cabs-hero,
+.kz-about-page-hero,
+.kz-faq-page-hero {
   position: relative !important;
-  padding: 24px 0 20px !important;
   background-size: cover !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
@@ -41880,8 +41881,15 @@ marquee {
   overflow: hidden !important;
 }
 
+.kz-hotels-hero,
+.kz-cabs-hero {
+  padding: 24px 0 20px !important;
+}
+
 .kz-hotels-hero::before,
-.kz-cabs-hero::before {
+.kz-cabs-hero::before,
+.kz-about-page-hero::before,
+.kz-faq-page-hero::before {
   content: '' !important;
   display: block !important;
   position: absolute !important;
@@ -41896,7 +41904,9 @@ marquee {
 }
 
 .kz-hotels-hero .container,
-.kz-cabs-hero .container {
+.kz-cabs-hero .container,
+.kz-about-page-hero .container,
+.kz-faq-page-hero .container {
   position: relative !important;
   z-index: 3 !important;
 }
