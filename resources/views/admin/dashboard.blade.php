@@ -79,23 +79,23 @@
                         <p class="text-muted font-size-12 mb-3">Quick map showing which backend menu controls each section of the live site:</p>
                         <ul class="list-group list-group-flush font-size-13">
                             <li class="list-group-item px-0 d-flex justify-content-between align-items-center">
-                                <span><strong>Header Quick Icons</strong> <small class="text-muted d-block">Packages, Hotels, Cabs, Trains, Flights...</small></span>
+                                <span><strong>Header Icons</strong> <small class="text-muted d-block">Packages, Hotels, Cabs, Trains, Flights...</small></span>
                                 <a href="{{ route('slidericon.index') }}" class="btn btn-sm btn-light">Edit</a>
                             </li>
                             <li class="list-group-item px-0 d-flex justify-content-between align-items-center">
-                                <span><strong>Domestic / Intl Tabs</strong> <small class="text-muted d-block">Top-level Country scopes</small></span>
+                                <span><strong>Domestic / Intl</strong> <small class="text-muted d-block">Top-level Country scopes</small></span>
                                 <a href="{{ route('country.index') }}" class="btn btn-sm btn-light">Edit</a>
                             </li>
                             <li class="list-group-item px-0 d-flex justify-content-between align-items-center">
-                                <span><strong>Package Regions (States)</strong> <small class="text-muted d-block">Kashmir, Ladakh, Dubai, Goa package cards</small></span>
+                                <span><strong>Regions (States)</strong> <small class="text-muted d-block">Kashmir, Ladakh, Dubai, Goa package cards</small></span>
                                 <a href="{{ route('state.index') }}" class="btn btn-sm btn-light">Edit</a>
                             </li>
                             <li class="list-group-item px-0 d-flex justify-content-between align-items-center">
-                                <span><strong>Tour Themes (Categories)</strong> <small class="text-muted d-block">Nature, Adventure, Camping carousel</small></span>
+                                <span><strong>Tour Themes</strong> <small class="text-muted d-block">Nature, Adventure, Camping carousel</small></span>
                                 <a href="{{ route('tourcategory.index') }}" class="btn btn-sm btn-light">Edit</a>
                             </li>
                             <li class="list-group-item px-0 d-flex justify-content-between align-items-center">
-                                <span><strong>Trains / Flights / Policies</strong> <small class="text-muted d-block">Dynamic service &amp; policy pages</small></span>
+                                <span><strong>Pages &amp; Policies</strong> <small class="text-muted d-block">Trains, Flights, Gandola, Terms &amp; Privacy</small></span>
                                 <a href="{{ route('page.index') }}" class="btn btn-sm btn-light">Edit</a>
                             </li>
                         </ul>

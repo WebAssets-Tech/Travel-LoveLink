@@ -1,4 +1,34 @@
 <!-- ========== Left Sidebar Start ========== -->
+<style>
+    body:not(.vertical-collpsed) #sidebar-menu ul li a {
+        display: flex;
+        align-items: center;
+        padding: 0.58rem 2.15rem 0.58rem 1.35rem;
+    }
+    body:not(.vertical-collpsed) #sidebar-menu ul li a i {
+        flex-shrink: 0;
+        min-width: 1.75rem;
+        padding-bottom: 0;
+    }
+    body:not(.vertical-collpsed) #sidebar-menu ul li a span {
+        flex: 1 1 auto;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    body:not(.vertical-collpsed) #sidebar-menu .has-arrow:after {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        margin-top: -0.55em;
+        float: none;
+        line-height: 1;
+    }
+    body:not(.vertical-collpsed) #sidebar-menu ul li ul.sub-menu li a {
+        padding: 0.4rem 1.25rem 0.4rem 3.25rem;
+    }
+</style>
 <div class="vertical-menu">
     <div data-simplebar class="h-100">
 
@@ -27,8 +57,8 @@
                         [
                             'route' => 'tour',
                             'label' => 'Tour Packages',
-                            'view_label' => 'View Tour Packages',
-                            'add_label' => 'Add Tour Package',
+                            'view_label' => 'View Packages',
+                            'add_label' => 'Add Package',
                             'icon' => 'bx-briefcase-alt-2',
                             'patterns' => ['tour.*'],
                             'view_perms' => ['view-tour', 'list-tour', 'create-tour', 'edit-tour', 'delete-tour'],
@@ -36,9 +66,9 @@
                         ],
                         [
                             'route' => 'state',
-                            'label' => 'Package Regions (States)',
-                            'view_label' => 'View Package Regions',
-                            'add_label' => 'Add Package Region',
+                            'label' => 'Regions (States)',
+                            'view_label' => 'View Regions',
+                            'add_label' => 'Add Region',
                             'icon' => 'bx-map-alt',
                             'patterns' => ['state.*'],
                             'view_perms' => ['view-state', 'list-state', 'create-state', 'edit-state', 'delete-state'],
@@ -46,9 +76,9 @@
                         ],
                         [
                             'route' => 'country',
-                            'label' => 'Domestic / Intl (Countries)',
-                            'view_label' => 'View Countries / Scopes',
-                            'add_label' => 'Add Country / Scope',
+                            'label' => 'Domestic / Intl',
+                            'view_label' => 'View Countries',
+                            'add_label' => 'Add Country',
                             'icon' => 'bx-globe',
                             'patterns' => ['country.*'],
                             'view_perms' => ['view-country', 'list-country', 'create-country', 'edit-country', 'delete-country'],
@@ -56,22 +86,22 @@
                         ],
                         [
                             'route' => 'tourcategory',
-                            'label' => 'Tour Themes (Categories)',
-                            'view_label' => 'View Tour Themes',
-                            'add_label' => 'Add Tour Theme',
-                            'icon' => 'bx-category-alt',
+                            'label' => 'Tour Themes',
+                            'view_label' => 'View Themes',
+                            'add_label' => 'Add Theme',
+                            'icon' => 'bx-tag',
                             'patterns' => ['tourcategory.*', 'subtourcategory.*'],
                             'view_perms' => ['view-tourcategory', 'list-tourcategory', 'create-tourcategory', 'edit-tourcategory', 'delete-tourcategory'],
                             'create_perms' => ['create-tourcategory'],
                         ],
                     ];
                 @endphp
-                <li class="menu-title">Tours &amp; Package Categories</li>
+                <li class="menu-title">Tours &amp; Categories</li>
                 @foreach($tourModules as $mod)
                     @canany($mod['view_perms'])
                     @php $isActive = request()->routeIs(...$mod['patterns']); @endphp
                     <li class="{{ $isActive ? 'mm-active' : '' }}">
-                        <a href="javascript:void(0);" class="has-arrow waves-effect {{ $isActive ? 'mm-active' : '' }}">
+                        <a href="javascript:void(0);" class="has-arrow waves-effect {{ $isActive ? 'mm-active' : '' }}" title="{{ $mod['label'] }}">
                             <i class="bx {{ $mod['icon'] }}"></i>
                             <span>{{ $mod['label'] }}</span>
                         </a>
@@ -90,7 +120,7 @@
                     $destinationModules = [
                         [
                             'route' => 'destination',
-                            'label' => 'Popular Destinations',
+                            'label' => 'Destinations',
                             'view_label' => 'View Destinations',
                             'add_label' => 'Add Destination',
                             'icon' => 'bx-map-pin',
@@ -100,7 +130,7 @@
                         ],
                         [
                             'route' => 'destinationcategory',
-                            'label' => 'Destination Categories',
+                            'label' => 'Dest. Categories',
                             'view_label' => 'View Categories',
                             'add_label' => 'Add Category',
                             'icon' => 'bx-collection',
@@ -120,12 +150,12 @@
                         ],
                     ];
                 @endphp
-                <li class="menu-title">Destinations &amp; Experiences</li>
+                <li class="menu-title">Destinations &amp; Activities</li>
                 @foreach($destinationModules as $mod)
                     @canany($mod['view_perms'])
                     @php $isActive = request()->routeIs(...$mod['patterns']); @endphp
                     <li class="{{ $isActive ? 'mm-active' : '' }}">
-                        <a href="javascript:void(0);" class="has-arrow waves-effect {{ $isActive ? 'mm-active' : '' }}">
+                        <a href="javascript:void(0);" class="has-arrow waves-effect {{ $isActive ? 'mm-active' : '' }}" title="{{ $mod['label'] }}">
                             <i class="bx {{ $mod['icon'] }}"></i>
                             <span>{{ $mod['label'] }}</span>
                         </a>
@@ -165,8 +195,8 @@
                         [
                             'route' => 'destinationwedding',
                             'label' => 'Weddings & Vendors',
-                            'view_label' => 'View Weddings & Vendors',
-                            'add_label' => 'Add Wedding / Vendor',
+                            'view_label' => 'View Listings',
+                            'add_label' => 'Add Listing',
                             'icon' => 'bx-heart',
                             'patterns' => ['destinationwedding.*'],
                             'view_perms' => ['view-destinationwedding', 'list-destinationwedding', 'create-destinationwedding', 'edit-destinationwedding', 'delete-destinationwedding'],
@@ -189,7 +219,7 @@
                     @canany($mod['view_perms'])
                     @php $isActive = request()->routeIs(...$mod['patterns']); @endphp
                     <li class="{{ $isActive ? 'mm-active' : '' }}">
-                        <a href="javascript:void(0);" class="has-arrow waves-effect {{ $isActive ? 'mm-active' : '' }}">
+                        <a href="javascript:void(0);" class="has-arrow waves-effect {{ $isActive ? 'mm-active' : '' }}" title="{{ $mod['label'] }}">
                             <i class="bx {{ $mod['icon'] }}"></i>
                             <span>{{ $mod['label'] }}</span>
                         </a>
@@ -208,7 +238,7 @@
                     $homepageModules = [
                         [
                             'route' => 'slidericon',
-                            'label' => 'Header Quick Icons',
+                            'label' => 'Header Icons',
                             'view_label' => 'View Header Icons',
                             'add_label' => 'Add Header Icon',
                             'icon' => 'bx-grid-alt',
@@ -218,7 +248,7 @@
                         ],
                         [
                             'route' => 'menu',
-                            'label' => 'Navigation Menus',
+                            'label' => 'Menus',
                             'view_label' => 'View Menus',
                             'add_label' => 'Add Menu',
                             'icon' => 'bx-menu',
@@ -228,7 +258,7 @@
                         ],
                         [
                             'route' => 'slider',
-                            'label' => 'Hero & Promo Sliders',
+                            'label' => 'Hero Sliders',
                             'view_label' => 'View Sliders',
                             'add_label' => 'Add Slider',
                             'icon' => 'bx-images',
@@ -238,7 +268,7 @@
                         ],
                         [
                             'route' => 'travel-bestie',
-                            'label' => 'Why Choose Us (Bestie)',
+                            'label' => 'Why Choose Us',
                             'view_label' => 'View Reasons',
                             'add_label' => 'Add Reason',
                             'icon' => 'bx-badge-check',
@@ -248,7 +278,7 @@
                         ],
                         [
                             'route' => 'youtube',
-                            'label' => 'Video Reviews (YouTube)',
+                            'label' => 'Video Reviews',
                             'view_label' => 'View Videos',
                             'add_label' => 'Add Video',
                             'icon' => 'bx-video',
@@ -258,7 +288,7 @@
                         ],
                         [
                             'route' => 'testimonial',
-                            'label' => 'Client Testimonials',
+                            'label' => 'Testimonials',
                             'view_label' => 'View Testimonials',
                             'add_label' => 'Add Testimonial',
                             'icon' => 'bx-message-square-dots',
@@ -278,12 +308,12 @@
                         ],
                     ];
                 @endphp
-                <li class="menu-title">Homepage &amp; Navigation</li>
+                <li class="menu-title">Homepage &amp; Menus</li>
                 @foreach($homepageModules as $mod)
                     @canany($mod['view_perms'])
                     @php $isActive = request()->routeIs(...$mod['patterns']); @endphp
                     <li class="{{ $isActive ? 'mm-active' : '' }}">
-                        <a href="javascript:void(0);" class="has-arrow waves-effect {{ $isActive ? 'mm-active' : '' }}">
+                        <a href="javascript:void(0);" class="has-arrow waves-effect {{ $isActive ? 'mm-active' : '' }}" title="{{ $mod['label'] }}">
                             <i class="bx {{ $mod['icon'] }}"></i>
                             <span>{{ $mod['label'] }}</span>
                         </a>
@@ -302,7 +332,7 @@
                     $contentModules = [
                         [
                             'route' => 'page',
-                            'label' => 'Service & Policy Pages',
+                            'label' => 'Pages & Policies',
                             'view_label' => 'View Pages',
                             'add_label' => 'Add Page',
                             'icon' => 'bx-file',
@@ -332,7 +362,7 @@
                         ],
                         [
                             'route' => 'gallery',
-                            'label' => 'Photo & Video Gallery',
+                            'label' => 'Gallery',
                             'view_label' => 'View Gallery',
                             'add_label' => 'Add Media',
                             'icon' => 'bx-photo-album',
@@ -357,7 +387,7 @@
                     @canany($mod['view_perms'])
                     @php $isActive = request()->routeIs(...$mod['patterns']); @endphp
                     <li class="{{ $isActive ? 'mm-active' : '' }}">
-                        <a href="javascript:void(0);" class="has-arrow waves-effect {{ $isActive ? 'mm-active' : '' }}">
+                        <a href="javascript:void(0);" class="has-arrow waves-effect {{ $isActive ? 'mm-active' : '' }}" title="{{ $mod['label'] }}">
                             <i class="bx {{ $mod['icon'] }}"></i>
                             <span>{{ $mod['label'] }}</span>
                         </a>
