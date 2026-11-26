@@ -18,12 +18,13 @@
     if (empty($phoneRaw)) $phoneRaw = '917006338617';
 
     $hasSidebar = (!empty($hotelcategories) && count($hotelcategories) > 0) || (!empty($hotellocations) && count($hotellocations) > 0);
+    $hotelHeroBg = getImageByType('hotels', $setting);
 @endphp
 
 <!--==============================
 1. CINEMATIC HERO / BREADCRUMB
 ==============================-->
-<section class="kz-hotels-hero">
+<section class="kz-hotels-hero" style="background: linear-gradient(135deg, rgba(7, 35, 85, 0.88) 0%, rgba(11, 61, 145, 0.82) 100%), url('{{ $hotelHeroBg }}') center/cover no-repeat !important;">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-8 col-md-10">

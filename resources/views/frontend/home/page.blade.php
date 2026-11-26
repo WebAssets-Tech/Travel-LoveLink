@@ -7,26 +7,32 @@
 @section('content')
 @php
     $isLegalPage = in_array(strtolower($page->slug ?? ''), ['privacy-policy', 'term-condition', 'terms-and-conditions', 'terms-of-service', 'cancellation-policy']);
+
+    $breadcrumbImage = null;
+    if (!empty($page->page_bg_image)) {
+        $breadcrumbImage = asset('storage/' . $page->page_bg_image);
+    } elseif (!empty($page->banner_image)) {
+        $breadcrumbImage = asset('storage/' . $page->banner_image);
+    } else {
+        $breadcrumbImage = getImageByType($page->slug ?? '', $setting);
+    }
 @endphp
 <!--==============================
-    Compact Executive Breadcrumb Hero
+    Dynamic Breadcrumb Section
 ==============================-->
-<div class="kz-policy-hero">
+<div class="breadcumb-wrapper background-image" 
+     data-bg-src="{{ $breadcrumbImage }}" 
+     style="background-image: url('{{ $breadcrumbImage }}');">
     <div class="container">
-        <div class="kz-policy-hero-content text-center">
-            <span class="kz-policy-tag">
-                @if($isLegalPage)
-                    <i class="fa-solid fa-shield-halved me-1"></i> Official Document
-                @else
-                    <i class="fa-solid fa-compass me-1"></i> Travel Information & Guide
-                @endif
-            </span>
-            <h1 class="kz-policy-title">{{ $page->title }}</h1>
-            <ul class="kz-policy-breadcrumb">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">{{ $page->title }}</h1>
+            <ul class="breadcumb-menu">
                 <li><a href="{{ route('home') }}">Home</a></li>
-                <li><i class="ti ti-chevron-right"></i></li>
-                <li>{{ $isLegalPage ? 'Policies' : 'Services' }}</li>
-                <li><i class="ti ti-chevron-right"></i></li>
+                @if($isLegalPage)
+                    <li>Policies</li>
+                @else
+                    <li>Services</li>
+                @endif
                 <li>{{ $page->title }}</li>
             </ul>
         </div>

@@ -13,6 +13,7 @@
     $phoneNumber    = $setting->phone ?? '+91 7006338617';
     $phoneClean     = preg_replace('/[^0-9+]/', '', $phoneNumber);
     if (empty($phoneClean)) { $phoneClean = '+917006338617'; }
+    $cabHeroBg      = getImageByType('cabs', $setting);
 @endphp
 
 <!--================================================================
@@ -22,7 +23,7 @@
 <!--==============================
     1. CINEMATIC HERO BANNER
 ==============================-->
-<section class="kz-cabs-hero">
+<section class="kz-cabs-hero" style="background: linear-gradient(135deg, rgba(7, 35, 85, 0.88) 0%, rgba(11, 61, 145, 0.82) 100%), url('{{ $cabHeroBg }}') center/cover no-repeat !important;">
     <div class="container text-center text-md-start">
         <div class="row align-items-center">
             <div class="col-lg-8">
