@@ -1,5 +1,5 @@
 @extends('admin.layouts.app') 
-@section('web_page_title', 'View Page')
+@section('web_page_title', 'Service & Policy Pages')
 @section('content')
 
                 <div class="page-content">
@@ -8,12 +8,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                                    <h4 class="mb-0 font-size-18">Page List</h4>
+                                    <h4 class="mb-0 font-size-18">Service &amp; Policy Pages</h4>
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
-                                            <li class="breadcrumb-item active">Page List</li>
+                                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                                            <li class="breadcrumb-item active">Pages</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -25,14 +25,17 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="row mb-2"> 
-                                            @can('create-blog')
-                                            <div class="col-sm-12">
+                                        <div class="row mb-2 align-items-center">
+                                            <div class="col-sm-7">
+                                                <p class="text-muted mb-0">Manages service landing pages (Trains, Flights, Gandola, Helicopter, etc.) and legal pages (Privacy Policy, Terms).</p>
+                                            </div>
+                                            @canany(['create-page', 'create-blog'])
+                                            <div class="col-sm-5">
                                                 <div class="text-sm-end">
-                                                    <a href="{{ route('page.create') }}" class="btn btn-success btn-rounded" id="addProject-btn"><i class="mdi mdi-plus me-1"></i> Add New page</a>
+                                                    <a href="{{ route('page.create') }}" class="btn btn-success btn-rounded" id="addProject-btn"><i class="mdi mdi-plus me-1"></i> Add New Page</a>
                                                 </div>
                                             </div><!-- end col-->
-                                            @endcan
+                                            @endcanany
                                               
                                         </div> 
                                         <!-- end row -->

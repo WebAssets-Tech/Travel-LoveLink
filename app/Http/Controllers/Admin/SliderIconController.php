@@ -64,9 +64,11 @@ class SliderIconController extends Controller
         }
 
         SliderIcon::create($validated);
+        \Illuminate\Support\Facades\Cache::forget('global_layout_shared_data');
+        \Illuminate\Support\Facades\Cache::forget('homepage_curated_data');
 
         return redirect()->route('slidericon.index')
-                        ->with('success', 'New Slider Icon has been added successfully.');
+                        ->with('success', 'New Header Icon has been added successfully.');
     }
 
     /**
@@ -100,9 +102,11 @@ class SliderIconController extends Controller
         }
 
         $slidericon->update($validated);
+        \Illuminate\Support\Facades\Cache::forget('global_layout_shared_data');
+        \Illuminate\Support\Facades\Cache::forget('homepage_curated_data');
 
         return redirect()->route('slidericon.index')
-            ->with('success', 'Slider Icon updated successfully.');
+            ->with('success', 'Header Icon updated successfully.');
     }
 
     /**
@@ -116,9 +120,11 @@ class SliderIconController extends Controller
             }
     
         $slidericon->delete();
+        \Illuminate\Support\Facades\Cache::forget('global_layout_shared_data');
+        \Illuminate\Support\Facades\Cache::forget('homepage_curated_data');
 
         return redirect()->route('slidericon.index')
-            ->withSuccess('Slidericon  is deleted successfully.');
+            ->withSuccess('Header Icon deleted successfully.');
     } 
 
 

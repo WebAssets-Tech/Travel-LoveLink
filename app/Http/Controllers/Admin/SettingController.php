@@ -158,7 +158,10 @@ class SettingController extends Controller
         ]);
         
         $setting->save();
-        
+
+        \Illuminate\Support\Facades\Cache::forget('global_layout_shared_data');
+        \Illuminate\Support\Facades\Cache::forget('homepage_curated_data');
+
         return redirect()->back()
                 ->withSuccess('Setting is updated successfully.');
  

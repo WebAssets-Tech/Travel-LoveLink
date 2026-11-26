@@ -1,5 +1,5 @@
 @extends('admin.layouts.app') 
-@section('web_page_title', 'View Slider Icons')
+@section('web_page_title', 'Header Quick Icons')
 @section('content')
 
 <div class="page-content">
@@ -8,11 +8,11 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="mb-0 font-size-18">Slider Icon List</h4>
+                    <h4 class="mb-0 font-size-18">Header Quick Icons</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Slider Icon</a></li>
-                            <li class="breadcrumb-item active">Slider Icon List</li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Header Quick Icons</li>
                         </ol>
                     </div>
                 </div>
@@ -24,16 +24,19 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row mb-2"> 
-                            @can('create-slider-icon')
-                            <div class="col-sm-12">
+                        <div class="row mb-2 align-items-center">
+                            <div class="col-sm-7">
+                                <p class="text-muted mb-0">Controls the floating header icon menu bar (Packages, Hotels, Cabs, Trains, Flights, Adventure, Gandola, Helicopter).</p>
+                            </div>
+                            @canany(['create-slider-icon', 'create-slidericon', 'create-blog'])
+                            <div class="col-sm-5">
                                 <div class="text-sm-end">
                                     <a href="{{ route('slidericon.create') }}" class="btn btn-success btn-rounded" id="addProject-btn">
-                                        <i class="mdi mdi-plus me-1"></i> Add New Slider Icon
+                                        <i class="mdi mdi-plus me-1"></i> Add Header Icon
                                     </a>
                                 </div>
                             </div>
-                            @endcan
+                            @endcanany
                         </div> 
                         <!-- end row -->
 

@@ -1,6 +1,5 @@
 @extends('admin.layouts.app')
-@section('web_page_title', 'Edit Slider Icon') 
-
+@section('web_page_title', 'Edit Header Quick Icon') 
 @section('page_css')
 <style>
     .bootstrap-tagsinput {

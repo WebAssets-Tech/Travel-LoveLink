@@ -107,10 +107,10 @@ class PageController extends Controller
             }
         } 
     
-        $blog->delete();
+        $page->delete();
 
         return redirect()->route('page.index')
-            ->withSuccess('page is deleted successfully.');
+            ->withSuccess('Page deleted successfully.');
     } 
 
 

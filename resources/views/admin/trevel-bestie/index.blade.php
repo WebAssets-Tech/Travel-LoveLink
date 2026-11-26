@@ -1,5 +1,5 @@
 @extends('admin.layouts.app') 
-@section('web_page_title', 'View Travel Bestie')
+@section('web_page_title', 'Why Choose Us (Travel Bestie)')
 @section('content')
 
 <div class="page-content">
@@ -8,11 +8,11 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="mb-0 font-size-18">Travel Bestie List</h4>
+                    <h4 class="mb-0 font-size-18">Why Choose Us (Travel Bestie)</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Travel Bestie</a></li>
-                            <li class="breadcrumb-item active">Travel Bestie List</li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Why Choose Us</li>
                         </ol>
                     </div>
                 </div>
@@ -24,16 +24,19 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row mb-2"> 
-                            @can('create-slider-icon')
-                            <div class="col-sm-12">
+                        <div class="row mb-2 align-items-center">
+                            <div class="col-sm-7">
+                                <p class="text-muted mb-0">Controls the <strong>Reasons To Make Us Your Travel Bestie</strong> cards on the homepage.</p>
+                            </div>
+                            @canany(['create-slider-icon', 'create-travel-bestie', 'create-blog'])
+                            <div class="col-sm-5">
                                 <div class="text-sm-end">
                                     <a href="{{ route('travel-bestie.create') }}" class="btn btn-success btn-rounded" id="addProject-btn">
-                                        <i class="mdi mdi-plus me-1"></i> Add New Travel Bestie
+                                        <i class="mdi mdi-plus me-1"></i> Add Reason Card
                                     </a>
                                 </div>
                             </div>
-                            @endcan
+                            @endcanany
                         </div> 
                         <!-- end row -->
 
@@ -88,7 +91,7 @@
                                     @empty
                                         <tr>
                                             <td colspan="5" class="text-center text-danger">
-                                                <strong>No Slider Icons Found!</strong>
+                                                <strong>No items found!</strong>
                                             </td>
                                         </tr>
                                     @endforelse

@@ -1,6 +1,6 @@
 {{-- resources/views/admin/country/index.blade.php --}}
 @extends('admin.layouts.app')
-@section('web_page_title', 'View Countries')
+@section('web_page_title', 'Domestic / International (Countries)')
 @section('content')
 
 <div class="page-content">
@@ -8,11 +8,11 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="mb-0 font-size-18">Country List</h4>
+                    <h4 class="mb-0 font-size-18">Domestic / International (Countries)</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Countries</a></li>
-                            <li class="breadcrumb-item active">Country List</li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Domestic / Intl (Countries)</li>
                         </ol>
                     </div>
                 </div>
@@ -23,11 +23,14 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row mb-2">
+                        <div class="row mb-2 align-items-center">
+                            <div class="col-sm-7">
+                                <p class="text-muted mb-0">Top-level package tabs displayed on the homepage (<strong>Domestic</strong> &amp; <strong>International</strong>), containing Package Regions (States).</p>
+                            </div>
                             @can('create-country')
-                            <div class="col-sm-12">
+                            <div class="col-sm-5">
                                 <div class="text-sm-end">
-                                    <a href="{{ route('country.create') }}" class="btn btn-success btn-rounded"><i class="mdi mdi-plus me-1"></i> Add New Country</a>
+                                    <a href="{{ route('country.create') }}" class="btn btn-success btn-rounded"><i class="mdi mdi-plus me-1"></i> Add Country / Scope</a>
                                 </div>
                             </div>
                             @endcan
@@ -40,9 +43,9 @@
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Image</th>
-                                        <th scope="col">Name</th>
+                                        <th scope="col">Scope / Country Name</th>
                                         <th scope="col">Code</th>
-                                        <th scope="col">States</th>
+                                        <th scope="col">Package Regions (States)</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Action</th>
                                     </tr>

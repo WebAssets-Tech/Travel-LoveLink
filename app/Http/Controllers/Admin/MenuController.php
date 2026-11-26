@@ -48,6 +48,7 @@ class MenuController extends Controller
     public function store(StoreMenuRequest $request): RedirectResponse
     {
         Menu::create($request->validated());
+        \Illuminate\Support\Facades\Cache::forget('global_layout_shared_data');
 
         return redirect()->back() 
             ->withSuccess('New Menu is added successfully.');
@@ -68,6 +69,7 @@ class MenuController extends Controller
     public function update(UpdateMenuRequest $request, Menu $menu): RedirectResponse
     {
         $menu->update($request->validated());
+        \Illuminate\Support\Facades\Cache::forget('global_layout_shared_data');
 
         return redirect()->back()->withSuccess('Menu updated successfully.');
     }
@@ -78,6 +80,7 @@ class MenuController extends Controller
     public function destroy(Menu $menu): RedirectResponse
     {
         $menu->delete();
+        \Illuminate\Support\Facades\Cache::forget('global_layout_shared_data');
 
         return redirect()->route('menu.index')
             ->withSuccess('Menu is deleted successfully.');

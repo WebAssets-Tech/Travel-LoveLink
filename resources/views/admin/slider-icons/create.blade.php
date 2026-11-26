@@ -1,6 +1,5 @@
 @extends('admin.layouts.app')
-@section('web_page_title', 'Create Slider Icon') 
-
+@section('web_page_title', 'Add Header Quick Icon') 
 @section('page_css')
 <style>
     .bootstrap-tagsinput {

@@ -1,5 +1,5 @@
 @extends('admin.layouts.app') 
-@section('web_page_title', 'View Youtube Slider Data')
+@section('web_page_title', 'Video Reviews (YouTube)')
 @section('content')
 
                 <div class="page-content">
@@ -8,12 +8,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                                    <h4 class="mb-0 font-size-18">Youtube Slider List</h4>
+                                    <h4 class="mb-0 font-size-18">Video Reviews (YouTube)</h4>
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Youtube Slider</a></li>
-                                            <li class="breadcrumb-item active">Youtube Slider List</li>
+                                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                                            <li class="breadcrumb-item active">Video Reviews</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -26,13 +26,13 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row mb-2"> 
-                                            @can('create-blog')
+                                            @canany(['create-youtube', 'create-blog'])
                                             <div class="col-sm-12">
                                                 <div class="text-sm-end">
-                                                    <a href="{{ route('youtube.create') }}" class="btn btn-success btn-rounded" id="addProject-btn"><i class="mdi mdi-plus me-1"></i> Add New Youtube Slider</a>
+                                                    <a href="{{ route('youtube.create') }}" class="btn btn-success btn-rounded" id="addProject-btn"><i class="mdi mdi-plus me-1"></i> Add Video Review</a>
                                                 </div>
                                             </div><!-- end col-->
-                                            @endcan
+                                            @endcanany
                                               
                                         </div> 
                                         <!-- end row -->
@@ -82,9 +82,9 @@
                                                             </td>
                                                         </tr>
                                                         @empty
-                                                            <td colspan="3">
+                                                            <td colspan="5">
                                                                 <span class="text-danger">
-                                                                    <strong>No blog Found!</strong>
+                                                                    <strong>No video reviews found!</strong>
                                                                 </span>
                                                             </td>
                                                         @endforelse

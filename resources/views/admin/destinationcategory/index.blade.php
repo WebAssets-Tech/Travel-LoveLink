@@ -29,7 +29,7 @@
                                             @can('create-destinationcategory')
                                             <div class="col-sm-12">
                                                 <div class="text-sm-end">
-                                                    <a href="{{ route('destinationcategory.create') }}" class="btn btn-success btn-rounded" id="addProject-btn"><i class="mdi mdi-plus me-1"></i> Add New destination</a>
+                                                    <a href="{{ route('destinationcategory.create') }}" class="btn btn-success btn-rounded" id="addProject-btn"><i class="mdi mdi-plus me-1"></i> Add Destination Category</a>
                                                 </div>
                                             </div><!-- end col-->
                                             @endcan

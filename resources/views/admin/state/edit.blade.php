@@ -1,6 +1,6 @@
 {{-- resources/views/admin/state/edit.blade.php --}}
 @extends('admin.layouts.app')
-@section('web_page_title', 'Edit State')
+@section('web_page_title', 'Edit Package Region (State)')
 @section('content')
 
 <div class="page-content">
@@ -8,11 +8,11 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="mb-0 font-size-18">Edit State</h4>
+                    <h4 class="mb-0 font-size-18">Edit Package Region (State)</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('state.index') }}">States</a></li>
-                            <li class="breadcrumb-item active">Edit State</li>
+                            <li class="breadcrumb-item"><a href="{{ route('state.index') }}">Package Regions (States)</a></li>
+                            <li class="breadcrumb-item active">Edit Package Region</li>
                         </ol>
                     </div>
                 </div>
@@ -31,9 +31,9 @@
 
                             <div class="row mb-3">
                                 <div class="col-md-3">
-                                    <label class="form-label">Country <span class="text-danger">*</span></label>
+                                    <label class="form-label">Domestic / Intl (Country) <span class="text-danger">*</span></label>
                                     <select name="country_id" class="form-select @error('country_id') is-invalid @enderror">
-                                        <option value="">Select Country</option>
+                                        <option value="">Select Scope</option>
                                         @foreach($countries as $country)
                                             <option value="{{ $country->id }}" {{ old('country_id', $state->country_id) == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
                                         @endforeach
@@ -41,7 +41,7 @@
                                     @error('country_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="form-label">Name <span class="text-danger">*</span></label>
+                                    <label class="form-label">Region / State Name <span class="text-danger">*</span></label>
                                     <input type="text" name="name" value="{{ old('name', $state->name) }}" class="form-control @error('name') is-invalid @enderror">
                                     @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>

@@ -19,7 +19,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\TourController;
-use App\Http\Controllers\Admin\{BlogController,YouTubeController,SliderIconController,TravelBestieController,GlobalBookingController};
+use App\Http\Controllers\Admin\{BlogController,ContactController,YouTubeController,SliderIconController,TravelBestieController,GlobalBookingController};
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\PageController;
@@ -157,6 +157,10 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
     Route::get('global-booking/{globalBooking}', [GlobalBookingController::class, 'show'])->name('global-booking.show');
     Route::patch('global-booking/{globalBooking}/status', [GlobalBookingController::class, 'updateStatus'])->name('global-booking.status');
     Route::delete('global-booking/{globalBooking}', [GlobalBookingController::class, 'destroy'])->name('global-booking.destroy');
+
+    Route::get('contact-enquiries', [ContactController::class, 'index'])->name('admin.contact.index');
+    Route::get('contact-enquiries/{contact}', [ContactController::class, 'show'])->name('admin.contact.show');
+    Route::delete('contact-enquiries/{contact}', [ContactController::class, 'destroy'])->name('admin.contact.destroy');
     // Permissions management
     Route::get('/permissions-create', [PermissionController::class, 'create']);
     Route::post('/permissions-store', [PermissionController::class, 'store']);

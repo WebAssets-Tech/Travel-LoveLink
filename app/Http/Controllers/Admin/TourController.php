@@ -87,6 +87,7 @@ class TourController extends Controller
         $tour->destinations()->sync($request->input('destination_ids', []));
         $tour->categories()->sync($request->input('category_ids', []));
         $tour->activities()->sync($request->input('activity_ids', []));
+        \Illuminate\Support\Facades\Cache::forget('homepage_curated_data');
 
         return redirect()->back() 
             ->withSuccess('New tour  is added successfully.');
@@ -193,6 +194,7 @@ class TourController extends Controller
         $tour->destinations()->sync($request->input('destination_ids', []));
         $tour->categories()->sync($request->input('category_ids', []));
         $tour->activities()->sync($request->input('activity_ids', []));
+        \Illuminate\Support\Facades\Cache::forget('homepage_curated_data');
 
         return redirect()->back()->withSuccess('Tour updated successfully.');
     }
@@ -239,6 +241,7 @@ class TourController extends Controller
         }
     
         $tour->delete();
+        \Illuminate\Support\Facades\Cache::forget('homepage_curated_data');
 
         return redirect()->route('tour.index')
             ->withSuccess('Tour is deleted successfully.');

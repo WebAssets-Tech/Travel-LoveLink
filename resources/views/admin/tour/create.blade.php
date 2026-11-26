@@ -80,9 +80,9 @@
                                                 </div>   
 
                                                 <div class="col-md-4">
-                                                    <label class="form-label">State</label>
+                                                    <label class="form-label">Package Region (State)</label>
                                                     <select name="state_id" class="form-select @error('state_id') is-invalid @enderror">
-                                                        <option value="">Select State</option>
+                                                        <option value="">Select Package Region</option>
                                                         @foreach($states as $state)
                                                             <option value="{{ $state->id }}" {{ old('state_id', $tour->state_id ?? '') == $state->id ? 'selected' : '' }}>
                                                                 {{ $state->name }} ({{ $state->country->name ?? '-' }})
