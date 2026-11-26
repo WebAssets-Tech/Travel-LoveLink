@@ -328,21 +328,6 @@
                         </a>
                     @endif
 
-                    @if(!empty($setting->email))
-                        <a href="mailto:{{ $setting->email }}" class="kaw-mmt-util-item kaw-mmt-util-email" title="Email {{ $setting->email }}">
-                            <span class="kaw-mmt-util-ico"><i class="fa-solid fa-envelope"></i></span>
-                            <span class="kaw-mmt-util-text">
-                                <small>Email Us</small>
-                                <strong>{{ $setting->email }}</strong>
-                            </span>
-                        </a>
-                    @endif
-
-                    <button type="button" class="kaw-mmt-cta-btn" data-bs-toggle="modal" data-bs-target="#globalContactModal">
-                        <i class="fa-solid fa-paper-plane"></i>
-                        <span>Book Now</span>
-                    </button>
-
                     <button type="button" class="kaw-hdr-burger th-menu-toggle" aria-label="Open Navigation Menu">
                         <i class="far fa-bars"></i>
                     </button>
