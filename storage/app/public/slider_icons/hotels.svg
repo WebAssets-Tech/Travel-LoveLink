@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="100%" height="100%" fill="none">
+  <!-- Ground Shadow -->
+  <ellipse cx="40" cy="65" rx="26" ry="7" fill="#D9D9D9"/>
+  
+  <!-- Shorter Right Building -->
+  <!-- Top Roof -->
+  <path d="M52 35L62 29L71 34L61 40Z" fill="#FFFFFF" stroke="#111827" stroke-width="2.8" stroke-linejoin="round"/>
+  <!-- Front/Right Facade (Vibrant Blue block) -->
+  <path d="M61 40L71 34V51L61 57Z" fill="#008CFF" stroke="#111827" stroke-width="2.8" stroke-linejoin="round"/>
+  <!-- Left Side Facade -->
+  <path d="M52 35L61 40V57L52 52Z" fill="#E2EDF9" stroke="#111827" stroke-width="2.8" stroke-linejoin="round"/>
+
+  <!-- Taller Main Left Building -->
+  <!-- Left Facade (Window Grid) -->
+  <path d="M22 30L38 39V62L22 53Z" fill="#FFFFFF" stroke="#111827" stroke-width="2.8" stroke-linejoin="round"/>
+  <!-- Right Facade -->
+  <path d="M38 39L53 30V53L38 62Z" fill="#111827" stroke="#111827" stroke-width="2.8" stroke-linejoin="round"/>
+  <!-- Top Roof -->
+  <path d="M22 30L37 21L53 30L38 39Z" fill="#FFFFFF" stroke="#111827" stroke-width="2.8" stroke-linejoin="round"/>
+  
+  <!-- Windows Grid on Main Left Building -->
+  <!-- Top-left Accent Window (Bright Blue) -->
+  <path d="M25 33.5L30 36.5V40L25 37Z" fill="#008CFF" stroke="#111827" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Window 1,2 -->
+  <path d="M32 37.5L36 40V43.5L32 41Z" fill="#FFFFFF" stroke="#111827" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Window 2,1 -->
+  <path d="M25 39.5L30 42.5V46L25 43Z" fill="#FFFFFF" stroke="#111827" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Window 2,2 -->
+  <path d="M32 43.5L36 46V49.5L32 47Z" fill="#008CFF" stroke="#111827" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Window 3,1 -->
+  <path d="M25 45.5L30 48.5V52L25 49Z" fill="#FFFFFF" stroke="#111827" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Window 3,2 -->
+  <path d="M32 49.5L36 52V55.5L32 53Z" fill="#FFFFFF" stroke="#111827" stroke-width="2" stroke-linejoin="round"/>
+</svg>

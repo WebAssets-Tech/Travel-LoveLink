@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="100%" height="100%" fill="none">
+  <!-- Ground Shadow -->
+  <ellipse cx="32" cy="62" rx="18" ry="5" fill="#D9D9D9" transform="rotate(-6 32 62)"/>
+  
+  <!-- Left Wing (Far) -->
+  <path d="M43 28L48 13C48.5 11.5 50.5 11.5 51 13L51 25" fill="#008CFF" stroke="#111827" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Fuselage -->
+  <path d="M19 46C17 48 18 51 22 50L60 27C64 24.5 66 21 64 18.5C62 16 58 17 54 19.5L19 46Z" fill="#FFFFFF" stroke="#111827" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Tail Fin (Vertical) -->
+  <path d="M18 45L12 40C11 39 12 37.5 13.5 38L24 42" fill="#008CFF" stroke="#111827" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Tail Horizontal Stabilizer -->
+  <path d="M19 47L13 51C12 51.5 11.5 50.5 12.5 49.5L18 45" fill="#1E293B" stroke="#111827" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Right Wing (Near - Main Blue Wing) -->
+  <path d="M37 36L39 57C39.5 59 41.5 59.5 42.5 58L47 31" fill="#008CFF" stroke="#111827" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Cockpit Windshield Line -->
+  <path d="M57 20C59 21 60 22.5 60.5 24" stroke="#111827" stroke-width="2.6" stroke-linecap="round"/>
+</svg>

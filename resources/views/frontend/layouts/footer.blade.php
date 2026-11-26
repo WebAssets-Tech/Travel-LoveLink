@@ -36,7 +36,7 @@
             <div class="kz-ftr-grid">
 
                 {{-- Column 1: 24/7 Concierge & Regional Offices --}}
-                <div class="kz-ftr-col footer-accordion-col kz-col-concierge">
+                <div class="kz-ftr-col footer-accordion-col kz-col-concierge active is-open">
                     <div class="footer-col-header" data-accordion-toggle>
                         <h4 class="kz-col-heading">24/7 Support</h4>
                         <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>

@@ -44257,8 +44257,8 @@ form.woocommerce-ordering {
 }
 
 .kaw-mmt-cat-ico {
-  width: 36px !important;
-  height: 36px !important;
+  width: 42px !important;
+  height: 42px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -44266,10 +44266,10 @@ form.woocommerce-ordering {
 }
 
 .kaw-mmt-cat-ico img {
-  width: 32px !important;
-  height: 32px !important;
+  width: 38px !important;
+  height: 38px !important;
   object-fit: contain !important;
-  filter: drop-shadow(0 2px 4px rgba(11, 61, 145, 0.08)) !important;
+  transition: transform 0.22s ease !important;
 }
 
 .kaw-mmt-cat-label {
@@ -44475,13 +44475,14 @@ form.woocommerce-ordering {
   }
 
   .kaw-mmt-cat-ico {
-    width: 36px !important;
-    height: 36px !important;
+    width: 38px !important;
+    height: 38px !important;
   }
 
   .kaw-mmt-cat-ico img {
-    width: 32px !important;
-    height: 32px !important;
+    width: 36px !important;
+    height: 36px !important;
+    object-fit: contain !important;
   }
 
   .kaw-mmt-cat-label {

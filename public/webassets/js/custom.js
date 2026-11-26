@@ -480,14 +480,26 @@ document.querySelectorAll('[data-accordion-toggle]').forEach(function (header) {
         if (!col) return;
         var isOpen = col.classList.contains('active') || col.classList.contains('is-open');
 
-        // Close all on mobile
-        document.querySelectorAll('.footer-accordion-col').forEach(function (c) {
-            c.classList.remove('active', 'is-open');
-        });
+        if (col.classList.contains('kz-col-concierge')) {
+            // 24/7 Support toggles itself directly without affecting others
+            if (isOpen) {
+                col.classList.remove('active', 'is-open');
+            } else {
+                col.classList.add('active', 'is-open');
+            }
+        } else {
+            // For other columns (Quick Links, Destinations), close other non-concierge columns while keeping 24/7 Support open
+            document.querySelectorAll('.footer-accordion-col:not(.kz-col-concierge)').forEach(function (c) {
+                if (c !== col) {
+                    c.classList.remove('active', 'is-open');
+                }
+            });
 
-        // Toggle current
-        if (!isOpen) {
-            col.classList.add('active', 'is-open');
+            if (isOpen) {
+                col.classList.remove('active', 'is-open');
+            } else {
+                col.classList.add('active', 'is-open');
+            }
         }
     });
 });

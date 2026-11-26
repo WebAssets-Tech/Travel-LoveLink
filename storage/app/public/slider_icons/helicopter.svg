@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 144" width="170" height="144" fill="none">
+  <!-- Ground Shadow -->
+  <ellipse cx="80" cy="118" rx="50" ry="13" fill="#D9D9D9"/>
+  
+  <!-- Rotor Mast & Rotor Hub -->
+  <path d="M80 34V44" stroke="#192A3E" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="80" cy="34" rx="7" ry="3.5" fill="#FFFFFF" stroke="#192A3E" stroke-width="3.5"/>
+  <!-- Spinning Rotor Disc -->
+  <ellipse cx="80" cy="34" rx="54" ry="12" stroke="#192A3E" stroke-width="3.5" stroke-dasharray="14 8" fill="none"/>
+  <path d="M26 34H134" stroke="#192A3E" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Tail Boom & Tail Fin -->
+  <path d="M100 62L140 50V56L100 76" fill="#008CFF" stroke="#192A3E" stroke-width="4.5" stroke-linejoin="round"/>
+  <!-- Tail Rotor Fin (White) -->
+  <path d="M140 40L146 38V58L138 60Z" fill="#FFFFFF" stroke="#192A3E" stroke-width="4" stroke-linejoin="round"/>
+  <!-- Tail Rotor Blade -->
+  <circle cx="142" cy="48" r="3" fill="#192A3E"/>
+  <path d="M142 38V58" stroke="#192A3E" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- Helicopter Fuselage (White Top, Vibrant Blue Body) -->
+  <!-- Top Engine Cowling / Roof (White) -->
+  <path d="M60 52C68 46 88 42 100 54L100 66L52 76C48 70 52 58 60 52Z" fill="#FFFFFF" stroke="#192A3E" stroke-width="5" stroke-linejoin="round"/>
+  
+  <!-- Cockpit Bubble Windshield (Dark Glass) -->
+  <path d="M36 78C32 72 36 64 48 60L60 64L52 86C42 86 38 82 36 78Z" fill="#192A3E" stroke="#192A3E" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M40 74C38 70 40 66 46 64L52 66L46 82C42 80 40 78 40 74Z" fill="#E2EDF9"/>
+
+  <!-- Main Lower Body (Vibrant Blue) -->
+  <path d="M52 86L100 72V84C100 88 96 92 90 94L60 98C54 98 50 92 52 86Z" fill="#008CFF" stroke="#192A3E" stroke-width="5" stroke-linejoin="round"/>
+  
+  <!-- Landing Skids -->
+  <path d="M56 98L52 108" stroke="#192A3E" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M88 92L84 104" stroke="#192A3E" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M40 108L96 100C102 99 104 96 100 94" stroke="#192A3E" stroke-width="5" stroke-linecap="round"/>
+</svg>

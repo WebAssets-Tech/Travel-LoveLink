@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 144" width="170" height="144" fill="none">
+  <!-- Ground Shadow (Horizontal directly under both wheels) -->
+  <ellipse cx="85" cy="98" rx="55" ry="12" fill="#D9D9D9"/>
+  
+  <!-- Wheels (Both resting on baseline Y=94) -->
+  <ellipse cx="58" cy="92" rx="9" ry="11" fill="#192A3E"/>
+  <ellipse cx="58" cy="92" rx="4.5" ry="5.5" fill="#E2EDF9"/>
+  <ellipse cx="112" cy="92" rx="9" ry="11" fill="#192A3E"/>
+  <ellipse cx="112" cy="92" rx="4.5" ry="5.5" fill="#E2EDF9"/>
+
+  <!-- Main Body Side & Doors (Vibrant Blue - Horizontally Level) -->
+  <path d="M42 80L52 82L132 80V86L122 88C119 82 105 82 102 88L68 88C65 82 51 82 48 88L36 86V80L42 80Z" fill="#008CFF" stroke="#192A3E" stroke-width="4.5" stroke-linejoin="round"/>
+
+  <!-- Front Bumper & Headlight -->
+  <path d="M28 78L36 80V86L28 84Z" fill="#FFFFFF" stroke="#192A3E" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M28 78L34 79L33 83L27 82Z" fill="#FDE047" stroke="#192A3E" stroke-width="2.5"/>
+
+  <!-- Hood (White Top Surface) -->
+  <path d="M28 78L56 68L80 72L50 82Z" fill="#FFFFFF" stroke="#192A3E" stroke-width="4.5" stroke-linejoin="round"/>
+
+  <!-- Windshield & Greenhouse -->
+  <!-- Front Windshield -->
+  <path d="M56 68L68 48L96 50L80 72Z" fill="#192A3E" stroke="#192A3E" stroke-width="4.5" stroke-linejoin="round"/>
+  <path d="M59 66L69 50L82 51L74 70Z" fill="#E2EDF9"/>
+  <!-- Side Windows -->
+  <path d="M96 50L122 56L122 72L80 72Z" fill="#192A3E" stroke="#192A3E" stroke-width="4.5" stroke-linejoin="round"/>
+  <path d="M98 53L119 58L119 69L84 69Z" fill="#008CFF"/>
+
+  <!-- Roof (White) -->
+  <path d="M68 48L80 44L110 46L96 50Z" fill="#FFFFFF" stroke="#192A3E" stroke-width="4.5" stroke-linejoin="round"/>
+
+  <!-- Taxi Top Sign (Isometric Pod) -->
+  <path d="M84 41L94 38L100 40L90 43Z" fill="#008CFF" stroke="#192A3E" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M84 41L90 43V47L84 45Z" fill="#FFFFFF" stroke="#192A3E" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M90 43L100 40V44L90 47Z" fill="#008CFF" stroke="#192A3E" stroke-width="3" stroke-linejoin="round"/>
+</svg>

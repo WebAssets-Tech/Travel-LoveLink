@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 144" width="170" height="144" fill="none">
+  <!-- Ground Shadow -->
+  <ellipse cx="85" cy="118" rx="55" ry="14" fill="#D9D9D9"/>
+  
+  <!-- Far Peak (Right) -->
+  <path d="M100 48L130 92L148 102L116 44L100 48Z" fill="#0070EB" stroke="#192A3E" stroke-width="4.5" stroke-linejoin="round"/>
+  <path d="M116 44L148 102L90 102L100 48Z" fill="#008CFF" stroke="#192A3E" stroke-width="4.5" stroke-linejoin="round"/>
+  <!-- Far Peak Snow Cap -->
+  <path d="M116 44L127 58L119 55L113 60L106 55L116 44Z" fill="#FFFFFF" stroke="#192A3E" stroke-width="3.8" stroke-linejoin="round"/>
+
+  <!-- Main Front Peak (Left) -->
+  <!-- Left Shadowed Slope -->
+  <path d="M62 30L26 108L66 114L62 30Z" fill="#0070EB" stroke="#192A3E" stroke-width="5" stroke-linejoin="round"/>
+  <!-- Right Sunlit Slope -->
+  <path d="M62 30L66 114L108 110L62 30Z" fill="#008CFF" stroke="#192A3E" stroke-width="5" stroke-linejoin="round"/>
+  <!-- Snow Cap Main Peak -->
+  <path d="M62 30L42 68L50 62L58 72L70 60L78 70L86 64L62 30Z" fill="#FFFFFF" stroke="#192A3E" stroke-width="4.5" stroke-linejoin="round"/>
+
+  <!-- 3D Expedition Camping Tent (Foreground) -->
+  <!-- Right Slope (White) -->
+  <path d="M90 92L112 114L90 124L68 102Z" fill="#FFFFFF" stroke="#192A3E" stroke-width="4.5" stroke-linejoin="round"/>
+  <!-- Left Slope / Entrance (Vibrant Blue) -->
+  <path d="M68 102L90 124V106L68 102Z" fill="#008CFF" stroke="#192A3E" stroke-width="4.5" stroke-linejoin="round"/>
+  <!-- Inner Flap Entrance -->
+  <path d="M78 112L90 124V116L78 112Z" fill="#192A3E"/>
+  
+  <!-- Summit Flag -->
+  <path d="M62 30V16L76 22L62 26" fill="#008CFF" stroke="#192A3E" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
