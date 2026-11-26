@@ -39,9 +39,9 @@
     @yield('preload_lcp')
 
     <!-- Google Fonts (Non-Blocking Asynchronous Load) -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Seaweed+Script&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Seaweed+Script&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Seaweed+Script&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Seaweed+Script&display=swap">
     </noscript>
 
     <!-- Tabler Webfont Icons (Non-Blocking) -->
@@ -82,10 +82,14 @@
 
     <!-- Swiper css -->
     <link rel="stylesheet" href="{{ asset('webassets/css/swiper-bundle.min.css') }}">
-    <!-- Lenis Smooth Scroll CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.css">
+    <!-- Lenis Smooth Scroll CSS (Local cached) -->
+    <link rel="stylesheet" href="{{ asset('webassets/css/lenis.min.css') }}">
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="{{ asset('webassets/css/style.css') }}?v={{ filemtime(public_path('webassets/css/style.css')) }}">
+    <style>
+        #preloader.kaw-preloader{position:fixed;inset:0;width:100vw;height:100vh;z-index:99999999;display:flex;align-items:center;justify-content:center;background:#fff;opacity:1;visibility:visible}
+        #preloader.kaw-preloader.kaw-loaded{opacity:0;visibility:hidden;pointer-events:none}
+    </style>
 @yield('page_css') 
     @if(useBreadcrumbColor($setting ?? null))
         @php $breadcrumbBgValue = getBreadcrumbBgColor($setting ?? null); @endphp

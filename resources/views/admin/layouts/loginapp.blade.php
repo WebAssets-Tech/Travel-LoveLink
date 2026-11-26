@@ -18,13 +18,13 @@
         <link rel="stylesheet" href="{{ url('/') }}/assets/libs/owl.carousel/assets/owl.theme.default.min.css">
 
         <!-- Bootstrap Css -->
-        <link href="{{ url('/') }}/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/css/bootstrap.min.css') }}?v={{ filemtime(public_path('assets/css/bootstrap.min.css')) }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
-        <link href="{{ url('/') }}/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/css/icons.min.css') }}?v={{ filemtime(public_path('assets/css/icons.min.css')) }}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
-        <link href="{{ url('/') }}/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/css/app.min.css') }}?v={{ filemtime(public_path('assets/css/app.min.css')) }}" id="app-style" rel="stylesheet" type="text/css" />
         <!-- App js -->
-        <script src="{{ url('/') }}/assets/js/plugin.js"></script>
+        <script src="{{ asset('assets/js/plugin.js') }}?v={{ filemtime(public_path('assets/js/plugin.js')) }}"></script>
 
     </head>
 
@@ -55,7 +55,7 @@
         <script src="{{ url('/') }}/assets/js/pages/auth-2-carousel.init.js"></script>
         
         <!-- App js -->
-        <script src="{{ url('/') }}/assets/js/app.js"></script>
+        <script src="{{ asset('assets/js/app.js') }}?v={{ filemtime(public_path('assets/js/app.js')) }}"></script>
 
     </body>
 </html>

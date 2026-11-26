@@ -14,17 +14,17 @@
     <meta content="{{ $setting->name ?? 'Love Link' }}" name="author" />
     <!-- Favicon -->
     
-        <link rel="shortcut icon" type="image/x-icon" href="{{ url('/') }}/assets/images/favicon.ico">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
     
  
     <!-- Bootstrap Css -->
-    <link href="{{ url('/') }}/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}?v={{ filemtime(public_path('assets/css/bootstrap.min.css')) }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="{{ url('/') }}/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/icons.min.css') }}?v={{ filemtime(public_path('assets/css/icons.min.css')) }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="{{ url('/') }}/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/app.min.css') }}?v={{ filemtime(public_path('assets/css/app.min.css')) }}" id="app-style" rel="stylesheet" type="text/css" />
     <!-- App js -->
-    <script src="{{ url('/') }}/assets/js/plugin.js"></script>
+    <script src="{{ asset('assets/js/plugin.js') }}?v={{ filemtime(public_path('assets/js/plugin.js')) }}"></script>
     @yield('page_css') 
     </head>
 
@@ -144,7 +144,7 @@
 
         <script src="{{ url('/') }}/assets/js/pages/form-repeater.int.js"></script>
         <!-- App js -->
-        <script src="{{ url('/') }}/assets/js/app.js"></script>
+        <script src="{{ asset('assets/js/app.js') }}?v={{ filemtime(public_path('assets/js/app.js')) }}"></script>
         <!-- jQuery --> 
  
         @yield('web_page_script')
