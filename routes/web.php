@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\TouristGuideController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\CabController;
 use App\Http\Controllers\Admin\HotelController;
+use App\Http\Controllers\Admin\HouseboatController;
 use App\Http\Controllers\Admin\DestinationWeddingController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Auth\LoginController;
@@ -47,6 +48,7 @@ Route::get('/destination-weddings', [WebsiteController::class, 'destinationweddi
 Route::get('/destination-vendors', [WebsiteController::class, 'destinationvendor'])->name('home.destinationvendor');  
 Route::get('/cabs', [WebsiteController::class, 'cabsindex'])->name('home.cabs'); 
 Route::get('/hotels', [WebsiteController::class, 'hotelsindex'])->name('home.hotels'); 
+Route::get('/houseboats', [WebsiteController::class, 'houseboatsindex'])->name('home.houseboats');
 Route::get('/about-us', [WebsiteController::class, 'aboutus'])->name('aboutus.index');
 Route::get('/view-destination', [WebsiteController::class, 'destinationsindex'])->name('destinations.index');
 Route::get('/blogs', [WebsiteController::class, 'blogsindex'])->name('home.blogs'); 
@@ -69,6 +71,7 @@ Route::get('/category/{slug}', [WebsiteController::class, 'CategoryByType'])->na
 Route::get('/tours/destination/{slug}', [WebsiteController::class, 'toursByDestination'])->name('tours.by.destination');
 Route::get('/page/{slug}', [WebsiteController::class, 'pagedetails'])->name('home.page');
 Route::get('/hotel/{slug}', [WebsiteController::class, 'hoteldetails'])->name('home.hoteldetails');
+Route::get('/houseboat/{slug}', [WebsiteController::class, 'houseboatdetails'])->name('home.houseboatdetails');
 Route::get('/cab/{slug}', [WebsiteController::class, 'cabdetails'])->name('home.cabdetails');
 Route::get('/destination-wedding/{slug}', [WebsiteController::class, 'destinationweddingdetails'])->name('home.destinationweddingdetails');
 Route::get('/guide/{slug}', [WebsiteController::class, 'guidedetails'])->name('home.guidedetails');
@@ -142,6 +145,7 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
         'page' => PageController::class,
         'cab' => CabController::class,
         'hotel' => HotelController::class,
+        'houseboat' => HouseboatController::class,
         'destinationwedding' => DestinationWeddingController::class,
         'tour' => TourController::class,
         'touristguide' => TouristGuideController::class,

@@ -51,7 +51,7 @@ class SliderIconController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'link' => 'nullable|string',
-            'image' => 'required|image|mimes:jpg,jpeg,png,webp,gif|max:2048', 
+            'image' => 'required|file|mimes:jpg,jpeg,png,webp,gif,svg|max:4096',
             'description' => 'nullable|string',
             'status' => 'required|boolean',
         ]);
@@ -87,12 +87,12 @@ class SliderIconController extends Controller
             'link' => 'nullable|string',
             'description' => 'nullable|string',
             'status' => 'required|boolean',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|file|mimes:jpeg,png,jpg,webp,gif,svg|max:4096',
         ]);
 
         if ($request->hasFile('image')) {
-            if ($slidericon->image && Storage::exists($slidericon->image)) {
-                Storage::delete($slidericon->image);
+            if ($slidericon->image && Storage::disk('public')->exists($slidericon->image)) {
+                Storage::disk('public')->delete($slidericon->image);
             }
 
             $path = $request->file('image')->store('slider_icons', 'public');

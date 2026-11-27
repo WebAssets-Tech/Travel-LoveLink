@@ -11,6 +11,7 @@ use App\Models\Destination;
 use App\Models\DestinationWedding;
 use App\Models\GlobalBooking;
 use App\Models\Hotel;
+use App\Models\Houseboat;
 use App\Models\Page;
 use App\Models\State;
 use App\Models\Tour;
@@ -33,6 +34,7 @@ class HomeController extends Controller
             'tourCategories'  => TourCategory::count(),
             'destinations'    => Destination::count(),
             'hotels'          => Hotel::count(),
+            'houseboats'      => Houseboat::count(),
             'cabs'            => Cab::count(),
             'weddings'        => DestinationWedding::count(),
             'pages'           => Page::count(),

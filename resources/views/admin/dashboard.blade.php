@@ -112,6 +112,7 @@
                             ['label' => 'Package Regions (States)', 'count' => $stats['states'] ?? 0, 'icon' => 'bx-map-alt', 'route' => route('state.index'), 'color' => 'info'],
                             ['label' => 'Popular Destinations', 'count' => $stats['destinations'] ?? 0, 'icon' => 'bx-map-pin', 'route' => route('destination.index'), 'color' => 'success'],
                             ['label' => 'Hotels & Resorts', 'count' => $stats['hotels'] ?? 0, 'icon' => 'bx-building-house', 'route' => route('hotel.index'), 'color' => 'warning'],
+                            ['label' => 'Houseboats', 'count' => $stats['houseboats'] ?? 0, 'icon' => 'bx-water', 'route' => route('houseboat.index'), 'color' => 'info'],
                             ['label' => 'Cabs & Fleet', 'count' => $stats['cabs'] ?? 0, 'icon' => 'bx-car', 'route' => route('cab.index'), 'color' => 'primary'],
                             ['label' => 'Booking Enquiries', 'count' => $stats['bookingsTotal'] ?? 0, 'sub' => ($stats['bookingsPending'] ?? 0) . ' pending', 'icon' => 'bx-calendar-check', 'route' => route('global-booking.index'), 'color' => 'danger'],
                             ['label' => 'Contact Messages', 'count' => $stats['contactsTotal'] ?? 0, 'icon' => 'bx-envelope', 'route' => route('admin.contact.index'), 'color' => 'info'],

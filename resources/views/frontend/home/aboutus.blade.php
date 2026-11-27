@@ -145,7 +145,7 @@
             <h3 class="kz-about-sec-title">Our Premium Travel Services</h3>
             <p class="text-muted small mx-auto" style="max-width: 580px;">Everything you need for a seamless holiday, from premium hotel stays to sanitized private cabs and guided excursions.</p>
         </div>
-        <div class="row g-3">
+        <div class="row g-3 justify-content-center">
             @foreach($services as $service)
             <div class="col-xl-2 col-lg-3 col-md-4 col-6">
                 <div class="kz-about-srv-card">

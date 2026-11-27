@@ -95,25 +95,12 @@
                     header.classList.remove('nav-scrolled');
                 }
 
-                const diff = scrollY - lastScrollY;
-
-                // Accumulate sustained direction to prevent mouse-wheel notch bounce shivering
-                if (diff > 0) {
-                    scrollDeltaAccumulator = (scrollDeltaAccumulator > 0) ? scrollDeltaAccumulator + diff : diff;
-                } else if (diff < 0) {
-                    scrollDeltaAccumulator = (scrollDeltaAccumulator < 0) ? scrollDeltaAccumulator + diff : diff;
-                }
-
-                // Hide only on sustained downward scroll past threshold
-                if (scrollY > 200 && scrollDeltaAccumulator > 30 && !isNavHidden) {
-                    header.classList.add('nav-hidden');
-                    isNavHidden = true;
-                    scrollDeltaAccumulator = 0;
-                } else if ((scrollDeltaAccumulator < -25 || scrollY <= 200) && isNavHidden) {
+                // Header stays fixed & visible at all times while scrolling
+                if (header.classList.contains('nav-hidden')) {
                     header.classList.remove('nav-hidden');
-                    isNavHidden = false;
-                    scrollDeltaAccumulator = 0;
                 }
+                isNavHidden = false;
+                scrollDeltaAccumulator = 0;
 
                 lastScrollY = scrollY;
             });

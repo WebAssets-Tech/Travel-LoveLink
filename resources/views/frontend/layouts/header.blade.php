@@ -122,43 +122,106 @@
 </div>
 
 <!--==============================
-    Mobile Menu
+    Mobile Menu (Modern Card Drawer - Theme Styled)
 ============================== -->
-<div class="th-menu-wrapper onepage-nav">
-    <div class="th-menu-area text-center">
-        <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
-        <div class="mobile-logo">
-            <a href="{{ route('home')}}"><img src="{{ asset('storage/' . $setting->header_logo) }}"
-                    alt="{{ $setting->name }}" width="140" height="42" loading="lazy" decoding="async"></a>
+@php
+    $drawerPhone = $setting->phone ?? '+91 7006338617';
+    $getDrawerIcon = function ($title) {
+        $t = strtolower(trim((string) $title));
+        if (str_contains($t, 'home')) return 'fas fa-home';
+        if (str_contains($t, 'about')) return 'fas fa-compass';
+        if (str_contains($t, 'destination')) return 'fas fa-map-marked-alt';
+        if (str_contains($t, 'domestic')) return 'fas fa-mountain';
+        if (str_contains($t, 'international')) return 'fas fa-globe-asia';
+        if (str_contains($t, 'cab') || str_contains($t, 'fleet')) return 'fas fa-car-side';
+        if (str_contains($t, 'hotel') || str_contains($t, 'stay')) return 'fas fa-hotel';
+        if (str_contains($t, 'gallery')) return 'fas fa-images';
+        if (str_contains($t, 'contact')) return 'fas fa-headset';
+        if (str_contains($t, 'package') || str_contains($t, 'tour')) return 'fas fa-suitcase-rolling';
+        if (str_contains($t, 'faq')) return 'fas fa-question-circle';
+        if (str_contains($t, 'blog')) return 'fas fa-newspaper';
+        return 'fas fa-layer-group';
+    };
+@endphp
+<div class="th-menu-wrapper onepage-nav kz-theme-drawer" data-lenis-prevent>
+    <div class="th-menu-area" data-lenis-prevent>
+        {{-- Drawer Brand Top Bar --}}
+        <div class="kz-drawer-head">
+            <div class="mobile-logo">
+                <a href="{{ route('home') }}">
+                    <img src="{{ asset('storage/' . $setting->header_logo) }}"
+                        alt="{{ $setting->name }}" width="136" height="40" loading="lazy" decoding="async">
+                </a>
+            </div>
+            <button class="th-menu-toggle" type="button" aria-label="Close Menu"><i class="fal fa-times"></i></button>
         </div>
-        <div class="th-mobile-menu">
-            <ul>
-                @foreach ($headerMenus as $menu)
-                    <li class="{{ $menu->children->isNotEmpty() ? 'menu-item-has-children' : '' }}">
-                        <a href="{{ isset($menu->link) ? url($menu->link) : '#' }}">{{ $menu->title }}</a>
-                        @if ($menu->children->isNotEmpty())
-                            <ul class="sub-menu">
-                                @foreach ($menu->children as $submenu)
-                                    <li><a href="{{ isset($submenu->link) ? url($submenu->link) : '#' }}"
-                                            class="{{ $submenu->children->isNotEmpty() ? 'menu-item-has-children' : '' }}">
-                                            {{ $submenu->title }}
-                                        </a>
-                                        @if ($submenu->children->isNotEmpty())
-                                            <ul class="sub-menu">
-                                                @foreach ($submenu->children as $subsubmenu)
-                                                    <li><a
-                                                            href="{{ isset($subsubmenu->link) ? url($subsubmenu->link) : '#' }}">{{ $subsubmenu->title }}</a>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        @endif
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @endif
-                    </li>
-                @endforeach
-            </ul>
+
+        <div class="kz-drawer-scroll" data-lenis-prevent>
+            {{-- Top Highlighted Theme CTA Card --}}
+            <button type="button"
+                class="kz-drawer-promo-card"
+                data-bs-toggle="modal"
+                data-bs-target="#globalContactModal"
+                onclick="document.querySelectorAll('.th-menu-wrapper').forEach(el => el.classList.remove('th-body-visible'))">
+                <div class="kz-drawer-promo-txt">
+                    <strong>Plan Your Dream Trip</strong>
+                    <span>Book packages, cabs &amp; best seasonal offers</span>
+                </div>
+                <span class="kz-drawer-chevron"><i class="fas fa-chevron-right"></i></span>
+            </button>
+
+            {{-- Highlighted Helpline Card --}}
+            <a href="tel:{{ $drawerPhone }}" class="kz-drawer-vip-card">
+                <span class="kz-drawer-vip-ico"><i class="fas fa-phone-alt"></i></span>
+                <div class="kz-drawer-vip-txt">
+                    <strong>24/7 Concierge</strong>
+                    <span>{{ $drawerPhone }}</span>
+                </div>
+                <span class="kz-drawer-live-pill">LIVE</span>
+                <span class="kz-drawer-chevron"><i class="fas fa-chevron-right"></i></span>
+            </a>
+
+            {{-- Primary Navigation Cards --}}
+            <div class="th-mobile-menu">
+                <ul>
+                    @foreach ($headerMenus as $menu)
+                        @php $hasKids = $menu->children->isNotEmpty(); @endphp
+                        <li class="{{ $hasKids ? 'menu-item-has-children' : '' }}">
+                            <a href="{{ isset($menu->link) ? url($menu->link) : '#' }}">
+                                <span class="kz-drawer-item-ico"><i class="{{ $getDrawerIcon($menu->title) }}"></i></span>
+                                <span class="kz-drawer-item-label">{{ $menu->title }}</span>
+                                <span class="kz-drawer-item-arrow">
+                                    <i class="fas {{ $hasKids ? 'fa-plus kz-plus-ico' : 'fa-chevron-right' }}"></i>
+                                </span>
+                            </a>
+                            @if ($hasKids)
+                                <ul class="sub-menu">
+                                    @foreach ($menu->children as $submenu)
+                                        <li>
+                                            <a href="{{ isset($submenu->link) ? url($submenu->link) : '#' }}"
+                                                class="{{ $submenu->children->isNotEmpty() ? 'menu-item-has-children' : '' }}">
+                                                <span>{{ $submenu->title }}</span>
+                                                <i class="fas fa-chevron-right kz-sub-arrow"></i>
+                                            </a>
+                                            @if ($submenu->children->isNotEmpty())
+                                                <ul class="sub-menu">
+                                                    @foreach ($submenu->children as $subsubmenu)
+                                                        <li>
+                                                            <a href="{{ isset($subsubmenu->link) ? url($subsubmenu->link) : '#' }}">
+                                                                <span>{{ $subsubmenu->title }}</span>
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            @endif
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
     </div>
 </div>

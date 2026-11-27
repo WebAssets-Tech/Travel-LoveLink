@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use App\Models\Setting;
 use App\Models\Tour;
 use App\Models\Hotel;
+use App\Models\Houseboat;
 use App\Models\Cab;
 use App\Models\Blog;
 use App\Models\Destination;
@@ -113,6 +114,7 @@ class SeoEngine
             // Determine model type
             if ($rawContext instanceof Tour) $vars['tour'] = $rawContext;
             elseif ($rawContext instanceof Hotel) $vars['hotel'] = $rawContext;
+            elseif ($rawContext instanceof Houseboat) $vars['houseboat'] = $rawContext;
             elseif ($rawContext instanceof Cab) $vars['cab'] = $rawContext;
             elseif ($rawContext instanceof Blog) $vars['blog'] = $rawContext;
             elseif ($rawContext instanceof Destination) $vars['destination'] = $rawContext;
@@ -132,6 +134,10 @@ class SeoEngine
             $context->pageType = 'hotel';
             $context->entity = $vars['hotel'];
             self::populateFromHotel($context, $vars['hotel'], $brandName);
+        } elseif (isset($vars['houseboat']) && $vars['houseboat'] instanceof Houseboat) {
+            $context->pageType = 'houseboat';
+            $context->entity = $vars['houseboat'];
+            self::populateFromHouseboat($context, $vars['houseboat'], $brandName);
         } elseif (isset($vars['cab']) && $vars['cab'] instanceof Cab) {
             $context->pageType = 'cab';
             $context->entity = $vars['cab'];
@@ -252,6 +258,28 @@ class SeoEngine
             ['name' => 'Home', 'url' => url('/')],
             ['name' => 'Hotels & Resorts', 'url' => url('/hotels')],
             ['name' => $hotel->title, 'url' => $ctx->canonical],
+        ];
+    }
+
+    protected static function populateFromHouseboat(SeoContext $ctx, Houseboat $houseboat, string $brand): void
+    {
+        $title = $houseboat->name ?? $houseboat->title ?? 'Houseboat';
+        $loc = !empty($houseboat->location) ? " in {$houseboat->location}" : " in Srinagar";
+        $ctx->title = !empty($houseboat->meta_title) ? $houseboat->meta_title : "{$title}{$loc} | Luxury Houseboat | {$brand}";
+        $ctx->description = !empty($houseboat->meta_description)
+            ? $houseboat->meta_description
+            : Str::limit(strip_tags($houseboat->description ?? "Book {$title}{$loc} with authentic cedarwood interiors, shikara rides & local concierge through {$brand}."), 155);
+        $ctx->keywords = !empty($houseboat->meta_keywords)
+            ? $houseboat->meta_keywords
+            : "{$title}, houseboats in {$houseboat->location}, Dal Lake houseboat, Nigeen Lake houseboat, {$brand}";
+        $ctx->ogType = 'product';
+        $ctx->ogImage = self::resolveImageUrl($houseboat->image ?? $houseboat->banner_image);
+        $ctx->canonical = url('/houseboat/' . $houseboat->slug);
+
+        $ctx->breadcrumbs = [
+            ['name' => 'Home', 'url' => url('/')],
+            ['name' => 'Houseboats', 'url' => url('/houseboats')],
+            ['name' => $title, 'url' => $ctx->canonical],
         ];
     }
 
@@ -624,6 +652,12 @@ class SeoEngine
                 }
                 break;
 
+            case 'houseboat':
+                if ($ctx->entity instanceof Houseboat) {
+                    $schemas[] = self::buildHouseboatSchema($ctx->entity, $setting);
+                }
+                break;
+
             case 'cab':
                 if ($ctx->entity instanceof Cab) {
                     $schemas[] = self::buildCabSchema($ctx->entity, $setting);
@@ -989,6 +1023,35 @@ class SeoEngine
                 'url' => $hotelUrl,
                 'seller' => ['@id' => "{$baseUrl}#organization"],
             ]
+        ];
+    }
+
+    protected static function buildHouseboatSchema(Houseboat $houseboat, Setting $setting): array
+    {
+        $baseUrl = rtrim(url('/'), '/');
+        $hbUrl = url('/houseboat/' . $houseboat->slug);
+        $name = $houseboat->name ?? $houseboat->title ?? 'Houseboat';
+
+        return [
+            '@context' => 'https://schema.org',
+            '@type' => 'LodgingBusiness',
+            '@id' => "{$hbUrl}#houseboat",
+            'name' => $name,
+            'url' => $hbUrl,
+            'image' => self::resolveImageUrl($houseboat->image ?? $houseboat->banner_image),
+            'description' => !empty($houseboat->meta_description) ? $houseboat->meta_description : Str::limit(strip_tags($houseboat->description ?? ''), 200),
+            'address' => [
+                '@type' => 'PostalAddress',
+                'addressLocality' => $houseboat->location ?: 'Dal Lake, Srinagar',
+                'addressRegion' => 'Jammu and Kashmir',
+                'addressCountry' => 'IN',
+            ],
+            'aggregateRating' => [
+                '@type' => 'AggregateRating',
+                'ratingValue' => (string)($houseboat->star_rating ?: '5'),
+                'reviewCount' => '28',
+                'bestRating' => '5',
+            ],
         ];
     }
 

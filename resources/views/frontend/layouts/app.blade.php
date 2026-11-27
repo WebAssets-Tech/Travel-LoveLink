@@ -150,7 +150,7 @@
         </button>
         <button type="button" class="gb-tab" id="gb-tab-houseboats" data-target="gb-panel-houseboats" role="tab" aria-selected="false">
   <svg class="gb-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10l7-5 7 5"/><path d="M6.5 10v5"/><path d="M17.5 10v5"/><path d="M3 15h18l-2 3.5a1 1 0 0 1-.87.5H5.87a1 1 0 0 1-.87-.5z"/><path d="M2 22c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/><circle cx="12" cy="12.5" r=".9" fill="currentColor" stroke="none"/></svg>
-  H-boat
+  Houseboat
 </button>
       </div>
 

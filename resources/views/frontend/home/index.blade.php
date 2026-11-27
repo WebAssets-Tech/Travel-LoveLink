@@ -136,9 +136,6 @@ Destinations Section
                                         @else
                                             <div class="dst-card-img dst-card-img-placeholder"></div>
                                         @endif
-                                        @if(($state->tours_count ?? 0) > 0)
-                                            <span class="dst-card-count-badge">{{ $state->tours_count }} {{ $state->tours_count == 1 ? 'Package' : 'Packages' }}</span>
-                                        @endif
                                     </a>
 
                                     <div class="dst-card-body">
@@ -517,6 +514,92 @@ Destinations Section
         <div class="text-center mt-4 pt-2">
             <a href="{{ route('home.hotels') }}" class="kz-blog-viewall-btn">
                 <span>Explore All Hotels</span>
+                <span class="kz-blog-viewall-ico"><i class="ti ti-arrow-right"></i></span>
+            </a>
+        </div>
+    </div>
+</section>
+@endif
+
+<!--==============================
+5B. Heritage & Luxury Houseboats
+==============================-->
+@php
+    $homeHouseboats = $houseboats ?? collect();
+@endphp
+@if(!empty($homeHouseboats) && $homeHouseboats->count() > 0)
+<section class="kz-hotels-section" id="houseboats-sec">
+    <div class="container">
+        <div class="kz-hotels-header">
+            <span class="kz-hotels-eyebrow">Dal &amp; Nigeen Lake Stays</span>
+            <h2 class="kz-hotels-heading">Heritage &amp; Luxury Houseboats</h2>
+            <p class="kz-hotels-subtitle">Stay aboard traditional cedarwood houseboats with scenic lake views, shikara rides, and royal Kashmiri hospitality</p>
+        </div>
+
+        <div class="kz-hotels-slider-wrap position-relative">
+            <div class="swiper" id="kzHouseboatsSwiper">
+                <div class="swiper-wrapper">
+                    @foreach($homeHouseboats as $hb)
+                    @php
+                        $hbRating = (float)($hb->star_rating ?? 5);
+                        $hbLocation = !empty($hb->location) ? $hb->location : 'Dal Lake, Srinagar';
+                        $hbDetailUrl = route('home.houseboatdetails', $hb->slug);
+                        $hbWaUrl = 'https://wa.me/' . $wa_phone_clean . '?text=' . urlencode('Hi Love Link, I would like to inquire about booking houseboat: ' . $hb->name . ' at ' . $hbLocation);
+                    @endphp
+                    <div class="swiper-slide">
+                        <div class="kz-hotel-home-card">
+                            <div class="kz-hotel-media">
+                                <a href="{{ $hbDetailUrl }}" class="d-block w-100 h-100">
+                                    @if(!empty($hb->image))
+                                        <img src="{{ asset('storage/' . $hb->image) }}" alt="{{ $hb->name }}" width="380" height="260" loading="lazy" decoding="async">
+                                    @else
+                                        <div class="kaw-state-img-placeholder"></div>
+                                    @endif
+                                </a>
+                                <span class="kz-hotel-badge">{{ $hb->type ?? 'Verified Houseboat' }}</span>
+                                <span class="kz-hotel-star-pill">
+                                    <i class="fas fa-star text-warning"></i> {{ number_format($hbRating, 1) }} Star
+                                </span>
+                            </div>
+                            <div class="kz-hotel-body">
+                                <div class="kz-hotel-loc">
+                                    <i class="ti ti-map-pin"></i> {{ $hbLocation }}
+                                </div>
+                                <h3 class="kz-hotel-title">
+                                    <a href="{{ $hbDetailUrl }}">{{ $hb->name }}</a>
+                                </h3>
+                                <p class="kz-hotel-desc">
+                                    {{ Str::limit($hb->short_description ?? 'Handcrafted heritage houseboat stay on scenic Kashmiri waters with royal hospitality.', 58) }}
+                                </p>
+                                <div class="kz-hotel-footer">
+                                    <a href="{{ $hbWaUrl }}" target="_blank" class="kz-hotel-wa-btn">
+                                        <i class="fab fa-whatsapp me-1"></i> Book Now
+                                    </a>
+                                    <a href="{{ $hbDetailUrl }}" class="kz-hotel-detail-btn">
+                                        <span>Details</span>
+                                        <i class="ti ti-arrow-up-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <button class="kz-hotels-nav-btn kz-hotels-prev" id="kzHouseboatsPrev" type="button" aria-label="Previous Houseboat">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="kz-hotels-nav-btn kz-hotels-next" id="kzHouseboatsNext" type="button" aria-label="Next Houseboat">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <div class="kz-swiper-dots kz-houseboats-pagination"></div>
+        </div>
+
+        <div class="text-center mt-4 pt-2">
+            <a href="{{ route('home.houseboats') }}" class="kz-blog-viewall-btn">
+                <span>Explore All Houseboats</span>
                 <span class="kz-blog-viewall-ico"><i class="ti ti-arrow-right"></i></span>
             </a>
         </div>

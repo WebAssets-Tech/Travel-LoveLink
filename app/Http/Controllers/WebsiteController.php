@@ -14,6 +14,7 @@ use App\Models\Service;
 use App\Models\Testimonial;
 use App\Models\Cab;
 use App\Models\Hotel;
+use App\Models\Houseboat;
 use App\Models\DestinationWedding;
 use App\Models\Tour;
 use App\Models\TourCategory;
@@ -102,6 +103,7 @@ class WebsiteController extends Controller
             $slidericon = SliderIcon::where('status', 1)->get();
             $travelBestie = TravelBestie::where('status', 1)->latest()->take(6)->get();
             $hotels = Hotel::where('status', 1)->latest()->take(12)->get();
+            $houseboats = Houseboat::where('status', 1)->latest()->take(12)->get();
             $cabs = Cab::where('status', 1)
                 ->orderByRaw('CASE WHEN `order` IS NULL THEN 1 ELSE 0 END, `order` ASC, id DESC')
                 ->get();
@@ -137,7 +139,8 @@ class WebsiteController extends Controller
                 'sliderDomestic',
                 'countries',
                 'cabs',
-                'hotels'
+                'hotels',
+                'houseboats'
             );
         });
 
@@ -294,6 +297,23 @@ class WebsiteController extends Controller
         $hotellocations = Hotel::where('status', 1)->select('location', DB::raw('COUNT(*) as count'))->groupBy('location')->get();
         $hotelcategories = Hotel::where('status', 1)->select('category', DB::raw('COUNT(*) as count'))->groupBy('category')->get();
         return view('frontend.hotel.index', compact('hotels', 'search', 'hotellocations', 'hotelcategories'));
+    }
+
+    public function houseboatsindex(Request $request)
+    {
+        $search = $request->input('search');
+        $query = Houseboat::where('status', 1)->latest();
+        if (!empty($search)) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('category', 'like', "%{$search}%")
+                    ->orWhere('location', 'like', "%{$search}%");
+            });
+        }
+        $houseboats = $query->paginate(12);
+        $houseboatlocations = Houseboat::where('status', 1)->select('location', DB::raw('COUNT(*) as count'))->groupBy('location')->get();
+        $houseboatcategories = Houseboat::where('status', 1)->select('category', DB::raw('COUNT(*) as count'))->groupBy('category')->get();
+        return view('frontend.houseboat.index', compact('houseboats', 'search', 'houseboatlocations', 'houseboatcategories'));
     }
 
     /**
@@ -690,6 +710,18 @@ class WebsiteController extends Controller
             ->get();
         $hotelcategories = Hotel::where('status', 1)->select('category', DB::raw('COUNT(*) as count'))->groupBy('category')->get();
         return view('frontend.hotel.details', compact('hotel', 'hotelcategories', 'hotellocations'));
+    }
+
+    public function houseboatdetails($slug)
+    {
+        $houseboat = Houseboat::where('slug', $slug)->firstOrFail();
+
+        $houseboatlocations = Houseboat::where('status', 1)
+            ->select('location', DB::raw('COUNT(*) as count'))
+            ->groupBy('location')
+            ->get();
+        $houseboatcategories = Houseboat::where('status', 1)->select('category', DB::raw('COUNT(*) as count'))->groupBy('category')->get();
+        return view('frontend.houseboat.details', compact('houseboat', 'houseboatcategories', 'houseboatlocations'));
     }
 
     public function destinationweddingdetails($slug)

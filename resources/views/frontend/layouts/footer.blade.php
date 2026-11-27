@@ -35,11 +35,10 @@
         <div class="container">
             <div class="kz-ftr-grid">
 
-                {{-- Column 1: 24/7 Concierge & Regional Offices --}}
+                {{-- Column 1: Contact & Other Offices (Always Open on Mobile & Desktop) --}}
                 <div class="kz-ftr-col footer-accordion-col kz-col-concierge active is-open">
-                    <div class="footer-col-header" data-accordion-toggle>
-                        <h4 class="kz-col-heading">24/7 Support</h4>
-                        <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
+                    <div class="footer-col-header">
+                        <h4 class="kz-col-heading">Contact</h4>
                     </div>
                     <div class="footer-col-body">
 
@@ -48,7 +47,7 @@
                             <div class="kz-pill-main">
                                 <span class="kz-pill-icon"><i class="fas fa-phone-alt"></i></span>
                                 <div class="kz-pill-info">
-                                    <span class="kz-pill-tag">Always Active &bull; 24/7</span>
+                                    <span class="kz-pill-tag d-none d-md-inline">Always Active &bull; 24/7</span>
                                     <a href="tel:{{ $setting->phone }}" class="kz-pill-phone">{{ $setting->phone }}</a>
                                 </div>
                             </div>
@@ -59,21 +58,21 @@
 
                         {{-- Address & Email --}}
                         <div class="kz-concierge-meta">
-                            <div class="kz-meta-item">
+                            <div class="kz-meta-item kz-meta-email d-none d-md-flex">
                                 <i class="fas fa-envelope kz-meta-icon"></i>
                                 <a href="mailto:{{ $setting->email }}">{{ $setting->email }}</a>
                             </div>
-                            <div class="kz-meta-item">
-                                <i class="fas fa-map-marker-alt kz-meta-icon"></i>
+                            <div class="kz-meta-item kz-meta-address">
+                                <i class="fas fa-map-marker-alt kz-meta-icon d-none d-md-inline-block"></i>
                                 <span>NH1, Near Power House, 191202 Srinagar, Jammu &amp; Kashmir (INDIA)</span>
                             </div>
                         </div>
 
-                        {{-- Regional Offices Accordion --}}
+                        {{-- Other Offices Dropdown --}}
                         @if($setting->phone1 || $setting->email || $setting->email1 || $setting->address)
                         <div class="footer-other-offices kz-other-offices">
                             <div class="other-offices-toggle kz-offices-toggle" data-offices-toggle>
-                                <span><i class="fas fa-building me-2 text-gold"></i> Regional Offices</span>
+                                <span>Other Offices</span>
                                 <i class="fas fa-chevron-down other-offices-chevron"></i>
                             </div>
                             <div class="other-offices-body kz-offices-body">
@@ -160,10 +159,6 @@
                     <p class="kz-brand-bio">
                         {!! strip_tags($setting->footer_about) ?: 'Love Link Tour and Travels crafts seamless, personalized travel experiences that turn every Himalayan journey into a lifelong memory. Travel smart with verified local destination experts.' !!}
                     </p>
-                    <div class="kz-accreditation-pill">
-                        <i class="fas fa-certificate text-gold"></i>
-                        <span>Official Tourism Partner &bull; Srinagar &amp; Leh</span>
-                    </div>
                     <div class="kz-social-links">
                         @php
                             $social_link = json_encode($setting->social_link, true) ?? [];

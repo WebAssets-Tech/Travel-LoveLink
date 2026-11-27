@@ -346,18 +346,11 @@ tour Area
                                         }
                                     @endphp
 
-                                    <div class="kz-inc-exc-grid">
-                                        <div class="row g-3">
-                                            @foreach ($includedItems as $itemTitle)
-                                                <div class="col-md-6">
-                                                    <div class="kz-inc-card">
-                                                        <span class="kz-check-circle"><i class="fa-solid fa-check"></i></span>
-                                                        <span class="kz-inc-text">{{ $itemTitle }}</span>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
+                                    <ul class="kz-tour-bullet-list kz-bullet-included">
+                                        @foreach ($includedItems as $itemTitle)
+                                            <li>{{ $itemTitle }}</li>
+                                        @endforeach
+                                    </ul>
                                 </div>
 
                                 {{-- SECTION 4: Excluded --}}
@@ -367,7 +360,7 @@ tour Area
                                             <span class="kz-section-icon icon-danger"><i class="ti ti-circle-x"></i></span>
                                             <h3 class="kz-section-title">What's Excluded</h3>
                                         </div>
-                                        <span class="kz-section-badge badge-danger"><i class="fa-solid fa-xmark"></i> Not Included</span>
+                                        <span class="kz-section-badge badge-danger">Not Included</span>
                                     </div>
 
                                     @php
@@ -389,18 +382,11 @@ tour Area
                                         }
                                     @endphp
 
-                                    <div class="kz-inc-exc-grid">
-                                        <div class="row g-3">
-                                            @foreach ($excludedItems as $itemTitle)
-                                                <div class="col-md-6">
-                                                    <div class="kz-exc-card">
-                                                        <span class="kz-cross-circle"><i class="fa-solid fa-xmark"></i></span>
-                                                        <span class="kz-exc-text">{{ $itemTitle }}</span>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
+                                    <ul class="kz-tour-bullet-list kz-bullet-excluded">
+                                        @foreach ($excludedItems as $itemTitle)
+                                            <li>{{ $itemTitle }}</li>
+                                        @endforeach
+                                    </ul>
                                 </div>
 
                                 {{-- SECTION 5: Special Remarks --}}
@@ -410,7 +396,7 @@ tour Area
                                             <span class="kz-section-icon icon-warning"><i class="ti ti-alert-triangle"></i></span>
                                             <h3 class="kz-section-title">Special Remarks & Guidelines</h3>
                                         </div>
-                                        <span class="kz-section-badge badge-warning"><i class="fa-solid fa-shield-halved"></i> Important Tips</span>
+                                        <span class="kz-section-badge badge-warning">Important Tips</span>
                                     </div>
 
                                     @php
@@ -418,26 +404,27 @@ tour Area
                                         if (is_string($existingImpor)) {
                                             $existingImpor = json_decode($existingImpor, true) ?: [$existingImpor];
                                         }
+                                        $remarkItems = [];
+                                        if (!empty($existingImpor) && is_array($existingImpor)) {
+                                            foreach ($existingImpor as $important_info) {
+                                                if (!empty(trim((string) $important_info))) {
+                                                    $remarkItems[] = trim((string) $important_info);
+                                                }
+                                            }
+                                        }
                                     @endphp
 
-                                    <div class="kz-remarks-list">
-                                        @if (!empty($existingImpor) && is_array($existingImpor))
-                                            <div class="row g-2">
-                                                @foreach ($existingImpor as $important_info)
-                                                    @if(!empty(trim($important_info)))
-                                                    <div class="col-12">
-                                                        <div class="kz-remark-card">
-                                                            <i class="fa-solid fa-circle-info text-warning"></i>
-                                                            <span>{{ $important_info }}</span>
-                                                        </div>
-                                                    </div>
-                                                    @endif
-                                                @endforeach
-                                            </div>
-                                        @else
-                                            <p class="text-muted mb-0">Carry valid Government photo IDs and postpaid SIM cards for seamless connectivity across Jammu & Kashmir.</p>
-                                        @endif
-                                    </div>
+                                    @if (!empty($remarkItems))
+                                        <ul class="kz-tour-bullet-list kz-bullet-remarks">
+                                            @foreach ($remarkItems as $remarkText)
+                                                <li>{{ $remarkText }}</li>
+                                            @endforeach
+                                        </ul>
+                                    @else
+                                        <ul class="kz-tour-bullet-list kz-bullet-remarks">
+                                            <li>Carry valid Government photo IDs and postpaid SIM cards for seamless connectivity across Jammu &amp; Kashmir.</li>
+                                        </ul>
+                                    @endif
                                 </div>
 
                                 {{-- SECTION 6: Booking Policy --}}
@@ -485,9 +472,9 @@ tour Area
                         {{-- ========================================== --}}
                         {{-- MINIMAL PACKAGE BOOKING FORM               --}}
                         {{-- ========================================== --}}
-                        <div class="kaw-booking-wrap mt-30 mb-10">
+                        <div class="kaw-booking-wrap mt-3 mb-2">
                             <div class="kaw-booking-box">
-                                <div class="kaw-booking-header d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                                <div class="kaw-booking-header d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
                                     <div>
                                         <span class="kaw-booking-badge"><i class="fa-solid fa-bolt"></i> Instant Booking</span>
                                         <h4 class="kaw-booking-title mb-0">Book This Package</h4>
@@ -769,18 +756,23 @@ document.addEventListener('DOMContentLoaded', function () {
         }, { passive: true });
     });
 
-    // Accurate Header Offset Sync (only offset if header is genuinely fixed & visible in viewport)
+    // Accurate Header Offset Sync (measure fixed .kaw-hdr-sticky bar so sticky tabs always clear it)
+    function getFixedHeaderHeight() {
+        const stickyBar = document.querySelector('.kaw-hdr-sticky') || document.querySelector('.kaw-hdr');
+        if (!stickyBar) return 0;
+        const pos = window.getComputedStyle(stickyBar).position;
+        const hdr = stickyBar.closest('.kaw-hdr');
+        if (hdr && hdr.classList.contains('nav-hidden') && pos !== 'fixed') return 0;
+        if (pos === 'fixed' || pos === 'sticky') {
+            const rect = stickyBar.getBoundingClientRect();
+            return rect.bottom > 0 ? Math.round(rect.bottom) : 0;
+        }
+        return 0;
+    }
+
     function updateMobileHeaderOffset() {
         if (!navCol) return;
-        const hdr = document.querySelector('.kaw-hdr');
-        let fixedHeaderHeight = 0;
-        if (hdr) {
-            const hdrPos = window.getComputedStyle(hdr).position;
-            const hdrRect = hdr.getBoundingClientRect();
-            if (hdrPos === 'fixed' && !hdr.classList.contains('nav-hidden') && hdrRect.bottom > 0) {
-                fixedHeaderHeight = Math.round(hdrRect.bottom);
-            }
-        }
+        const fixedHeaderHeight = getFixedHeaderHeight();
         if (window.innerWidth < 992) {
             navCol.style.setProperty('top', fixedHeaderHeight + 'px', 'important');
         } else {
@@ -890,9 +882,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const targetEl = document.getElementById(targetId);
             if (targetEl) {
                 const isMobile = window.innerWidth < 992;
-                const hdr = document.querySelector('.kaw-hdr');
-                const hdrFixed = hdr && window.getComputedStyle(hdr).position === 'fixed' && !hdr.classList.contains('nav-hidden');
-                const headerOffset = isMobile ? (hdrFixed ? 120 : 66) : 24;
+                const fixedHeaderHeight = getFixedHeaderHeight();
+                const headerOffset = isMobile ? (fixedHeaderHeight + 58) : (fixedHeaderHeight + 20);
                 const elementTop = targetEl.getBoundingClientRect().top + window.pageYOffset;
                 const offsetPosition = Math.max(0, elementTop - headerOffset);
 

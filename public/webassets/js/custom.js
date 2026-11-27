@@ -809,6 +809,40 @@ document.querySelectorAll('[data-offices-toggle]').forEach(function (toggle) {
             bindThreeDotPagination(hotelsSwiper, '.kz-hotels-pagination');
         }
 
+        // D2. Heritage & Luxury Houseboats
+        var houseboatsEl = document.querySelector('#kzHouseboatsSwiper');
+        if (houseboatsEl && !houseboatsEl.swiper) {
+            var houseboatsSwiper = new Swiper('#kzHouseboatsSwiper', Object.assign({
+                slidesPerView: 1,
+                spaceBetween: 16,
+                loop: false,
+                grabCursor: true,
+                speed: 850,
+                watchSlidesProgress: true,
+                resistance: true,
+                resistanceRatio: 0.85,
+                observer: true,
+                observeParents: true,
+                resizeObserver: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                },
+                navigation: {
+                    nextEl: '#kzHouseboatsNext',
+                    prevEl: '#kzHouseboatsPrev',
+                },
+                breakpoints: {
+                    0: { slidesPerView: 1, spaceBetween: 14 },
+                    576: { slidesPerView: 2, spaceBetween: 18 },
+                    992: { slidesPerView: 3, spaceBetween: 22 },
+                    1200: { slidesPerView: 4, spaceBetween: 24 }
+                }
+            }, commonSwiperOptions));
+            bindThreeDotPagination(houseboatsSwiper, '.kz-houseboats-pagination');
+        }
+
         // E. Recent Gallery Swiper (with Premium Arrows & Root Tokens)
         var galleryEl = document.querySelector('#kzGallerySwiper');
         if (galleryEl && !galleryEl.swiper) {
@@ -1656,6 +1690,46 @@ document.addEventListener('keydown', function (e) {
         document.addEventListener('DOMContentLoaded', initEnterpriseNoticeTicker);
     } else {
         initEnterpriseNoticeTicker();
+    }
+})();
+
+/* ========================================================
+   Fixed Header Spacer Sync & Scroll Elevation State
+   ======================================================== */
+(function () {
+    function initFixedHeaderSync() {
+        var hdr = document.querySelector('header.kaw-hdr.kaw-mmt-hdr');
+        var stickyBar = hdr ? hdr.querySelector('.kaw-hdr-sticky') : null;
+        if (!hdr || !stickyBar) return;
+
+        function syncHeaderHeight() {
+            var h = Math.ceil(stickyBar.getBoundingClientRect().height);
+            if (h > 0) {
+                document.documentElement.style.setProperty('--kaw-hdr-h', h + 'px');
+            }
+        }
+
+        function onScroll() {
+            var y = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+            if (y > 12) {
+                hdr.classList.add('nav-scrolled');
+            } else {
+                hdr.classList.remove('nav-scrolled');
+            }
+        }
+
+        syncHeaderHeight();
+        onScroll();
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', syncHeaderHeight, { passive: true });
+        window.addEventListener('load', syncHeaderHeight);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initFixedHeaderSync);
+    } else {
+        initFixedHeaderSync();
     }
 })();
 

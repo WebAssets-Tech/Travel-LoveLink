@@ -183,6 +183,16 @@
                             'create_perms' => ['create-hotel'],
                         ],
                         [
+                            'route' => 'houseboat',
+                            'label' => 'Houseboats',
+                            'view_label' => 'View Houseboats',
+                            'add_label' => 'Add Houseboat',
+                            'icon' => 'bx-water',
+                            'patterns' => ['houseboat.*'],
+                            'view_perms' => ['view-houseboat', 'list-houseboat', 'create-houseboat', 'edit-houseboat', 'delete-houseboat'],
+                            'create_perms' => ['create-houseboat'],
+                        ],
+                        [
                             'route' => 'cab',
                             'label' => 'Cabs & Fleet',
                             'view_label' => 'View Cabs',
